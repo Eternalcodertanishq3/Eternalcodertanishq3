@@ -30,70 +30,11 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<table width="100%" style="border-collapse: separate; border-spacing: 12px 0; border: none; margin: 0 -12px; padding: 0;">
-  <tr>
-
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">🌐 Semantic-6G</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        Software-based 6G semantic communication system using ResNet + GRU autoencoders.
-      </p>
-      <div style="font-size: 11px; color: #c084fc; font-family: ui-monospace, monospace; margin-bottom: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-        <strong>Commit:</strong> refactor: optimize PyTorch image encoders
-      </div>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 5px;"></span>
-          Python
-        </span>
-        <span>⏱ 18d ago</span>
-        <span>★ 0</span>
-      </div>
-    </td>
-
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">🌐 Larder</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.
-      </p>
-      <div style="font-size: 11px; color: #c084fc; font-family: ui-monospace, monospace; margin-bottom: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-        <strong>Commit:</strong> feat: integrate tesseract OCR parser
-      </div>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 5px;"></span>
-          TypeScript
-        </span>
-        <span>⏱ in progress</span>
-        <span>★ 0</span>
-      </div>
-    </td>
-
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">🌐 ShipGate</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        Self-serve production-readiness scorer for AI-agent-built apps.
-      </p>
-      <div style="font-size: 11px; color: #c084fc; font-family: ui-monospace, monospace; margin-bottom: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-        <strong>Commit:</strong> feat: parse repo dependencies on load
-      </div>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 5px;"></span>
-          TypeScript
-        </span>
-        <span>⏱ building</span>
-        <span>★ 0</span>
-      </div>
-    </td>
-  </tr>
-</table>
+<p align="center">
+<a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="assets/project-building-1.svg" width="32.5%" alt="Semantic-6G" /></a>
+<a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank"><img src="assets/project-building-2.svg" width="32.5%" alt="Larder" /></a>
+<a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="assets/project-building-3.svg" width="32.5%" alt="ShipGate" /></a>
+</p>
 <!--END_SECTION:currently-building-->
 
 <sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
@@ -104,55 +45,11 @@
 
 ## ✦ Flagship Projects
 
-<table width="100%" style="border-collapse: separate; border-spacing: 12px 0; border: none; margin: 0 -12px; padding: 0;">
-  <tr>
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">🧠 Pravaha</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.
-      </p>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 5px;"></span>
-          Python
-        </span>
-        <span style="color: #c084fc;">AI Swarms</span>
-      </div>
-    </td>
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">🔬 miniGrad</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.
-      </p>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 5px;"></span>
-          Python
-        </span>
-        <span style="color: #c084fc;">Autodiff</span>
-      </div>
-    </td>
-    <td width="33.3%" valign="top" style="border: 1px solid #1e293b; border-radius: 12px; padding: 18px; background-color: #070d1e; font-family: system-ui, -apple-system, sans-serif;">
-      <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 700;">
-        <a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank" style="text-decoration: none; color: #38bdf8; font-weight: bold;">♟️ Axiorynth</a>
-      </h4>
-      <p style="margin: 0 0 16px 0; font-size: 13px; color: #94a3b8; line-height: 1.5; min-height: 54px;">
-        A chess engine written in Rust, built for speed and board representation correctness from the ground up.
-      </p>
-      <div style="font-size: 11px; color: #64748b; font-family: ui-monospace, monospace; display: flex; justify-content: space-between; align-items: center;">
-        <span style="display: inline-flex; align-items: center;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #dea584; margin-right: 5px;"></span>
-          Rust
-        </span>
-        <span style="color: #c084fc;">Systems</span>
-      </div>
-    </td>
-  </tr>
-</table>
+<p align="center">
+<a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="32.5%" alt="Pravaha" /></a>
+<a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="32.5%" alt="miniGrad" /></a>
+<a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="32.5%" alt="Axiorynth" /></a>
+</p>
 
 <br/>
 

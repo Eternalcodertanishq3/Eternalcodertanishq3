@@ -1,0 +1,67 @@
+<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.15; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <!-- Card body -->
+  <rect width="380" height="200" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  
+  <!-- Stars -->
+  <circle cx="85" cy="1" r="0.4" fill="#818CF8" opacity="0.84" style="animation: pulse 4.2s ease-in-out infinite 4.5s" />
+<circle cx="61" cy="80" r="0.9" fill="#F8FAFC" opacity="0.76" style="animation: pulse 2.8s ease-in-out infinite 2.5s" />
+<circle cx="150" cy="86" r="0.8" fill="#818CF8" opacity="0.55" style="animation: pulse 4.9s ease-in-out infinite 3.3s" />
+<circle cx="311" cy="48" r="0.9" fill="#38BDF8" opacity="0.68" style="animation: pulse 4.5s ease-in-out infinite 3.8s" />
+<circle cx="320" cy="148" r="0.4" fill="#A5B4FC" opacity="0.35" style="animation: pulse 3.8s ease-in-out infinite 2.2s" />
+<circle cx="210" cy="26" r="1.1" fill="#38BDF8" opacity="0.67" style="animation: pulse 3.8s ease-in-out infinite 1.5s" />
+<circle cx="310" cy="198" r="1.0" fill="#38BDF8" opacity="0.30" style="animation: pulse 5.0s ease-in-out infinite 0.3s" />
+<circle cx="359" cy="164" r="0.4" fill="#818CF8" opacity="0.54" style="animation: pulse 3.2s ease-in-out infinite 4.4s" />
+<circle cx="345" cy="32" r="1.0" fill="#A5B4FC" opacity="0.84" style="animation: pulse 4.5s ease-in-out infinite 2.8s" />
+<circle cx="96" cy="128" r="0.6" fill="#818CF8" opacity="0.78" style="animation: pulse 3.9s ease-in-out infinite 2.1s" />
+<circle cx="209" cy="153" r="0.8" fill="#F8FAFC" opacity="0.24" style="animation: pulse 3.3s ease-in-out infinite 2.4s" />
+<circle cx="257" cy="100" r="1.1" fill="#A5B4FC" opacity="0.42" style="animation: pulse 4.8s ease-in-out infinite 1.7s" />
+<circle cx="137" cy="186" r="0.4" fill="#F8FAFC" opacity="0.44" style="animation: pulse 4.3s ease-in-out infinite 3.4s" />
+<circle cx="313" cy="180" r="0.6" fill="#A5B4FC" opacity="0.17" style="animation: pulse 3.6s ease-in-out infinite 0.3s" />
+<circle cx="282" cy="123" r="1.0" fill="#38BDF8" opacity="0.78" style="animation: pulse 4.7s ease-in-out infinite 2.9s" />
+<circle cx="108" cy="158" r="0.5" fill="#38BDF8" opacity="0.44" style="animation: pulse 3.1s ease-in-out infinite 4.1s" />
+<circle cx="171" cy="64" r="0.4" fill="#F8FAFC" opacity="0.44" style="animation: pulse 2.3s ease-in-out infinite 4.1s" />
+<circle cx="285" cy="168" r="0.5" fill="#38BDF8" opacity="0.19" style="animation: pulse 2.4s ease-in-out infinite 3.5s" />
+<circle cx="162" cy="161" r="1.2" fill="#818CF8" opacity="0.45" style="animation: pulse 2.8s ease-in-out infinite 3.2s" />
+<circle cx="177" cy="172" r="0.7" fill="#38BDF8" opacity="0.47" style="animation: pulse 2.7s ease-in-out infinite 3.9s" />
+<circle cx="241" cy="90" r="1.1" fill="#F8FAFC" opacity="0.30" style="animation: pulse 4.2s ease-in-out infinite 0.6s" />
+<circle cx="31" cy="45" r="0.9" fill="#F8FAFC" opacity="0.22" style="animation: pulse 3.9s ease-in-out infinite 3.3s" />
+
+
+  <!-- Header -->
+  <text x="24" y="38" fill="#38BDF8" font-size="15" font-weight="700" class="font-sans">🔬 miniGrad</text>
+  <line x1="24" y1="52" x2="356" y2="52" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+
+  <!-- Description -->
+  <text x="24" y="82" fill="#94A3B8" font-size="12.5" class="font-sans">Deep learning framework built from scratch</text>
+<text x="24" y="101" fill="#94A3B8" font-size="12.5" class="font-sans">in NumPy — gradients verified against</text>
+<text x="24" y="120" fill="#94A3B8" font-size="12.5" class="font-sans">PyTorch to 1e-6. Published to PyPI.</text>
+
+
+  <!-- Commit message -->
+  
+
+  <!-- Footer Divider -->
+  <line x1="24" y1="154" x2="356" y2="154" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+
+  <!-- Footer -->
+  
+    <circle cx="28" cy="170" r="4.5" fill="#3572A5" />
+    <text x="38" y="174" fill="#94A3B8" font-size="12.5" class="font-sans">Python</text>
+    <text x="356" y="174" fill="#C084FC" font-size="12.5" font-weight="700" class="font-mono" text-anchor="end">Autodiff</text>
+    
+</svg>
