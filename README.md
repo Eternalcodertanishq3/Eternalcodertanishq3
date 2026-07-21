@@ -30,13 +30,8 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<p align="center">
-  <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="assets/project-building-1.svg" width="49.5%" alt="Semantic-6G" /></a>
-  <a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank"><img src="assets/project-building-2.svg" width="49.5%" alt="Larder" /></a>
-</p>
-<p align="center">
-  <a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="assets/project-building-3.svg" width="49.5%" alt="ShipGate" /></a>
-</p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="49.5%" alt="Semantic-6G" /></a><a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="49.5%" alt="Larder" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="49.5%" alt="ShipGate" /></a></p>
 <!--END_SECTION:currently-building-->
 
 <sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
@@ -47,13 +42,18 @@
 
 ## ✦ Flagship Projects
 
-<p align="center">
-  <a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="49.5%" alt="Pravaha" /></a>
-  <a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="49.5%" alt="miniGrad" /></a>
-</p>
-<p align="center">
-  <a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="49.5%" alt="Axiorynth" /></a>
-</p>
+<table width="100%" border="0" cellspacing="12" cellpadding="0">
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="100%" alt="Pravaha" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="100%" alt="miniGrad" /></a>
+      <br/><br/>
+      <a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="100%" alt="Axiorynth" /></a>
+    </td>
+  </tr>
+</table>
 
 <br/>
 

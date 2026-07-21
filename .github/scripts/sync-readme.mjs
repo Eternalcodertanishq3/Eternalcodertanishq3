@@ -159,7 +159,7 @@ export function timeAgo(dateStr) {
   return `${Math.floor(months / 12)}y ago`;
 }
 
-// Helper to escape special XML characters
+// Helper to escape XML special characters
 export function escapeXml(unsafe) {
   if (!unsafe) return "";
   return unsafe
@@ -832,14 +832,14 @@ export function drawGithubStats(stats) {
 </svg>`;
 }
 
-// 6. Generate project card SVG (Updated for high readability and size)
-export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo) {
+// 6. Generate project card SVG (High-readability, dynamic height, escapes XML)
+export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo, cardHeight = 220) {
   const width = 420;
-  const height = 220;
+  const height = cardHeight;
   const starsBg = generateStars(22, width, height);
 
-  // Wrap description with wider margin (48 chars max)
-  const descLines = wrapText(description || "No description provided.", 48).slice(0, 3);
+  const maxLines = height >= 260 ? 4 : 2;
+  const descLines = wrapText(description || "No description provided.", 48).slice(0, maxLines);
   let descSvg = "";
   for (let i = 0; i < descLines.length; i++) {
     descSvg += `<text x="24" y="${82 + i * 22}" fill="#94A3B8" font-size="14.5" class="font-sans">${escapeXml(descLines[i])}</text>\n`;
@@ -858,16 +858,16 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   let footerSvg = "";
   if (subinfo) {
     footerSvg = `
-    <circle cx="28" cy="186" r="4.5" fill="${langColor}" />
-    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
-    <text x="396" y="190" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
+    <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
+    <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="396" y="${height - 30}" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
     `;
   } else {
     footerSvg = `
-    <circle cx="28" cy="186" r="4.5" fill="${langColor}" />
-    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
-    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
-    <text x="396" y="190" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
+    <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
+    <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="210" y="${height - 30}" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
+    <text x="396" y="${height - 30}" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
     `;
   }
 
@@ -904,7 +904,7 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   ${commitSvg}
 
   <!-- Footer Divider -->
-  <line x1="24" y1="170" x2="396" y2="170" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="${height - 50}" x2="396" y2="${height - 50}" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Footer -->
   ${footerSvg}
@@ -1093,47 +1093,78 @@ async function main() {
 
   console.log("Static space-themed SVG cards generated successfully.");
 
-  // Helper to build 2-column center-aligned HTML grid for SVG cards
-  function buildHTMLGrid(items, typeName) {
-    const rows = [];
-    for (let i = 0; i < items.length; i += 2) {
-      const chunk = items.slice(i, i + 2);
-      const rowLinks = chunk.map((item, index) => {
-        const globalIdx = i + index;
-        const filename = `project-${typeName}-${globalIdx + 1}.svg`;
-        
-        // Compile the SVG
-        const svgCode = drawProjectCard(
-          item.name,
-          item.description || item.desc,
-          item.latestCommit || "",
-          item.primaryLanguage?.name || item.lang || "—",
-          item.primaryLanguage?.color || item.color || "#38BDF8",
-          item.pushedAgo || "",
-          item.stars || 0,
-          item.icon || "🌐",
-          item.subinfo || ""
-        );
-        writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
-        
-        const url = item.url || `https://github.com/${USERNAME}/${item.name}`;
-        return `<a href="${url}" target="_blank"><img src="assets/${filename}" width="49.5%" alt="${item.name}" /></a>`;
-      });
-      rows.push(`<p align="center">\n  ${rowLinks.join("\n  ")}\n</p>`);
+  // Build Currently Building Grid (2-column layout, pointing to the live-updating Vercel API routes)
+  let currentlyBuildingHTML = "";
+  if (activeRepos && activeRepos.length > 0) {
+    const imageLinks = [];
+    
+    for (let i = 0; i < activeRepos.length; i++) {
+      const r = activeRepos[i];
+      // Generate the static card once as a backup, but point to the live dynamic URL in the markdown
+      const filename = `project-building-${i + 1}.svg`;
+      const svgCode = drawProjectCard(
+        r.name,
+        r.description,
+        r.latestCommit,
+        r.primaryLanguage?.name || "—",
+        r.primaryLanguage?.color || "#38BDF8",
+        r.pushedAgo,
+        r.stars,
+        "🌐",
+        ""
+      );
+      writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
+
+      imageLinks.push(`<a href="https://github.com/${USERNAME}/${r.name}" target="_blank"><img src="${VERCEL_URL}/api/building?index=${i}" width="49.5%" alt="${r.name}" /></a>`);
     }
-    return rows.join("\n");
+    
+    // Group into side-by-side lines with no newlines between images to force horizontal alignment in GitHub markdown
+    const rows = [];
+    for (let i = 0; i < imageLinks.length; i += 2) {
+      const rowChunk = imageLinks.slice(i, i + 2);
+      rows.push(`<p align="center">${rowChunk.join("")}</p>`);
+    }
+    currentlyBuildingHTML = rows.join("\n");
   }
 
-  // Generate Currently Building Grid (2-column layout)
-  const currentlyBuildingHTML = buildHTMLGrid(activeRepos, "building");
-
-  // Flagship projects 2-column layout
+  // 3. Generate Flagship Projects inside a beautiful 2-column asymmetric Pinterest-like layout
   const flagshipProjects = [
-    { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", subinfo: "AI Swarms", icon: "🧠", url: "https://github.com/Eternalcodertanishq3/Pravaha" },
-    { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", subinfo: "Autodiff", icon: "🔬", url: "https://github.com/Eternalcodertanishq3/miniGrad" },
-    { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", subinfo: "Systems", icon: "♟️", url: "https://github.com/Eternalcodertanishq3/Axiorynth" }
+    { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", subinfo: "AI Swarms", icon: "🧠", url: "https://github.com/Eternalcodertanishq3/Pravaha", height: 280 },
+    { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", subinfo: "Autodiff", icon: "🔬", url: "https://github.com/Eternalcodertanishq3/miniGrad", height: 180 },
+    { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", subinfo: "Systems", icon: "♟️", url: "https://github.com/Eternalcodertanishq3/Axiorynth", height: 180 }
   ];
-  const flagshipProjectsHTML = buildHTMLGrid(flagshipProjects, "flagship");
+
+  for (let i = 0; i < flagshipProjects.length; i++) {
+    const p = flagshipProjects[i];
+    const filename = `project-flagship-${i + 1}.svg`;
+    const svgCode = drawProjectCard(
+      p.name,
+      p.desc,
+      "",
+      p.lang,
+      p.color,
+      "",
+      0,
+      p.icon,
+      p.subinfo,
+      p.height
+    );
+    writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
+  }
+
+  // Build the 2-column staggered layout (Left: Pravaha cover card, Right: miniGrad & Axiorynth stacked)
+  const flagshipProjectsHTML = `<table width="100%" border="0" cellspacing="12" cellpadding="0">
+  <tr>
+    <td width="50%" valign="top">
+      <a href="${flagshipProjects[0].url}" target="_blank"><img src="assets/project-flagship-1.svg" width="100%" alt="${flagshipProjects[0].name}" /></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="${flagshipProjects[1].url}" target="_blank"><img src="assets/project-flagship-2.svg" width="100%" alt="${flagshipProjects[1].name}" /></a>
+      <br/><br/>
+      <a href="${flagshipProjects[2].url}" target="_blank"><img src="assets/project-flagship-3.svg" width="100%" alt="${flagshipProjects[2].name}" /></a>
+    </td>
+  </tr>
+</table>`;
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">

@@ -725,3 +725,107 @@ export function drawGithubStats(stats) {
   ${panelsSvg}
 </svg>`;
 }
+
+export function escapeXml(unsafe) {
+  if (!unsafe) return "";
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+export function wrapText(text, maxCharsPerLine) {
+  const words = text.split(" ");
+  const lines = [];
+  let currentLine = "";
+  for (const word of words) {
+    if ((currentLine + " " + word).trim().length <= maxCharsPerLine) {
+      currentLine = (currentLine + " " + word).trim();
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  if (currentLine) lines.push(currentLine);
+  return lines;
+}
+
+export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo, cardHeight = 220) {
+  const width = 420;
+  const height = cardHeight;
+  const starsBg = generateStars(22, width, height);
+
+  const maxLines = height >= 260 ? 4 : 2;
+  const descLines = wrapText(description || "No description provided.", 48).slice(0, maxLines);
+  let descSvg = "";
+  for (let i = 0; i < descLines.length; i++) {
+    descSvg += `<text x="24" y="${82 + i * 22}" fill="#94A3B8" font-size="14.5" class="font-sans">${escapeXml(descLines[i])}</text>\n`;
+  }
+
+  let commitSvg = "";
+  if (!subinfo && commitMsg) {
+    const cleanCommit = escapeXml(commitMsg);
+    const slicedCommit = cleanCommit.length > 36 ? cleanCommit.slice(0, 33) + "..." : cleanCommit;
+    commitSvg = `
+    <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
+    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">${slicedCommit}</text>
+    `;
+  }
+
+  let footerSvg = "";
+  if (subinfo) {
+    footerSvg = `
+    <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
+    <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="396" y="${height - 30}" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
+    `;
+  } else {
+    footerSvg = `
+    <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
+    <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="210" y="${height - 30}" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
+    <text x="396" y="${height - 30}" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
+    `;
+  }
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.15; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <!-- Card body -->
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  
+  <!-- Stars -->
+  ${starsBg}
+
+  <!-- Header -->
+  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">${escapeXml(icon)} ${escapeXml(title)}</text>
+  <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+
+  <!-- Description -->
+  ${descSvg}
+
+  <!-- Commit message -->
+  ${commitSvg}
+
+  <!-- Footer Divider -->
+  <line x1="24" y1="${height - 50}" x2="396" y2="${height - 50}" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+
+  <!-- Footer -->
+  ${footerSvg}
+</svg>`;
+}
