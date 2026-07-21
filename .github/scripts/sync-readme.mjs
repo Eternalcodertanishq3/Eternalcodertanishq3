@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Space-themed GitHub Profile Dashboard Generator
- * Generates custom SVG cards (Hero, Contribution Graph, Matrix Calendar, Streaks, Languages Galaxy, Stats HUD)
- * and updates README.md with the new clickable and professional layout.
+ * Generates custom SVG cards (Hero, Contribution Graph, Streaks, Languages Galaxy, Stats HUD)
+ * and updates README.md with clickable project card grids and professional labels.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -282,7 +282,7 @@ export function drawHeroBanner(name, bio) {
 </svg>`;
 }
 
-// 2. Generate assets/contribution-graph.svg (Now with clean professional labels)
+// 2. Generate assets/contribution-graph.svg (With clean labels, dotted axis and dotted gridlines)
 export function drawContributionGraph(username, days) {
   const width = 850;
   const height = 300;
@@ -436,135 +436,7 @@ export function drawContributionGraph(username, days) {
 </svg>`;
 }
 
-// 3. Generate assets/contribution-matrix.svg (Contribution Calendar)
-export function drawContributionMatrix(username, weeks, totalCount) {
-  const width = 850;
-  const height = 210;
-  const stars = generateStars(40, width, height);
-
-  const startX = 65;
-  const startY = 60;
-  const size = 9.5;
-  const gap = 3.5;
-  const step = size + gap;
-
-  let gridSvg = "";
-  const monthLabels = [];
-  let prevMonth = "";
-
-  for (let w = 0; w < weeks.length; w++) {
-    const week = weeks[w];
-    const x = startX + w * step;
-
-    if (week.contributionDays && week.contributionDays.length > 0) {
-      const firstDay = week.contributionDays[0];
-      const dateObj = new Date(firstDay.date);
-      const monthName = dateObj.toLocaleString("en-US", { month: "short" });
-      
-      if (monthName !== prevMonth && w < 51) {
-        monthLabels.push(`<text x="${x}" y="${startY - 14}" class="font-mono label-month">${monthName}</text>`);
-        prevMonth = monthName;
-      }
-    }
-
-    for (let d = 0; d < week.contributionDays.length; d++) {
-      const day = week.contributionDays[d];
-      const count = day.contributionCount;
-      const y = startY + d * step;
-
-      let fill = "#111827";
-      let opacity = "0.45";
-      let filter = "";
-
-      if (count > 0 && count <= 2) {
-        fill = "#38BDF8";
-        opacity = "0.75";
-      } else if (count > 2 && count <= 5) {
-        fill = "#6366F1";
-        opacity = "0.9";
-      } else if (count > 5 && count <= 8) {
-        fill = "#A855F7";
-        opacity = "1.0";
-        filter = `filter="url(#matrixGlow)"`;
-      } else if (count > 8) {
-        fill = "#EC4899";
-        opacity = "1.0";
-        filter = `filter="url(#matrixGlowLarge)"`;
-      }
-
-      gridSvg += `<circle cx="${x + size/2}" cy="${y + size/2}" r="${size/2}" fill="${fill}" opacity="${opacity}" ${filter} />\n`;
-      
-      if (count > 8) {
-        gridSvg += `<circle cx="${x + size/2}" cy="${y + size/2}" r="${size/2 + 2}" fill="none" stroke="#EC4899" stroke-opacity="0.3" stroke-width="0.8" />\n`;
-      }
-    }
-  }
-
-  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
-  <defs>
-    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#070D1E"/>
-      <stop offset="100%" stop-color="#040712"/>
-    </linearGradient>
-    <filter id="matrixGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <filter id="matrixGlowLarge" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <style>
-      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
-      .font-mono { font-family: ui-monospace, monospace; }
-      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
-      .label-day { fill: #475569; font-size: 10px; font-weight: bold; }
-      .label-month { fill: #64748B; font-size: 10px; font-weight: bold; }
-      .legend-text { fill: #475569; font-size: 10px; font-weight: bold; }
-    </style>
-  </defs>
-
-  <!-- Card body -->
-  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
-  
-  <!-- Stars -->
-  ${stars}
-
-  <!-- Header -->
-  <text x="24" y="34" class="font-sans title">✦ Contribution Calendar</text>
-  <text x="826" y="34" class="font-mono label-month" text-anchor="end">${totalCount} CONTRIBUTIONS IN THE LAST YEAR</text>
-
-  <!-- Month Labels -->
-  ${monthLabels.join("\n")}
-
-  <!-- Day Labels -->
-  <text x="35" y="${startY + 2*step + 6}" class="font-mono label-day" text-anchor="end">Mon</text>
-  <text x="35" y="${startY + 4*step + 6}" class="font-mono label-day" text-anchor="end">Wed</text>
-  <text x="35" y="${startY + 6*step + 6}" class="font-mono label-day" text-anchor="end">Fri</text>
-
-  <!-- Constellation Star Grid -->
-  ${gridSvg}
-
-  <!-- Legend -->
-  <g transform="translate(620, 172)">
-    <text x="0" y="8" class="font-mono legend-text">Less</text>
-    <circle cx="36" cy="4" r="${size/2}" fill="#111827" opacity="0.45" />
-    <circle cx="52" cy="4" r="${size/2}" fill="#38BDF8" opacity="0.75" />
-    <circle cx="68" cy="4" r="${size/2}" fill="#6366F1" opacity="0.9" />
-    <circle cx="84" cy="4" r="${size/2}" fill="#A855F7" opacity="1.0" filter="url(#matrixGlow)" />
-    <circle cx="100" cy="4" r="${size/2}" fill="#EC4899" opacity="1.0" filter="url(#matrixGlowLarge)" />
-    <text x="114" y="8" class="font-mono legend-text">More</text>
-  </g>
-</svg>`;
-}
-
-// 4. Generate assets/streak-stats.svg
+// 3. Generate assets/streak-stats.svg
 export function drawStreakStats(stats) {
   const width = 410;
   const height = 280;
@@ -684,7 +556,7 @@ export function drawStreakStats(stats) {
 </svg>`;
 }
 
-// 5. Generate assets/language-galaxy.svg
+// 4. Generate assets/language-galaxy.svg
 export function drawLanguageGalaxy(langs) {
   const width = 410;
   const height = 280;
@@ -788,7 +660,7 @@ export function drawLanguageGalaxy(langs) {
 </svg>`;
 }
 
-// 6. Generate assets/github-stats.svg (Cleaned up from sci-fi telemetry tags)
+// 5. Generate assets/github-stats.svg
 export function drawGithubStats(stats) {
   const width = 850;
   const height = 180;
@@ -933,19 +805,6 @@ async function main() {
 
   let streakData = { totalContributions: 313, currentStreak: 8, longestStreak: 12 };
   
-  let mockCalendarWeeks = [];
-  let totalContributionsYear = 539;
-  for (let w = 0; w < 53; w++) {
-    const weekDays = [];
-    for (let d = 0; d < 7; d++) {
-      const date = new Date(today.getTime() - (52 - w) * 7 * 86400000 - (6 - d) * 86400000);
-      const dateStr = date.toISOString().split("T")[0];
-      const count = Math.random() > 0.65 ? Math.floor(Math.random() * 12) : 0;
-      weekDays.push({ date: dateStr, contributionCount: count });
-    }
-    mockCalendarWeeks.push({ contributionDays: weekDays });
-  }
-
   let activeRepos = [
     { name: "Semantic-6G", description: "Software-based 6G semantic communication system using ResNet + GRU autoencoders.", latestCommit: "refactor: optimize PyTorch image encoders", primaryLanguage: { name: "Python", color: "#3572A5" }, pushedAgo: "18d ago", stars: 0 },
     { name: "Larder", description: "Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.", latestCommit: "feat: integrate tesseract OCR parser", primaryLanguage: { name: "TypeScript", color: "#3178c6" }, pushedAgo: "in progress", stars: 0 },
@@ -959,9 +818,6 @@ async function main() {
     const contributionCalendar = userData.contributionsCollection?.contributionCalendar;
     if (contributionCalendar?.weeks) {
       const allDays = [];
-      mockCalendarWeeks = contributionCalendar.weeks;
-      totalContributionsYear = contributionCalendar.totalContributions;
-
       for (const week of contributionCalendar.weeks) {
         for (const day of week.contributionDays) {
           allDays.push({
@@ -1042,36 +898,82 @@ async function main() {
   // Write static visual assets
   writeFileSync(join(ASSETS_DIR, "hero-banner.svg"), drawHeroBanner(name, bio), "utf8");
   writeFileSync(join(ASSETS_DIR, "contribution-graph.svg"), drawContributionGraph(USERNAME, days), "utf8");
-  writeFileSync(join(ASSETS_DIR, "contribution-matrix.svg"), drawContributionMatrix(USERNAME, mockCalendarWeeks, totalContributionsYear), "utf8");
   writeFileSync(join(ASSETS_DIR, "streak-stats.svg"), drawStreakStats(streakData), "utf8");
   writeFileSync(join(ASSETS_DIR, "language-galaxy.svg"), drawLanguageGalaxy(languages), "utf8");
   writeFileSync(join(ASSETS_DIR, "github-stats.svg"), drawGithubStats(stats), "utf8");
 
   console.log("Static space-themed SVG cards generated successfully.");
 
-  // Build standard HTML card layouts for repos (100% clickable and safe)
-  const currentlyBuildingHTML = activeRepos.map(repo => {
+  // Build HTML table cards for repos (clean borders, spacing, and fully clickable)
+  const repoCols = activeRepos.map(repo => {
     const langColor = repo.primaryLanguage?.color || "#38BDF8";
-    const commitMsg = repo.latestCommit.length > 70 ? repo.latestCommit.slice(0, 67) + "..." : repo.latestCommit;
+    const commitMsg = repo.latestCommit.length > 50 ? repo.latestCommit.slice(0, 47) + "..." : repo.latestCommit;
     return `
-<div style="padding: 18px; border-left: 4px solid #38BDF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/${USERNAME}/${repo.name}" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 ${repo.name}</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">${repo.description}</p>
-  <div style="font-size: 11px; color: #475569; font-family: ui-monospace, monospace;">
-    <strong>Last Commit:</strong> ${commitMsg}
-  </div>
-  <div style="display: flex; gap: 15px; margin-top: 10px; font-size: 12px; align-items: center;">
-    <span style="color: #E2E8F0; display: inline-flex; align-items: center;">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${langColor}; margin-right: 6px;"></span>
-      ${repo.primaryLanguage?.name || "—"}
-    </span>
-    <span style="color: #64748B;">⏱ ${repo.pushedAgo}</span>
-    <span style="color: #F59E0B;">★ ${repo.stars}</span>
-  </div>
-</div>`;
+      <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+        <h4 style="margin: 0 0 6px 0;">
+          <a href="https://github.com/${USERNAME}/${repo.name}" style="text-decoration: none; color: #58a6ff; font-weight: bold; font-size: 15px;">🌐 ${repo.name}</a>
+        </h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 54px;">${repo.description}</p>
+        <div style="font-size: 11px; color: #58a6ff; font-family: monospace; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <strong>Commit:</strong> ${commitMsg}
+        </div>
+        <div style="font-size: 11px; color: #8b949e; display: flex; justify-content: space-between; align-items: center;">
+          <span style="display: inline-flex; align-items: center;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${langColor}; margin-right: 4px;"></span>
+            ${repo.primaryLanguage?.name || "—"}
+          </span>
+          <span>⏱ ${repo.pushedAgo}</span>
+          <span style="color: #F59E0B;">★ ${repo.stars}</span>
+        </div>
+      </td>`;
   }).join("\n");
+
+  const currentlyBuildingHTML = `
+<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
+  <tr>
+    ${repoCols}
+  </tr>
+</table>
+<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
+`;
+
+  // Flagship projects table cards (clean borders, spacing, and fully clickable)
+  const flagshipProjectsHTML = `
+<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
+  <tr>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🧠 Pravaha</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">AI Swarms</span>
+      </div>
+    </td>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🔬 miniGrad</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Autodiff</span>
+      </div>
+    </td>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">♟️ Axiorynth</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">A chess engine written in Rust, built for speed and board representation correctness from the ground up.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C; font-size: 10px; font-weight: bold;">Rust</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Systems</span>
+      </div>
+    </td>
+  </tr>
+</table>
+`;
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">
@@ -1084,10 +986,6 @@ async function main() {
 
 <p align="center">
   <img src="assets/contribution-graph.svg" width="100%" alt="Contribution Graph" />
-</p>
-
-<p align="center">
-  <img src="assets/contribution-matrix.svg" width="100%" alt="Contribution Calendar" />
 </p>
 
 <p align="center">
@@ -1111,7 +1009,6 @@ async function main() {
 
 <!--START_SECTION:currently-building-->
 ${currentlyBuildingHTML}
-<sub style="display: block; text-align: center; margin-top: 15px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
 <!--END_SECTION:currently-building-->
 
 <br/>
@@ -1120,38 +1017,7 @@ ${currentlyBuildingHTML}
 
 ## ✦ Flagship Projects
 
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #818CF8; font-weight: bold;">🧠 Pravaha</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-weight: bold;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">AI Swarms</span>
-  </div>
-</div>
-
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #818CF8; font-weight: bold;">🔬 miniGrad</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-weight: bold;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">Autodiff</span>
-  </div>
-</div>
-
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #818CF8; font-weight: bold;">♟️ Axiorynth</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">A chess engine written in Rust, built for speed and board representation correctness from the ground up.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C; font-weight: bold;">Rust</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">Systems</span>
-  </div>
-</div>
+${flagshipProjectsHTML}
 
 <br/>
 

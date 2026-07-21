@@ -11,10 +11,6 @@
 </p>
 
 <p align="center">
-  <img src="assets/contribution-matrix.svg" width="100%" alt="Contribution Calendar" />
-</p>
-
-<p align="center">
   <img src="assets/streak-stats.svg" width="49.5%" alt="Contribution Streaks" />
   <img src="assets/language-galaxy.svg" width="49.5%" alt="Language Distribution" />
 </p>
@@ -35,60 +31,66 @@
 
 <!--START_SECTION:currently-building-->
 
-<div style="padding: 18px; border-left: 4px solid #38BDF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 Semantic-6G</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">Software-based 6G semantic communication system using ResNet + GRU autoencoders.</p>
-  <div style="font-size: 11px; color: #475569; font-family: ui-monospace, monospace;">
-    <strong>Last Commit:</strong> refactor: optimize PyTorch image encoders
-  </div>
-  <div style="display: flex; gap: 15px; margin-top: 10px; font-size: 12px; align-items: center;">
-    <span style="color: #E2E8F0; display: inline-flex; align-items: center;">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 6px;"></span>
-      Python
-    </span>
-    <span style="color: #64748B;">⏱ 18d ago</span>
-    <span style="color: #F59E0B;">★ 0</span>
-  </div>
-</div>
+<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
+  <tr>
+    
+      <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+        <h4 style="margin: 0 0 6px 0;">
+          <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" style="text-decoration: none; color: #58a6ff; font-weight: bold; font-size: 15px;">🌐 Semantic-6G</a>
+        </h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 54px;">Software-based 6G semantic communication system using ResNet + GRU autoencoders.</p>
+        <div style="font-size: 11px; color: #58a6ff; font-family: monospace; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <strong>Commit:</strong> refactor: optimize PyTorch image encoders
+        </div>
+        <div style="font-size: 11px; color: #8b949e; display: flex; justify-content: space-between; align-items: center;">
+          <span style="display: inline-flex; align-items: center;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 4px;"></span>
+            Python
+          </span>
+          <span>⏱ 18d ago</span>
+          <span style="color: #F59E0B;">★ 0</span>
+        </div>
+      </td>
 
-<div style="padding: 18px; border-left: 4px solid #38BDF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Larder" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 Larder</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.</p>
-  <div style="font-size: 11px; color: #475569; font-family: ui-monospace, monospace;">
-    <strong>Last Commit:</strong> feat: integrate tesseract OCR parser
-  </div>
-  <div style="display: flex; gap: 15px; margin-top: 10px; font-size: 12px; align-items: center;">
-    <span style="color: #E2E8F0; display: inline-flex; align-items: center;">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 6px;"></span>
-      TypeScript
-    </span>
-    <span style="color: #64748B;">⏱ in progress</span>
-    <span style="color: #F59E0B;">★ 0</span>
-  </div>
-</div>
+      <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+        <h4 style="margin: 0 0 6px 0;">
+          <a href="https://github.com/Eternalcodertanishq3/Larder" style="text-decoration: none; color: #58a6ff; font-weight: bold; font-size: 15px;">🌐 Larder</a>
+        </h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 54px;">Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.</p>
+        <div style="font-size: 11px; color: #58a6ff; font-family: monospace; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <strong>Commit:</strong> feat: integrate tesseract OCR parser
+        </div>
+        <div style="font-size: 11px; color: #8b949e; display: flex; justify-content: space-between; align-items: center;">
+          <span style="display: inline-flex; align-items: center;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 4px;"></span>
+            TypeScript
+          </span>
+          <span>⏱ in progress</span>
+          <span style="color: #F59E0B;">★ 0</span>
+        </div>
+      </td>
 
-<div style="padding: 18px; border-left: 4px solid #38BDF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/ShipGate" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 ShipGate</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">Self-serve production-readiness scorer for AI-agent-built apps.</p>
-  <div style="font-size: 11px; color: #475569; font-family: ui-monospace, monospace;">
-    <strong>Last Commit:</strong> feat: parse repo dependencies on load
-  </div>
-  <div style="display: flex; gap: 15px; margin-top: 10px; font-size: 12px; align-items: center;">
-    <span style="color: #E2E8F0; display: inline-flex; align-items: center;">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 6px;"></span>
-      TypeScript
-    </span>
-    <span style="color: #64748B;">⏱ building</span>
-    <span style="color: #F59E0B;">★ 0</span>
-  </div>
-</div>
-<sub style="display: block; text-align: center; margin-top: 15px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
+      <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+        <h4 style="margin: 0 0 6px 0;">
+          <a href="https://github.com/Eternalcodertanishq3/ShipGate" style="text-decoration: none; color: #58a6ff; font-weight: bold; font-size: 15px;">🌐 ShipGate</a>
+        </h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 54px;">Self-serve production-readiness scorer for AI-agent-built apps.</p>
+        <div style="font-size: 11px; color: #58a6ff; font-family: monospace; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <strong>Commit:</strong> feat: parse repo dependencies on load
+        </div>
+        <div style="font-size: 11px; color: #8b949e; display: flex; justify-content: space-between; align-items: center;">
+          <span style="display: inline-flex; align-items: center;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 4px;"></span>
+            TypeScript
+          </span>
+          <span>⏱ building</span>
+          <span style="color: #F59E0B;">★ 0</span>
+        </div>
+      </td>
+  </tr>
+</table>
+<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
+
 <!--END_SECTION:currently-building-->
 
 <br/>
@@ -97,38 +99,42 @@
 
 ## ✦ Flagship Projects
 
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #818CF8; font-weight: bold;">🧠 Pravaha</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-weight: bold;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">AI Swarms</span>
-  </div>
-</div>
 
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #818CF8; font-weight: bold;">🔬 miniGrad</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-weight: bold;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">Autodiff</span>
-  </div>
-</div>
+<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
+  <tr>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🧠 Pravaha</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">AI Swarms</span>
+      </div>
+    </td>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🔬 miniGrad</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Autodiff</span>
+      </div>
+    </td>
+    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
+      <h4 style="margin: 0 0 6px 0;">
+        <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">♟️ Axiorynth</a>
+      </h4>
+      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">A chess engine written in Rust, built for speed and board representation correctness from the ground up.</p>
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C; font-size: 10px; font-weight: bold;">Rust</span>
+        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Systems</span>
+      </div>
+    </td>
+  </tr>
+</table>
 
-<div style="padding: 18px; border-left: 4px solid #818CF8; margin: 16px 0; background-color: #070D1E; border-radius: 0 8px 8px 0;">
-  <h3 style="margin: 0 0 6px 0; font-size: 16px;">
-    <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #818CF8; font-weight: bold;">♟️ Axiorynth</a>
-  </h3>
-  <p style="margin: 0 0 10px 0; font-size: 13.5px; color: #94A3B8; line-height: 1.4;">A chess engine written in Rust, built for speed and board representation correctness from the ground up.</p>
-  <div style="display: flex; gap: 8px; margin-top: 10px; font-size: 11px;">
-    <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C; font-weight: bold;">Rust</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-weight: bold;">Systems</span>
-  </div>
-</div>
 
 <br/>
 
