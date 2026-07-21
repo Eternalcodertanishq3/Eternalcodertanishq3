@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/contribution-graph.svg" width="100%" alt="Contribution Graph" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Eternalcodertanishq3&bg_color=070D1E&color=E2E8F0&title_color=38BDF8&line=818CF8&point=C084FC&area_color=38BDF8&area=true&hide_border=true&radius=12" width="100%" alt="Contribution Graph" />
 </p>
 
 <p align="center">
