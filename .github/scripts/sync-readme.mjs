@@ -1053,7 +1053,7 @@ async function main() {
       });
     }
 
-    if (calculatedStars > 0) starsCount = calculatedStars;
+    starsCount = calculatedStars;
 
     const sorted = processedRepos
       .filter((r) => r.name.toLowerCase() !== USERNAME.toLowerCase())
@@ -1079,9 +1079,9 @@ async function main() {
 
     const coll = userData.contributionsCollection;
     if (coll) {
-      commitsCount = coll.totalCommitContributions || commitsCount;
-      prsCount = coll.totalPullRequestContributions || prsCount;
-      issuesCount = coll.totalIssueContributions || issuesCount;
+      commitsCount = typeof coll.totalCommitContributions === "number" ? coll.totalCommitContributions : commitsCount;
+      prsCount = typeof coll.totalPullRequestContributions === "number" ? coll.totalPullRequestContributions : prsCount;
+      issuesCount = typeof coll.totalIssueContributions === "number" ? coll.totalIssueContributions : issuesCount;
     }
   }
 
