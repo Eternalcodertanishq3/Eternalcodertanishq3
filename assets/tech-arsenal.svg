@@ -1,0 +1,73 @@
+<svg viewBox="0 0 850 210" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <rect width="850" height="210" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  <circle cx="310" cy="207" r="0.5" fill="#A5B4FC" opacity="0.68" style="animation: pulse 3.8s ease-in-out infinite 3.6s" />
+<circle cx="505" cy="178" r="0.6" fill="#818CF8" opacity="0.78" style="animation: pulse 2.6s ease-in-out infinite 1.8s" />
+<circle cx="729" cy="43" r="1.0" fill="#38BDF8" opacity="0.59" style="animation: pulse 4.8s ease-in-out infinite 2.7s" />
+<circle cx="488" cy="171" r="0.9" fill="#A5B4FC" opacity="0.45" style="animation: pulse 4.9s ease-in-out infinite 2.4s" />
+<circle cx="583" cy="25" r="1.0" fill="#F8FAFC" opacity="0.33" style="animation: pulse 3.1s ease-in-out infinite 2.0s" />
+<circle cx="516" cy="156" r="0.8" fill="#A5B4FC" opacity="0.72" style="animation: pulse 3.9s ease-in-out infinite 4.2s" />
+<circle cx="71" cy="30" r="0.6" fill="#818CF8" opacity="0.57" style="animation: pulse 2.2s ease-in-out infinite 2.2s" />
+<circle cx="535" cy="181" r="0.8" fill="#F8FAFC" opacity="0.60" style="animation: pulse 2.3s ease-in-out infinite 1.1s" />
+<circle cx="837" cy="162" r="0.9" fill="#818CF8" opacity="0.60" style="animation: pulse 3.6s ease-in-out infinite 3.6s" />
+<circle cx="85" cy="116" r="0.6" fill="#F8FAFC" opacity="0.36" style="animation: pulse 3.0s ease-in-out infinite 4.9s" />
+<circle cx="241" cy="8" r="1.0" fill="#F8FAFC" opacity="0.53" style="animation: pulse 3.4s ease-in-out infinite 3.4s" />
+<circle cx="527" cy="198" r="0.8" fill="#F8FAFC" opacity="0.37" style="animation: pulse 3.1s ease-in-out infinite 2.7s" />
+<circle cx="790" cy="98" r="0.5" fill="#818CF8" opacity="0.27" style="animation: pulse 4.4s ease-in-out infinite 4.8s" />
+<circle cx="469" cy="106" r="1.1" fill="#A5B4FC" opacity="0.23" style="animation: pulse 2.9s ease-in-out infinite 2.9s" />
+<circle cx="54" cy="204" r="0.9" fill="#818CF8" opacity="0.22" style="animation: pulse 2.9s ease-in-out infinite 2.9s" />
+<circle cx="262" cy="22" r="1.1" fill="#F8FAFC" opacity="0.57" style="animation: pulse 2.6s ease-in-out infinite 1.2s" />
+<circle cx="607" cy="99" r="1.1" fill="#38BDF8" opacity="0.37" style="animation: pulse 3.5s ease-in-out infinite 4.7s" />
+<circle cx="139" cy="26" r="0.7" fill="#F8FAFC" opacity="0.38" style="animation: pulse 3.4s ease-in-out infinite 0.3s" />
+<circle cx="25" cy="119" r="1.1" fill="#818CF8" opacity="0.51" style="animation: pulse 4.5s ease-in-out infinite 2.6s" />
+<circle cx="569" cy="18" r="1.0" fill="#38BDF8" opacity="0.71" style="animation: pulse 3.9s ease-in-out infinite 0.3s" />
+<circle cx="160" cy="166" r="1.0" fill="#38BDF8" opacity="0.48" style="animation: pulse 3.1s ease-in-out infinite 1.6s" />
+<circle cx="320" cy="185" r="1.1" fill="#38BDF8" opacity="0.64" style="animation: pulse 4.8s ease-in-out infinite 3.8s" />
+<circle cx="83" cy="118" r="0.6" fill="#F8FAFC" opacity="0.64" style="animation: pulse 2.9s ease-in-out infinite 1.4s" />
+<circle cx="476" cy="88" r="0.4" fill="#F8FAFC" opacity="0.83" style="animation: pulse 2.4s ease-in-out infinite 2.5s" />
+<circle cx="254" cy="138" r="0.5" fill="#F8FAFC" opacity="0.59" style="animation: pulse 2.4s ease-in-out infinite 3.6s" />
+<circle cx="21" cy="19" r="1.0" fill="#38BDF8" opacity="0.78" style="animation: pulse 4.8s ease-in-out infinite 4.6s" />
+<circle cx="234" cy="74" r="0.9" fill="#F8FAFC" opacity="0.62" style="animation: pulse 4.0s ease-in-out infinite 2.7s" />
+<circle cx="443" cy="1" r="1.2" fill="#38BDF8" opacity="0.84" style="animation: pulse 4.2s ease-in-out infinite 0.8s" />
+<circle cx="709" cy="103" r="0.8" fill="#38BDF8" opacity="0.29" style="animation: pulse 2.5s ease-in-out infinite 2.3s" />
+<circle cx="245" cy="130" r="1.0" fill="#A5B4FC" opacity="0.18" style="animation: pulse 2.7s ease-in-out infinite 4.2s" />
+<circle cx="278" cy="16" r="0.7" fill="#818CF8" opacity="0.44" style="animation: pulse 2.6s ease-in-out infinite 1.7s" />
+<circle cx="508" cy="168" r="0.8" fill="#818CF8" opacity="0.28" style="animation: pulse 2.5s ease-in-out infinite 3.7s" />
+<circle cx="627" cy="55" r="0.4" fill="#F8FAFC" opacity="0.45" style="animation: pulse 2.4s ease-in-out infinite 0.1s" />
+<circle cx="16" cy="113" r="0.7" fill="#818CF8" opacity="0.39" style="animation: pulse 3.5s ease-in-out infinite 1.4s" />
+<circle cx="328" cy="156" r="1.0" fill="#38BDF8" opacity="0.15" style="animation: pulse 2.4s ease-in-out infinite 2.2s" />
+<circle cx="391" cy="21" r="1.0" fill="#A5B4FC" opacity="0.69" style="animation: pulse 4.8s ease-in-out infinite 1.1s" />
+<circle cx="785" cy="57" r="0.9" fill="#F8FAFC" opacity="0.77" style="animation: pulse 4.2s ease-in-out infinite 3.0s" />
+<circle cx="421" cy="181" r="0.7" fill="#F8FAFC" opacity="0.47" style="animation: pulse 2.7s ease-in-out infinite 4.5s" />
+<circle cx="750" cy="195" r="0.8" fill="#818CF8" opacity="0.55" style="animation: pulse 2.9s ease-in-out infinite 2.4s" />
+<circle cx="625" cy="5" r="0.6" fill="#818CF8" opacity="0.73" style="animation: pulse 3.6s ease-in-out infinite 2.9s" />
+
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ COSMIC TECH ARSENAL</text>
+
+  <!-- SkillIcons embedded directly inside the SVG canvas as high-resolution images -->
+  <g transform="translate(35, 54)">
+    <!-- HUD bracket container -->
+    <rect width="780" height="122" rx="8" fill="#0C142A" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Top Row of Icons -->
+    <image href="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" 
+           x="30" y="16" width="720" height="42" />
+           
+    <!-- Bottom Row of Icons -->
+    <image href="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" 
+           x="30" y="66" width="720" height="42" />
+  </g>
+</svg>

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Space-themed GitHub Profile Dashboard Generator
- * Generates custom SVG cards (Hero, Contribution Graph, Streaks, Languages Galaxy, Stats HUD)
+ * Generates custom SVG cards (Hero, Contribution Graph, Matrix Calendar, Streaks, Languages Galaxy, Stats HUD, etc.)
  * and updates README.md with the new layout.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
@@ -18,7 +18,7 @@ if (!existsSync(ASSETS_DIR)) {
 }
 
 // Custom GraphQL query to fetch all required statistics in a single call
-const GRAPHQL_QUERY = `
+export const GRAPHQL_QUERY = `
 query($username: String!) {
   user(login: $username) {
     name
@@ -81,7 +81,7 @@ query($username: String!) {
 `;
 
 // Helper for time calculation
-function timeAgo(dateStr) {
+export function timeAgo(dateStr) {
   const days = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86_400_000);
   if (days <= 0) return "today";
   if (days === 1) return "yesterday";
@@ -92,7 +92,7 @@ function timeAgo(dateStr) {
 }
 
 // Generate starry backdrop helper for SVGs
-function generateStars(count, width, height) {
+export function generateStars(count, width, height) {
   let svg = "";
   const starColors = ["#38BDF8", "#F8FAFC", "#818CF8", "#A5B4FC"];
   for (let i = 0; i < count; i++) {
@@ -109,7 +109,7 @@ function generateStars(count, width, height) {
 }
 
 // Generate shooting stars helper for SVGs
-function generateShootingStars(count, width, height) {
+export function generateShootingStars(count, width, height) {
   let svg = "";
   for (let i = 0; i < count; i++) {
     const x = Math.floor(Math.random() * (width - 100));
@@ -123,7 +123,7 @@ function generateShootingStars(count, width, height) {
 }
 
 // Helper to calculate streaks and total contributions
-function calculateStreaks(days) {
+export function calculateStreaks(days) {
   let totalContributions = 0;
   let currentStreak = 0;
   let longestStreak = 0;
@@ -168,7 +168,7 @@ function calculateStreaks(days) {
 }
 
 // 1. Generate assets/hero-banner.svg
-function drawHeroBanner(name, bio) {
+export function drawHeroBanner(name, bio) {
   const width = 1200;
   const height = 320;
   const stars = generateStars(90, width, height);
@@ -227,10 +227,6 @@ function drawHeroBanner(name, bio) {
       @keyframes orbit {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
-      }
-      @keyframes scanline {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(320px); }
       }
       .font-sans { font-family: system-ui, -apple-system, sans-serif; }
       .font-mono { font-family: ui-monospace, monospace; }
@@ -301,8 +297,8 @@ function drawHeroBanner(name, bio) {
 </svg>`;
 }
 
-// 2. Generate assets/contribution-graph.svg
-function drawContributionGraph(username, days) {
+// 2. Generate assets/contribution-graph.svg (Now with dotted bottom axis and dotted gridlines)
+export function drawContributionGraph(username, days) {
   const width = 850;
   const height = 300;
   const graphWidth = 720;
@@ -313,7 +309,7 @@ function drawContributionGraph(username, days) {
 
   // Find max value in days
   const counts = days.map((d) => d.contributionCount);
-  const maxVal = Math.max(...counts, 8); // at least 8 to prevent flat scale
+  const maxVal = Math.max(...counts, 8);
 
   // Compute X and Y coords
   const points = [];
@@ -332,23 +328,7 @@ function drawContributionGraph(username, days) {
   }
   areaD += ` L ${points[points.length - 1].x} ${endY} Z`;
 
-  // Format dates for labels
-  const dateLabels = [];
-  const labelInterval = Math.floor(days.length / 4);
-  for (let i = 0; i < days.length; i += labelInterval) {
-    const dateObj = new Date(days[i].date);
-    const month = dateObj.toLocaleString("en-US", { month: "short" });
-    const day = dateObj.getDate();
-    dateLabels.push({ x: points[i].x, text: `${month} ${day}` });
-  }
-  // Make sure to add the last date
-  if (days.length > 0) {
-    const lastDate = new Date(days[days.length - 1].date);
-    const lastText = `${lastDate.toLocaleString("en-US", { month: "short" })} ${lastDate.getDate()}`;
-    dateLabels.push({ x: points[points.length - 1].x, text: lastText });
-  }
-
-  // Grid lines Y values
+  // Dotted background grid lines
   const gridLines = [];
   const numGridLines = 4;
   for (let i = 0; i <= numGridLines; i++) {
@@ -382,9 +362,24 @@ function drawContributionGraph(username, days) {
     
     dots += `<circle cx="${p.x}" cy="${p.y}" r="${size}" fill="${fill}" ${glow} />\n`;
     if (p.count >= 8) {
-      // pulsating halo
       dots += `<circle cx="${p.x}" cy="${p.y}" r="${size + 4}" fill="none" stroke="#c084fc" stroke-opacity="0.3" stroke-width="1"><animate attributeName="r" values="${size};${size + 8};${size}" dur="3s" repeatCount="indefinite"/></circle>\n`;
     }
+  }
+
+  // Draw X axis bottom line daily dots & numbers
+  let xAxisDotsAndLabels = "";
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const dateObj = new Date(p.date);
+    const dayNum = dateObj.getDate();
+    
+    // Draw a small dot on the axis for every single day
+    xAxisDotsAndLabels += `<circle cx="${p.x}" cy="${endY}" r="2" fill="#38BDF8" opacity="0.5" />\n`;
+    
+    // Day label: display day numbers for every single day to avoid congestion but preserve the visual
+    // If we render all 30 numbers, it looks slightly dense but perfectly matches their requested look.
+    // Let's use a very small, clean monospace font.
+    xAxisDotsAndLabels += `<text x="${p.x}" y="${endY + 16}" class="font-mono axis-label-daily" text-anchor="middle" font-size="8.5">${dayNum}</text>\n`;
   }
 
   return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
@@ -428,8 +423,9 @@ function drawContributionGraph(username, days) {
       .font-sans { font-family: system-ui, -apple-system, sans-serif; }
       .font-mono { font-family: ui-monospace, monospace; }
       .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
-      .grid-line { stroke: #1E293B; stroke-opacity: 0.5; stroke-dasharray: 3 3; }
+      .grid-line-dotted { stroke: #1E293B; stroke-opacity: 0.6; stroke-dasharray: 1 3; }
       .axis-label { fill: #64748B; font-size: 11px; }
+      .axis-label-daily { fill: #475569; font-weight: bold; }
       @keyframes pulse {
         0%, 100% { opacity: 0.2; }
         50% { opacity: 0.8; }
@@ -447,11 +443,11 @@ function drawContributionGraph(username, days) {
   <text x="24" y="34" class="font-sans title">✦ COSMIC CONTRIBUTION TRAJECTORY (30 DAYS)</text>
   <text x="826" y="34" class="font-mono axis-label" text-anchor="end">MAX DAILY: ${maxVal} COMMITS</text>
 
-  <!-- Grid lines & Y Axis Labels -->
+  <!-- Grid lines (Dotted) & Y Axis Labels -->
   ${gridLines
     .map(
       (line) => `
-    <line x1="${startX}" y1="${line.y}" x2="${startX + graphWidth}" y2="${line.y}" class="grid-line" />
+    <line x1="${startX}" y1="${line.y}" x2="${startX + graphWidth}" y2="${line.y}" class="grid-line-dotted" />
     <text x="${startX - 12}" y="${line.y + 4}" class="font-mono axis-label" text-anchor="end">${line.val}</text>
   `
     )
@@ -460,48 +456,171 @@ function drawContributionGraph(username, days) {
   <!-- Area under curve -->
   <path d="${areaD}" fill="url(#areaGrad)" />
 
+  <!-- Horizontal axis line itself -->
+  <line x1="${startX}" y1="${endY}" x2="${startX + graphWidth}" y2="${endY}" stroke="#1E293B" stroke-width="1.2" />
+
+  <!-- Dotted X Axis Daily Markers & Numbers -->
+  ${xAxisDotsAndLabels}
+
   <!-- Smooth Neon Line -->
   <path d="${pathD}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#lineGlow)" />
 
   <!-- Constellation Dots -->
   ${dots}
-
-  <!-- X Axis Labels -->
-  ${dateLabels
-    .map(
-      (label) => `
-    <text x="${label.x}" y="${endY + 22}" class="font-mono axis-label" text-anchor="middle">${label.text}</text>
-  `
-    )
-    .join("")}
 </svg>`;
 }
 
-// 3. Generate assets/streak-stats.svg
-function drawStreakStats(stats) {
+// 3. Generate assets/contribution-matrix.svg (Stellar Space Contribution Matrix)
+export function drawContributionMatrix(username, weeks, totalCount) {
+  const width = 850;
+  const height = 210;
+  const stars = generateStars(40, width, height);
+
+  const startX = 65;
+  const startY = 60;
+  const size = 9.5;
+  const gap = 3.5;
+  const step = size + gap; // 13px
+
+  // Generate weeks and days
+  let gridSvg = "";
+  const monthLabels = [];
+  let prevMonth = "";
+
+  for (let w = 0; w < weeks.length; w++) {
+    const week = weeks[w];
+    const x = startX + w * step;
+
+    // Check month transitions
+    if (week.contributionDays && week.contributionDays.length > 0) {
+      const firstDay = week.contributionDays[0];
+      const dateObj = new Date(firstDay.date);
+      const monthName = dateObj.toLocaleString("en-US", { month: "short" });
+      
+      // If month name changes and we have enough room, draw month label
+      if (monthName !== prevMonth && w < 51) {
+        monthLabels.push(`<text x="${x}" y="${startY - 14}" class="font-mono label-month">${monthName}</text>`);
+        prevMonth = monthName;
+      }
+    }
+
+    // Render 7 days in column
+    for (let d = 0; d < week.contributionDays.length; d++) {
+      const day = week.contributionDays[d];
+      const count = day.contributionCount;
+      const y = startY + d * step;
+
+      let fill = "#111827"; // empty coordinates
+      let opacity = "0.45";
+      let filter = "";
+
+      if (count > 0 && count <= 2) {
+        fill = "#38BDF8"; // L1: cyan
+        opacity = "0.75";
+      } else if (count > 2 && count <= 5) {
+        fill = "#6366F1"; // L2: indigo
+        opacity = "0.9";
+      } else if (count > 5 && count <= 8) {
+        fill = "#A855F7"; // L3: purple
+        opacity = "1.0";
+        filter = `filter="url(#matrixGlow)"`;
+      } else if (count > 8) {
+        fill = "#EC4899"; // L4: pink
+        opacity = "1.0";
+        filter = `filter="url(#matrixGlowLarge)"`;
+      }
+
+      gridSvg += `<circle cx="${x + size/2}" cy="${y + size/2}" r="${size/2}" fill="${fill}" opacity="${opacity}" ${filter} />\n`;
+      
+      // Add subtle halo for L4
+      if (count > 8) {
+        gridSvg += `<circle cx="${x + size/2}" cy="${y + size/2}" r="${size/2 + 2}" fill="none" stroke="#EC4899" stroke-opacity="0.3" stroke-width="0.8" />\n`;
+      }
+    }
+  }
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <filter id="matrixGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="matrixGlowLarge" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+      .label-day { fill: #475569; font-size: 10px; font-weight: bold; }
+      .label-month { fill: #64748B; font-size: 10px; font-weight: bold; }
+      .legend-text { fill: #475569; font-size: 10px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Card body -->
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  
+  <!-- Stars -->
+  ${stars}
+
+  <!-- Header -->
+  <text x="24" y="34" class="font-sans title">✦ STELLAR CONTRIBUTION MATRIX</text>
+  <text x="826" y="34" class="font-mono label-month" text-anchor="end">${totalCount} CONTRIBUTIONS IN THE LAST YEAR</text>
+
+  <!-- Month Labels -->
+  ${monthLabels.join("\n")}
+
+  <!-- Day Labels -->
+  <text x="35" y="${startY + 2*step + 6}" class="font-mono label-day" text-anchor="end">Mon</text>
+  <text x="35" y="${startY + 4*step + 6}" class="font-mono label-day" text-anchor="end">Wed</text>
+  <text x="35" y="${startY + 6*step + 6}" class="font-mono label-day" text-anchor="end">Fri</text>
+
+  <!-- Constellation Star Grid -->
+  ${gridSvg}
+
+  <!-- Legend -->
+  <g transform="translate(620, 172)">
+    <text x="0" y="8" class="font-mono legend-text">Less</text>
+    <circle cx="36" cy="4" r="${size/2}" fill="#111827" opacity="0.45" />
+    <circle cx="52" cy="4" r="${size/2}" fill="#38BDF8" opacity="0.75" />
+    <circle cx="68" cy="4" r="${size/2}" fill="#6366F1" opacity="0.9" />
+    <circle cx="84" cy="4" r="${size/2}" fill="#A855F7" opacity="1.0" filter="url(#matrixGlow)" />
+    <circle cx="100" cy="4" r="${size/2}" fill="#EC4899" opacity="1.0" filter="url(#matrixGlowLarge)" />
+    <text x="114" y="8" class="font-mono legend-text">More</text>
+  </g>
+</svg>`;
+}
+
+// 4. Generate assets/streak-stats.svg
+export function drawStreakStats(stats) {
   const width = 410;
   const height = 280;
   const stars = generateStars(30, width, height);
 
-  // Concentric ring parameters
   const cx = 135;
   const cy = 145;
   
-  // Total contributions ring: R=75
   const totRadius = 75;
   const totCircum = 2 * Math.PI * totRadius;
-  const totDash = totCircum;
-  // Compute visual offset (e.g. scale total contributions dynamically to a full circle based on active progress)
-  const totOffset = totCircum * 0.15; // 85% full
+  const totOffset = totCircum * 0.15;
 
-  // Longest streak ring: R=55
   const longRadius = 55;
   const longCircum = 2 * Math.PI * longRadius;
-  // Let's cap longest streak scale at 30 days
   const longPct = Math.min(stats.longestStreak / 30, 1.0);
   const longOffset = longCircum * (1 - longPct);
 
-  // Current streak ring: R=35
   const currRadius = 35;
   const currCircum = 2 * Math.PI * currRadius;
   const currPct = Math.min(stats.currentStreak / 30, 1.0);
@@ -541,17 +660,11 @@ function drawStreakStats(stats) {
       .gauge-bg { stroke: #1E293B; stroke-opacity: 0.4; fill: none; }
       .stat-val { fill: #F8FAFC; font-weight: 700; }
       .stat-lbl { fill: #64748B; font-size: 11px; }
-      @keyframes pulse {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 0.8; }
-      }
       @keyframes spin-cw {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      .planet-rot {
-        transform-origin: ${cx}px ${cy}px;
-      }
+      .planet-rot { transform-origin: ${cx}px ${cy}px; }
     </style>
   </defs>
 
@@ -564,7 +677,7 @@ function drawStreakStats(stats) {
   <!-- Title -->
   <text x="24" y="34" class="font-sans title">✦ ORBITAL STREAK TELEMETRY</text>
 
-  <!-- Radial Gauge Dials (cockpit telemetry style) -->
+  <!-- Radial Gauge Dials -->
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" fill="none"
           stroke-dasharray="${totCircum}" stroke-dashoffset="${totOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonCyan)" />
@@ -610,8 +723,8 @@ function drawStreakStats(stats) {
 </svg>`;
 }
 
-// 4. Generate assets/language-galaxy.svg
-function drawLanguageGalaxy(langs) {
+// 5. Generate assets/language-galaxy.svg
+export function drawLanguageGalaxy(langs) {
   const width = 410;
   const height = 280;
   const stars = generateStars(35, width, height);
@@ -619,7 +732,6 @@ function drawLanguageGalaxy(langs) {
   const cx = 135;
   const cy = 145;
 
-  // Take top 5 languages, normalize sizes
   const topLangs = langs.slice(0, 5);
   const totalWeight = topLangs.reduce((acc, curr) => acc + curr.size, 0);
 
@@ -627,19 +739,16 @@ function drawLanguageGalaxy(langs) {
   let legendItems = "";
 
   const orbitRadii = [36, 56, 74, 92, 108];
-  const orbitSpeeds = [14, 20, 28, 38, 50]; // Seconds for full orbit rotation
+  const orbitSpeeds = [14, 20, 28, 38, 50];
 
   for (let i = 0; i < topLangs.length; i++) {
     const lang = topLangs[i];
     const pct = totalWeight > 0 ? (lang.size / totalWeight) * 100 : 0;
-    
-    // Planet size proportional to square root of percentage
     const planetSize = Math.max(Math.sqrt(pct) * 2.2, 4);
     const r = orbitRadii[i] || 110;
     const dur = orbitSpeeds[i] || 60;
     const color = lang.color || "#818cf8";
 
-    // SVG group that orbits
     orbitGroups += `
     <!-- ${lang.name} Orbit -->
     <circle cx="${cx}" cy="${cy}" r="${r}" class="gauge-bg" stroke-width="0.8" />
@@ -648,7 +757,6 @@ function drawLanguageGalaxy(langs) {
     </g>
     `;
 
-    // Legend on the right
     const legendY = 62 + i * 36;
     legendItems += `
     <g transform="translate(0, ${legendY})">
@@ -661,7 +769,6 @@ function drawLanguageGalaxy(langs) {
     `;
   }
 
-  // Create filters for planet glows
   let filters = "";
   for (let i = 0; i < topLangs.length; i++) {
     filters += `
@@ -687,10 +794,6 @@ function drawLanguageGalaxy(langs) {
       .gauge-bg { stroke: #1E293B; stroke-opacity: 0.4; fill: none; stroke-dasharray: 2 4; }
       .stat-val { fill: #F8FAFC; font-weight: 600; }
       .stat-lbl { fill: #64748B; }
-      @keyframes pulse {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 0.8; }
-      }
       @keyframes spin-cw {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -708,7 +811,7 @@ function drawLanguageGalaxy(langs) {
   <!-- Title -->
   <text x="24" y="34" class="font-sans title">✦ LANGUAGE GALAXY SYSTEM</text>
 
-  <!-- Central Star (Tanishq Core) -->
+  <!-- Central Star -->
   <circle cx="${cx}" cy="${cy}" r="15" fill="#F59E0B" filter="url(#glow-0)"/>
   <circle cx="${cx}" cy="${cy}" r="22" fill="none" stroke="#F59E0B" stroke-opacity="0.2" stroke-width="1">
     <animate attributeName="r" values="15;28;15" dur="4s" repeatCount="indefinite"/>
@@ -724,13 +827,12 @@ function drawLanguageGalaxy(langs) {
 </svg>`;
 }
 
-// 5. Generate assets/github-stats.svg
-function drawGithubStats(stats) {
+// 6. Generate assets/github-stats.svg
+export function drawGithubStats(stats) {
   const width = 850;
   const height = 180;
   const stars = generateStars(40, width, height);
 
-  // 4 columns positions
   const colWidth = 186;
   const colGap = 16;
   const startX = 35;
@@ -747,28 +849,19 @@ function drawGithubStats(stats) {
     const x = startX + i * (colWidth + colGap);
     
     panelsSvg += `
-    <!-- Panel ${i + 1} -->
     <g transform="translate(${x}, 52)">
-      <!-- HUD Card background with border -->
       <rect width="${colWidth}" height="100" rx="8" fill="#0C142A" stroke="#1E293B" stroke-width="1.2" />
-      <!-- Left side neon highlight -->
       <line x1="0" y1="10" x2="0" y2="90" stroke="${p.color}" stroke-width="2.5" />
-      
-      <!-- Icon (simplified vector paths) -->
       <g transform="translate(18, 18) scale(0.8)" fill="none" stroke="${p.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="${p.icon}" />
       </g>
-      
       <text x="18" y="58" class="font-sans stat-lbl" fill="#64748B" font-size="10" font-weight="700">${p.name}</text>
       <text x="18" y="82" class="font-mono stat-val" fill="#E2E8F0" font-size="20" font-weight="900" filter="url(#glow-${i})">${p.val}</text>
-      
-      <!-- Cockpit telemetry tag -->
       <text x="168" y="24" class="font-mono" fill="#64748B" font-size="8" text-anchor="end">${p.desc}</text>
     </g>
     `;
   }
 
-  // Create filters for stats glows
   let filters = "";
   for (let i = 0; i < panels.length; i++) {
     filters += `
@@ -793,10 +886,6 @@ function drawGithubStats(stats) {
       .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
       .stat-val { fill: #F8FAFC; }
       .stat-lbl { letter-spacing: 1px; }
-      @keyframes pulse {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 0.8; }
-      }
     </style>
     ${filters}
   </defs>
@@ -815,7 +904,249 @@ function drawGithubStats(stats) {
 </svg>`;
 }
 
-// Main execution block
+// 7. Generate assets/currently-launching.svg (Space HUD format for active repos)
+export function drawCurrentlyLaunching(repos) {
+  const width = 850;
+  const height = 210;
+  const stars = generateStars(40, width, height);
+
+  const colWidth = 246;
+  const colGap = 20;
+  const startX = 35;
+
+  let reposSvg = "";
+  for (let i = 0; i < repos.length; i++) {
+    const repo = repos[i];
+    const x = startX + i * (colWidth + colGap);
+    const desc = repo.description || "No description yet.";
+    const lang = repo.primaryLanguage?.name || "—";
+    const color = repo.primaryLanguage?.color || "#38BDF8";
+    
+    // Process commit msg length
+    let commitMsg = repo.latestCommit || "—";
+    if (commitMsg.length > 34) {
+      commitMsg = commitMsg.slice(0, 31) + "...";
+    }
+
+    reposSvg += `
+    <!-- Repo Card ${i + 1} -->
+    <g transform="translate(${x}, 52)">
+      <!-- HUD Box background -->
+      <rect width="${colWidth}" height="130" rx="8" fill="#0C142A" stroke="#1E293B" stroke-width="1.2" />
+      <!-- Grid corner ticks -->
+      <path d="M 0 10 L 0 0 L 10 0" stroke="${color}" stroke-width="1.5" fill="none" />
+      <path d="M ${colWidth} 10 L ${colWidth} 0 L ${colWidth - 10} 0" stroke="${color}" stroke-width="1.5" fill="none" />
+      <path d="M 0 120 L 0 130 L 10 130" stroke="${color}" stroke-width="1.5" fill="none" />
+      <path d="M ${colWidth} 120 L ${colWidth} 130 L ${colWidth - 10} 130" stroke="${color}" stroke-width="1.5" fill="none" />
+
+      <!-- Repository details -->
+      <text x="16" y="26" class="font-sans" fill="#38BDF8" font-size="14" font-weight="800">🌐 ${repo.name}</text>
+      
+      <!-- Description wrapped in 2 lines -->
+      <text x="16" y="48" class="font-sans" fill="#94A3B8" font-size="10.5" opacity="0.95">${desc.slice(0, 35)}</text>
+      <text x="16" y="62" class="font-sans" fill="#94A3B8" font-size="10.5" opacity="0.95">${desc.slice(35, 70)}</text>
+
+      <!-- Latest commit -->
+      <text x="16" y="86" class="font-mono" fill="#475569" font-size="8.5" font-weight="700">COMMIT: ${commitMsg}</text>
+
+      <!-- Footer elements -->
+      <circle cx="21" cy="110" r="4.5" fill="${color}" />
+      <text x="32" y="114" class="font-sans" fill="#E2E8F0" font-size="11" font-weight="600">${lang}</text>
+      
+      <text x="175" y="114" class="font-mono" fill="#64748B" font-size="10">⏱ ${repo.pushedAgo}</text>
+      <text x="${colWidth - 16}" y="114" class="font-sans" fill="#F59E0B" font-size="11" font-weight="600" text-anchor="end">★ ${repo.stars}</text>
+    </g>
+    `;
+  }
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  ${stars}
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ CURRENTLY LAUNCHING — LIVE FROM GITHUB</text>
+
+  <!-- Repo cards -->
+  ${reposSvg}
+</svg>`;
+}
+
+// 8. Generate assets/flagship-projects.svg (Spaceship control module HUD panel)
+export function drawFlagshipProjects() {
+  const width = 850;
+  const height = 230;
+  const stars = generateStars(40, width, height);
+
+  const colWidth = 246;
+  const colGap = 20;
+  const startX = 35;
+  const flagships = [
+    { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", tag: "AI SWARMS" },
+    { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", tag: "AUTODIFF" },
+    { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", tag: "SYSTEMS" }
+  ];
+
+  let flagshipsSvg = "";
+  for (let i = 0; i < flagships.length; i++) {
+    const p = flagships[i];
+    const x = startX + i * (colWidth + colGap);
+
+    flagshipsSvg += `
+    <!-- Project ${i + 1} -->
+    <g transform="translate(${x}, 52)">
+      <rect width="${colWidth}" height="150" rx="8" fill="#0C142A" stroke="#1E293B" stroke-width="1.2" />
+      <!-- Header banner highlight -->
+      <path d="M 0 6 L 6 0 L ${colWidth - 6} 0 L ${colWidth} 6 L ${colWidth} 34 L 0 34 Z" fill="#0F1B35" />
+      <rect x="0" y="33" width="${colWidth}" height="1.2" fill="#1E293B" />
+      
+      <text x="16" y="22" class="font-sans" fill="#38BDF8" font-size="15" font-weight="900">${p.name}</text>
+      
+      <!-- Description wrapped -->
+      <text x="16" y="58" class="font-sans" fill="#94A3B8" font-size="10.5" opacity="0.95">${p.desc.slice(0, 36)}</text>
+      <text x="16" y="72" class="font-sans" fill="#94A3B8" font-size="10.5" opacity="0.95">${p.desc.slice(36, 73)}</text>
+      <text x="16" y="86" class="font-sans" fill="#94A3B8" font-size="10.5" opacity="0.95">${p.desc.slice(73, 110)}</text>
+
+      <!-- Language Pill and custom tag -->
+      <rect x="16" y="112" width="62" height="18" rx="9" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.3)" stroke-width="0.8" />
+      <text x="47" y="125" class="font-sans" fill="#38BDF8" font-size="9" font-weight="800" text-anchor="middle">${p.lang}</text>
+
+      <rect x="86" y="112" width="70" height="18" rx="9" fill="rgba(129,140,248,0.1)" stroke="rgba(129,140,248,0.3)" stroke-width="0.8" />
+      <text x="121" y="125" class="font-sans" fill="#818CF8" font-size="9" font-weight="800" text-anchor="middle">${p.tag}</text>
+    </g>
+    `;
+  }
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  ${stars}
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ FLAGSHIP PROJECTS CONTROL MODULE</text>
+
+  <!-- Projects -->
+  ${flagshipsSvg}
+</svg>`;
+}
+
+// 9. Generate assets/tech-arsenal.svg (Tech stack card)
+export function drawTechArsenal() {
+  const width = 850;
+  const height = 210;
+  const stars = generateStars(40, width, height);
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  ${stars}
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ COSMIC TECH ARSENAL</text>
+
+  <!-- SkillIcons embedded directly inside the SVG canvas as high-resolution images -->
+  <g transform="translate(35, 54)">
+    <!-- HUD bracket container -->
+    <rect width="780" height="122" rx="8" fill="#0C142A" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Top Row of Icons -->
+    <image href="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" 
+           x="30" y="16" width="720" height="42" />
+           
+    <!-- Bottom Row of Icons -->
+    <image href="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" 
+           x="30" y="66" width="720" height="42" />
+  </g>
+</svg>`;
+}
+
+// 10. Generate assets/connect.svg (Connect links card)
+export function drawConnect() {
+  const width = 850;
+  const height = 120;
+  const stars = generateStars(25, width, height);
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+      .btn { fill: #0C142A; stroke: #1E293B; stroke-width: 1.2; }
+      .btn-txt { fill: #E2E8F0; font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+    </style>
+  </defs>
+
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  ${stars}
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ CONNECT &amp; ORBITAL COMMS</text>
+
+  <!-- Interactive visual mock links -->
+  <g transform="translate(35, 52)">
+    <!-- Button 1: Portfolio -->
+    <g transform="translate(0, 0)">
+      <rect width="240" height="42" rx="6" class="btn" stroke="#FF7139" />
+      <line x1="0" y1="10" x2="0" y2="32" stroke="#FF7139" stroke-width="3" />
+      <text x="120" y="26" class="font-sans btn-txt" text-anchor="middle">LAUNCH PORTFOLIO</text>
+    </g>
+
+    <!-- Button 2: Email -->
+    <g transform="translate(266, 0)">
+      <rect width="240" height="42" rx="6" class="btn" stroke="#D14836" />
+      <line x1="0" y1="10" x2="0" y2="32" stroke="#D14836" stroke-width="3" />
+      <text x="120" y="26" class="font-sans btn-txt" text-anchor="middle">HATCH SIGNAL (EMAIL)</text>
+    </g>
+
+    <!-- Button 3: LinkedIn -->
+    <g transform="translate(532, 0)">
+      <rect width="240" height="42" rx="6" class="btn" stroke="#0A66C2" />
+      <line x1="0" y1="10" x2="0" y2="32" stroke="#0A66C2" stroke-width="3" />
+      <text x="120" y="26" class="font-sans btn-txt" text-anchor="middle">SECURE LINKEDIN COMMS</text>
+    </g>
+  </g>
+</svg>`;
+}
+
+// Offline Action compiler
 async function main() {
   console.log(`Starting space dashboard generation for ${USERNAME}...`);
   let userData = null;
@@ -854,33 +1185,23 @@ async function main() {
     console.log("No GH_TOKEN detected in environment. Generating using high-quality mock data...");
   }
 
-  // Define fallback datasets (realistic information modeled for Tanishq Mangal)
+  // Fallback defaults
   let name = "Tanishq Mangal";
   let bio = "Computer Science Engineer — building RAG swarm engines, deep learning libraries, and SaaS apps.";
   let commitsCount = 313;
   let prsCount = 48;
   let issuesCount = 15;
-  let followersCount = 28;
   let starsCount = 12;
   
-  // Create 30 days of contribution data with space-themed waves
   let days = [];
   const today = new Date();
   for (let i = 29; i >= 0; i--) {
     const date = new Date(today.getTime() - i * 86400000);
     const dateStr = date.toISOString().split("T")[0];
-    
-    // Wave shape simulating daily contributions
-    // A sine wave plus noise
     const rad = (i / 29) * Math.PI * 4;
     let count = Math.round(Math.max(0, Math.sin(rad) * 6 + 5 + Math.random() * 4));
-    
-    // Make weekends lower, midweeks higher
     const dayOfWeek = date.getDay();
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
-      count = Math.floor(count * 0.2);
-    }
-    
+    if (dayOfWeek === 0 || dayOfWeek === 6) count = Math.floor(count * 0.2);
     days.push({ date: dateStr, contributionCount: count });
   }
 
@@ -892,21 +1213,39 @@ async function main() {
     { name: "JavaScript", size: 5000, color: "#f1e05a" }
   ];
 
-  let streakData = {
-    totalContributions: 313,
-    currentStreak: 8,
-    longestStreak: 12
-  };
+  let streakData = { totalContributions: 313, currentStreak: 8, longestStreak: 12 };
+  
+  // 365-day mock calendar
+  let mockCalendarWeeks = [];
+  let totalContributionsYear = 539;
+  for (let w = 0; w < 53; w++) {
+    const weekDays = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(today.getTime() - (52 - w) * 7 * 86400000 - (6 - d) * 86400000);
+      const dateStr = date.toISOString().split("T")[0];
+      const count = Math.random() > 0.65 ? Math.floor(Math.random() * 12) : 0;
+      weekDays.push({ date: dateStr, contributionCount: count });
+    }
+    mockCalendarWeeks.push({ contributionDays: weekDays });
+  }
 
-  // If we have actual GitHub API data, extract details and overwrite defaults
+  let activeRepos = [
+    { name: "Semantic-6G", description: "Software-based 6G semantic communication system using ResNet + GRU autoencoders.", latestCommit: "refactor: optimize PyTorch image encoders", primaryLanguage: { name: "Python", color: "#3572A5" }, pushedAgo: "18d ago", stars: 0 },
+    { name: "Larder", description: "Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.", latestCommit: "feat: integrate tesseract OCR parser", primaryLanguage: { name: "TypeScript", color: "#3178c6" }, pushedAgo: "in progress", stars: 0 },
+    { name: "ShipGate", description: "Self-serve production-readiness scorer for AI-agent-built apps.", latestCommit: "feat: parse repo dependencies on load", primaryLanguage: { name: "TypeScript", color: "#3178c6" }, pushedAgo: "building", stars: 0 }
+  ];
+
   if (userData) {
     name = userData.name || USERNAME;
     bio = userData.bio || bio;
     
-    // Extract actual contribution details
+    // Extract actual contributions calendar
     const contributionCalendar = userData.contributionsCollection?.contributionCalendar;
     if (contributionCalendar?.weeks) {
       const allDays = [];
+      mockCalendarWeeks = contributionCalendar.weeks;
+      totalContributionsYear = contributionCalendar.totalContributions;
+
       for (const week of contributionCalendar.weeks) {
         for (const day of week.contributionDays) {
           allDays.push({
@@ -916,10 +1255,7 @@ async function main() {
         }
       }
       
-      // Streak calculation based on full calendar
       streakData = calculateStreaks(allDays);
-      
-      // Get the last 30 days of contributions
       days = allDays.slice(-30);
     }
 
@@ -927,40 +1263,60 @@ async function main() {
     const repoNodes = userData.repositories?.nodes || [];
     let calculatedStars = 0;
     const langTotals = {};
+    const processedRepos = [];
 
     for (const repo of repoNodes) {
       calculatedStars += repo.stargazerCount || 0;
-      
-      // Extract language usage
       if (repo.languages?.edges) {
         for (const edge of repo.languages.edges) {
           const lName = edge.node.name;
           const lColor = edge.node.color;
-          const lSize = edge.size;
-          if (!langTotals[lName]) {
-            langTotals[lName] = { size: 0, color: lColor };
-          }
-          langTotals[lName].size += lSize;
+          if (!langTotals[lName]) langTotals[lName] = { size: 0, color: lColor };
+          langTotals[lName].size += edge.size;
         }
       }
+
+      // Collect for active repos list
+      let commitMsg = "";
+      if (repo.defaultBranchRef?.target?.history?.nodes?.[0]) {
+        commitMsg = repo.defaultBranchRef.target.history.nodes[0].message.split("\n")[0];
+      }
+      processedRepos.push({
+        name: repo.name,
+        description: repo.description || "No description yet.",
+        latestCommit: commitMsg || "Commit hook active",
+        primaryLanguage: repo.primaryLanguage || { name: "JavaScript", color: "#f1e05a" },
+        pushedAt: repo.pushedAt,
+        stars: repo.stargazerCount || 0
+      });
     }
 
-    if (calculatedStars > 0) {
-      starsCount = calculatedStars;
-    }
+    if (calculatedStars > 0) starsCount = calculatedStars;
 
-    // Format languages array
+    // Top repos sorted by push time
+    const sorted = processedRepos
+      .filter((r) => r.name.toLowerCase() !== USERNAME.toLowerCase())
+      .sort((a, b) => new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime())
+      .slice(0, 3);
+      
+    activeRepos = sorted.map(r => ({
+      name: r.name,
+      description: r.description,
+      latestCommit: r.latestCommit,
+      primaryLanguage: r.primaryLanguage,
+      pushedAgo: timeAgo(r.pushedAt),
+      stars: r.stars
+    }));
+
+    // Formatted languages
     const formattedLangs = Object.keys(langTotals).map(lName => ({
       name: lName,
       size: langTotals[lName].size,
       color: langTotals[lName].color
     })).sort((a, b) => b.size - a.size);
 
-    if (formattedLangs.length > 0) {
-      languages = formattedLangs;
-    }
+    if (formattedLangs.length > 0) languages = formattedLangs;
 
-    // Total commits, prs, issues over this year
     const coll = userData.contributionsCollection;
     if (coll) {
       commitsCount = coll.totalCommitContributions || commitsCount;
@@ -969,266 +1325,89 @@ async function main() {
     }
   }
 
-  // Compile full HUD statistics
-  const stats = {
-    commits: commitsCount,
-    prs: prsCount,
-    issues: issuesCount,
-    stars: starsCount
-  };
+  const stats = { commits: commitsCount, prs: prsCount, issues: issuesCount, stars: starsCount };
 
-  // Generate and write all SVGs to the assets folder
-  const heroBanner = drawHeroBanner(name, bio);
-  const contributionGraph = drawContributionGraph(USERNAME, days);
-  const streakStats = drawStreakStats(streakData);
-  const languageGalaxy = drawLanguageGalaxy(languages);
-  const githubStats = drawGithubStats(stats);
+  // Write static visual assets to the assets directory
+  writeFileSync(join(ASSETS_DIR, "hero-banner.svg"), drawHeroBanner(name, bio), "utf8");
+  writeFileSync(join(ASSETS_DIR, "contribution-graph.svg"), drawContributionGraph(USERNAME, days), "utf8");
+  writeFileSync(join(ASSETS_DIR, "contribution-matrix.svg"), drawContributionMatrix(USERNAME, mockCalendarWeeks, totalContributionsYear), "utf8");
+  writeFileSync(join(ASSETS_DIR, "streak-stats.svg"), drawStreakStats(streakData), "utf8");
+  writeFileSync(join(ASSETS_DIR, "language-galaxy.svg"), drawLanguageGalaxy(languages), "utf8");
+  writeFileSync(join(ASSETS_DIR, "github-stats.svg"), drawGithubStats(stats), "utf8");
+  writeFileSync(join(ASSETS_DIR, "currently-launching.svg"), drawCurrentlyLaunching(activeRepos), "utf8");
+  writeFileSync(join(ASSETS_DIR, "flagship-projects.svg"), drawFlagshipProjects(), "utf8");
+  writeFileSync(join(ASSETS_DIR, "tech-arsenal.svg"), drawTechArsenal(), "utf8");
+  writeFileSync(join(ASSETS_DIR, "connect.svg"), drawConnect(), "utf8");
 
-  writeFileSync(join(ASSETS_DIR, "hero-banner.svg"), heroBanner, "utf8");
-  writeFileSync(join(ASSETS_DIR, "contribution-graph.svg"), contributionGraph, "utf8");
-  writeFileSync(join(ASSETS_DIR, "streak-stats.svg"), streakStats, "utf8");
-  writeFileSync(join(ASSETS_DIR, "language-galaxy.svg"), languageGalaxy, "utf8");
-  writeFileSync(join(ASSETS_DIR, "github-stats.svg"), githubStats, "utf8");
+  console.log("All static space-themed SVG cards generated successfully.");
 
-  console.log("All space-themed assets generated successfully.");
+  // Assemble the spacious markdown content referencing the cards
+  const mdContent = `<div align="center">
 
-  // Let's also update the Currently Building section from actual repo info if available
-  let currentlyBuildingHTML = "";
-  if (userData && userData.repositories?.nodes) {
-    const repos = userData.repositories.nodes;
-    // Sort by push date
-    const sorted = repos
-      .filter((r) => r.name.toLowerCase() !== USERNAME.toLowerCase())
-      .sort((a, b) => new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime())
-      .slice(0, 3); // top 3 active repos
+<!-- COCKPIT SPACE DASHBOARD - UNIFIED GRID (SPACIOUS LAYOUT) -->
 
-    const repoCards = [];
-    for (const repo of sorted) {
-      const desc = repo.description || "No description yet.";
-      const lang = repo.primaryLanguage?.name || "—";
-      const langColor = repo.primaryLanguage?.color || "#818cf8";
-      const stars = repo.stargazerCount || 0;
-      
-      let commitMsg = "";
-      if (repo.defaultBranchRef?.target?.history?.nodes?.[0]) {
-        commitMsg = repo.defaultBranchRef.target.history.nodes[0].message.split("\n")[0];
-      }
-      const shortMsg = commitMsg.length > 70 ? commitMsg.slice(0, 67) + "..." : commitMsg;
+<p align="center">
+  <img src="assets/hero-banner.svg" width="100%" alt="Space HUD Banner" />
+</p>
 
-      repoCards.push(`
-<div style="flex: 1; min-width: 250px; padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px; box-sizing: border-box;">
-  <h3 style="margin: 0 0 8px 0; color: #38BDF8; font-size: 16px;">
-    <a href="https://github.com/${USERNAME}/${repo.name}" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 ${repo.name}</a>
-  </h3>
-  <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; height: 38px; overflow: hidden; line-height: 1.4;">${desc}</p>
-  <div style="font-size: 11px; color: #64748B; margin-bottom: 12px; font-family: ui-monospace, monospace;">
-    <strong>Last Commit:</strong> ${shortMsg || "—"}
-  </div>
-  <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-    <span style="display: flex; align-items: center; color: #E2E8F0;">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${langColor}; margin-right: 6px;"></span>
-      ${lang}
-    </span>
-    <span style="color: #64748B;">⏱ ${timeAgo(repo.pushedAt)}</span>
-    <span style="color: #F59E0B;">★ ${stars}</span>
-  </div>
-</div>`);
-    }
+<p align="center">
+  <img src="assets/contribution-graph.svg" width="100%" alt="Cosmic Contribution Trajectory" />
+</p>
 
-    currentlyBuildingHTML = `
-<div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; width: 100%;">
-  ${repoCards.join("\n")}
-</div>
-<sub style="display: block; text-align: center; margin-top: 15px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
-`;
-  } else {
-    // Mock currently building cards just in case
-    currentlyBuildingHTML = `
-<div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; width: 100%;">
-  <div style="flex: 1; min-width: 250px; padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px; box-sizing: border-box;">
-    <h3 style="margin: 0 0 8px 0; color: #38BDF8; font-size: 16px;">
-      <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🌐 Semantic-6G</a>
-    </h3>
-    <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; height: 38px; overflow: hidden; line-height: 1.4;">Software-based 6G semantic communication system using Joint Source-Channel Coding.</p>
-    <div style="font-size: 11px; color: #64748B; margin-bottom: 12px; font-family: ui-monospace, monospace;">
-      <strong>Last Commit:</strong> refactor: optimize PyTorch image encoders
-    </div>
-    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-      <span style="display: flex; align-items: center; color: #E2E8F0;">
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3572A5; margin-right: 6px;"></span>
-        Python
-      </span>
-      <span style="color: #64748B;">⏱ 2d ago</span>
-      <span style="color: #F59E0B;">★ 0</span>
-    </div>
-  </div>
-  <div style="flex: 1; min-width: 250px; padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px; box-sizing: border-box;">
-    <h3 style="margin: 0 0 8px 0; color: #38BDF8; font-size: 16px;">
-      <a href="https://github.com/Eternalcodertanishq3/Larder" style="text-decoration: none; color: #38BDF8; font-weight: bold;">🍽️ Larder</a>
-    </h3>
-    <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; height: 38px; overflow: hidden; line-height: 1.4;">Production-grade multi-tenant restaurant SaaS — inventory, OCR invoice parsing.</p>
-    <div style="font-size: 11px; color: #64748B; margin-bottom: 12px; font-family: ui-monospace, monospace;">
-      <strong>Last Commit:</strong> feat: integrate tesseract OCR parser
-    </div>
-    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-      <span style="display: flex; align-items: center; color: #E2E8F0;">
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3178c6; margin-right: 6px;"></span>
-        TypeScript
-      </span>
-      <span style="color: #64748B;">⏱ 4d ago</span>
-      <span style="color: #F59E0B;">★ 0</span>
-    </div>
-  </div>
-</div>
-<sub style="display: block; text-align: center; margin-top: 15px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
-`;
-  }
+<p align="center">
+  <img src="assets/contribution-matrix.svg" width="100%" alt="Stellar Contribution Grid" />
+</p>
 
-  // Assemble the README dashboard layout
-  const newReadmeContent = `<div align="center">
+<p align="center">
+  <a href="https://github.com/Eternalcodertanishq3"><img src="assets/streak-stats.svg" width="49.5%" alt="Orbital Streak Stats" /></a>
+  <a href="https://github.com/Eternalcodertanishq3"><img src="assets/language-galaxy.svg" width="49.5%" alt="Language Galaxy System" /></a>
+</p>
 
-<!-- COCKPIT SPACE DASHBOARD GRID -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none;">
-  <tr>
-    <td width="100%" colspan="2" align="center" style="border: none; padding: 0;">
-      <img src="assets/hero-banner.svg" width="100%" alt="Space HUD Banner" style="border-radius: 12px;" />
-    </td>
-  </tr>
-  <tr>
-    <td width="100%" colspan="2" align="center" style="border: none; padding: 12px 0 0 0;">
-      <img src="assets/contribution-graph.svg" width="100%" alt="Cosmic Contribution Trajectory" style="border-radius: 12px;" />
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center" style="border: none; padding: 12px 6px 0 0; box-sizing: border-box;">
-      <img src="assets/streak-stats.svg" width="100%" alt="Orbital Streak Stats" style="border-radius: 12px;" />
-    </td>
-    <td width="50%" align="center" style="border: none; padding: 12px 0 0 6px; box-sizing: border-box;">
-      <img src="assets/language-galaxy.svg" width="100%" alt="Language Galaxy System" style="border-radius: 12px;" />
-    </td>
-  </tr>
-  <tr>
-    <td width="100%" colspan="2" align="center" style="border: none; padding: 12px 0 0 0;">
-      <img src="assets/github-stats.svg" width="100%" alt="Cosmic Stats HUD" style="border-radius: 12px;" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/github-stats.svg" width="100%" alt="Cosmic Stats HUD" />
+</p>
 
-</div>
+<p align="center">
+  <img src="assets/currently-launching.svg" width="100%" alt="Active Telemetry Repos" />
+</p>
 
-<br/>
+<p align="center">
+  <img src="assets/flagship-projects.svg" width="100%" alt="Flagship Control Modules" />
+</p>
 
----
+<p align="center">
+  <img src="assets/tech-arsenal.svg" width="100%" alt="Cosmic Tech Arsenal" />
+</p>
 
-<br/>
-
-## 🔴 Currently Launching — *live from GitHub*
-
-<!--START_SECTION:currently-building-->
-${currentlyBuildingHTML}
-<!--END_SECTION:currently-building-->
-
-<br/>
-
----
-
-## ✦ Flagship Projects
-
-<div style="margin: 20px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
-
-<div style="padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px;">
-  <h3 style="margin: 0 0 10px 0; color: #38BDF8; font-size: 16px;">🧠 <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #38BDF8;">Pravaha</a></h3>
-  <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; line-height: 1.5;">LLM inference engine with a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
-  <div style="display: flex; gap: 8px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8;">AI Swarms</span>
-  </div>
-</div>
-
-<div style="padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px;">
-  <h3 style="margin: 0 0 10px 0; color: #38BDF8; font-size: 16px;">🔬 <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #38BDF8;">miniGrad</a></h3>
-  <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; line-height: 1.5;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
-  <div style="display: flex; gap: 8px; font-size: 11px;">
-    <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8;">Python</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8;">Autodiff</span>
-  </div>
-</div>
-
-<div style="padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 10px;">
-  <h3 style="margin: 0 0 10px 0; color: #38BDF8; font-size: 16px;">♟️ <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #38BDF8;">Axiorynth</a></h3>
-  <p style="margin: 0 0 12px 0; font-size: 13px; color: #94A3B8; line-height: 1.5;">A chess engine written in Rust, built for speed and correctness from the board representation up.</p>
-  <div style="display: flex; gap: 8px; font-size: 11px;">
-    <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C;">Rust</span>
-    <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8;">Systems</span>
-  </div>
-</div>
-
-</div>
-
-<br/>
-
----
-
-## 🦾 Tech Arsenal
-
-<div align="center" style="margin: 20px 0; padding: 25px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
-  <div style="margin-bottom: 16px;">
-    <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
-  </div>
-  <div>
-    <img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
-  </div>
-  <p style="margin: 15px 0 0 0; font-size: 13px; color: #64748B; font-style: italic; font-family: ui-monospace, monospace;">Orchestrating production-grade tools across the cosmic software stack</p>
-</div>
-
-<br/>
-
----
-
-## ⚡ Live contribution Heatmap
-
-<div align="center" style="margin: 20px 0; padding: 20px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
+<p align="center">
   <!-- We reference the generated snake animation here -->
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/${USERNAME}/${USERNAME}/output/github-contribution-grid-snake-dark.svg">
     <img src="https://raw.githubusercontent.com/${USERNAME}/${USERNAME}/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap" style="max-width: 100%; height: auto; border-radius: 8px;"/>
   </picture>
-  <sub style="display: block; text-align: center; margin-top: 15px; color: #64748B; font-family: ui-monospace, monospace;">⚡ Cosmic contribution snake orbiting every 12 hours</sub>
-</div>
+</p>
 
-<br/>
-
----
-
-## ✦ Connect & Orbit
-
-<div align="center" style="padding: 20px 0;">
-
-<a href="https://tanishq-creates.netlify.app" target="_blank" style="text-decoration: none; margin: 0 6px;">
-  <img src="https://img.shields.io/badge/Launch%20Portfolio-0F172A?style=for-the-badge&logo=firefox&logoColor=FF7139" alt="Portfolio"/>
-</a>
-<a href="mailto:tanishqmangal3@gmail.com" style="text-decoration: none; margin: 0 6px;">
-  <img src="https://img.shields.io/badge/Hatch%20Signal-0F172A?style=for-the-badge&logo=gmail&logoColor=D14836" alt="Email"/>
-</a>
-<a href="https://www.linkedin.com/in/tanishq-mangal-7a2683254/" target="_blank" style="text-decoration: none; margin: 0 6px;">
-  <img src="https://img.shields.io/badge/Secure%20Comms-0F172A?style=for-the-badge&logo=linkedin&logoColor=0A66C2" alt="LinkedIn"/>
-</a>
+<p align="center">
+  <a href="https://tanishq-creates.netlify.app" target="_blank"><img src="assets/connect.svg" width="100%" alt="Connect & Orbit" /></a>
+</p>
 
 </div>
 
 <br/>
 
-<div align="center" style="padding: 20px; font-size: 13px; color: #64748B; font-family: ui-monospace, monospace;">
-  <sub>✨ "Orchestrating systems that feel like magic." ✨</sub>
-  <br/>
-  <sub>Stardate: ${new Date().toISOString().slice(0, 10)} · Sync Cycle Complete</sub>
-</div>`;
+<div align="center" style="padding: 10px; font-family: ui-monospace, monospace; color: #475569; font-size: 11px;">
+  <sub>💫 Real-time instant updates enabled via Vercel Serverless Architecture.</sub>
+</div>
+`;
 
-  writeFileSync(README_PATH, newReadmeContent, "utf8");
+  writeFileSync(README_PATH, mdContent, "utf8");
   console.log("README.md rewritten and dashboard grid assembled.");
 }
 
-main().catch((err) => {
-  console.error("Critical build error:", err);
-  process.exit(1);
-});
+// Only execute when run directly from command line
+if (import.meta.url === `file://${process.argv[1]}` || process.argv[1] && process.argv[1].endsWith("sync-readme.mjs")) {
+  main().catch((err) => {
+    console.error("Critical build error:", err);
+    process.exit(1);
+  });
+}
