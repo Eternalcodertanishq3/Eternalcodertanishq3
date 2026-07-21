@@ -2,7 +2,7 @@
 /**
  * Space-themed GitHub Profile Dashboard Generator
  * Generates custom SVG cards (Hero, Contribution Graph, Streaks, Languages Galaxy, Stats HUD)
- * and updates README.md with clickable project card grids and professional labels.
+ * and updates README.md with GFM table project card grids and real contributions.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -79,6 +79,73 @@ query($username: String!) {
   }
 }
 `;
+
+// Scraper for public contributions page (allows real data without tokens)
+export async function fetchPublicContributions(username) {
+  const url = `https://github.com/users/${username}/contributions`;
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch public contributions: ${res.status}`);
+  }
+  const html = await res.text();
+
+  // Parse total contributions
+  let totalContributions = 0;
+  const totalMatch = html.match(/([0-9,]+)\s+contributions\s+in\s+the\s+last\s+year/i);
+  if (totalMatch) {
+    totalContributions = parseInt(totalMatch[1].replace(/,/g, ""), 10);
+  }
+
+  // Parse calendar cells
+  const cellRegex = /<td[^>]*class="[^"]*ContributionCalendar-day[^"]*"[^>]*>/g;
+  const cells = [...html.matchAll(cellRegex)];
+  const idToDate = {};
+  for (const cell of cells) {
+    const cellHtml = cell[0];
+    const idMatch = cellHtml.match(/id="([^"]+)"/);
+    const dateMatch = cellHtml.match(/data-date="([^"]+)"/);
+    if (idMatch && dateMatch) {
+      idToDate[idMatch[1]] = dateMatch[1];
+    }
+  }
+
+  // Parse tooltips
+  const tooltips = [...html.matchAll(/<tool-tip[^>]*for="([^"]+)"[^>]*>([^<]+)<\/tool-tip>/g)];
+  const contributionsMap = {};
+  for (const tooltip of tooltips) {
+    const id = tooltip[1];
+    const text = tooltip[2].trim();
+    const date = idToDate[id];
+    if (date) {
+      let count = 0;
+      if (!text.toLowerCase().includes("no contributions")) {
+        const match = text.match(/^([0-9,]+)\s+contribution/i);
+        if (match) {
+          count = parseInt(match[1].replace(/,/g, ""), 10);
+        } else {
+          count = 1;
+        }
+      }
+      contributionsMap[date] = count;
+    }
+  }
+
+  // Build calendar days array for the past year
+  const days = [];
+  const today = new Date();
+  for (let i = 365; i >= 0; i--) {
+    const date = new Date(today.getTime() - i * 86400000);
+    const dateStr = date.toISOString().split("T")[0];
+    const count = contributionsMap[dateStr] || 0;
+    days.push({ date: dateStr, contributionCount: count });
+  }
+
+  return { days, totalContributions };
+}
 
 // Helper for time calculation
 export function timeAgo(dateStr) {
@@ -282,7 +349,7 @@ export function drawHeroBanner(name, bio) {
 </svg>`;
 }
 
-// 2. Generate assets/contribution-graph.svg (With clean labels, dotted axis and dotted gridlines)
+// 2. Generate assets/contribution-graph.svg
 export function drawContributionGraph(username, days) {
   const width = 850;
   const height = 300;
@@ -293,7 +360,7 @@ export function drawContributionGraph(username, days) {
   const endY = startY + graphHeight;
 
   const counts = days.map((d) => d.contributionCount);
-  const maxVal = Math.max(...counts, 8);
+  const maxVal = Math.max(...counts, 1); // Avoid division by zero
 
   const points = [];
   for (let i = 0; i < days.length; i++) {
@@ -739,10 +806,33 @@ export function drawGithubStats(stats) {
 // Main compiler
 async function main() {
   console.log(`Starting space dashboard generation for ${USERNAME}...`);
-  let userData = null;
+  
+  let days = [];
+  let streakData = { totalContributions: 0, currentStreak: 0, longestStreak: 0 };
+  let totalContributionsYear = 0;
 
+  // 1. Fetch real contributions from the public calendar scraper (primary source for authentic commits history)
+  console.log("Fetching actual public contributions calendar...");
+  try {
+    const scraped = await fetchPublicContributions(USERNAME);
+    days = scraped.days.slice(-30);
+    totalContributionsYear = scraped.totalContributions;
+    streakData = calculateStreaks(scraped.days);
+    console.log(`Public calendar scraped successfully. Total contributions: ${totalContributionsYear}.`);
+  } catch (e) {
+    console.error("Failed to parse public contributions scraper:", e.message);
+    console.log("Generating standard fallback contribution days...");
+    const today = new Date();
+    for (let i = 29; i >= 0; i--) {
+      const date = new Date(today.getTime() - i * 86400000);
+      const dateStr = date.toISOString().split("T")[0];
+      days.push({ date: dateStr, contributionCount: 0 });
+    }
+  }
+
+  let userData = null;
   if (TOKEN) {
-    console.log("Token found. Querying GitHub GraphQL API...");
+    console.log("Token found. Querying GitHub GraphQL API for repositories...");
     try {
       const response = await fetch("https://api.github.com/graphql", {
         method: "POST",
@@ -757,43 +847,25 @@ async function main() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`GitHub GraphQL API responded with status ${response.status}`);
+      if (response.ok) {
+        const json = await response.json();
+        if (!json.errors) {
+          userData = json.data?.user;
+          console.log("GraphQL user data retrieved successfully.");
+        }
       }
-
-      const json = await response.json();
-      if (json.errors) {
-        throw new Error(`GraphQL Errors: ${JSON.stringify(json.errors)}`);
-      }
-      userData = json.data?.user;
-      console.log("GraphQL user data retrieved successfully.");
     } catch (e) {
-      console.error("Failed to fetch GraphQL data: ", e.message);
-      console.log("Falling back to mock-data fallback generation...");
+      console.error("Failed to query GraphQL API: ", e.message);
     }
-  } else {
-    console.log("No GH_TOKEN detected in environment. Generating using high-quality mock data...");
   }
 
-  // Fallback defaults
+  // Fallback defaults for bio & repo stats
   let name = "Tanishq Mangal";
   let bio = "Computer Science Engineer — building RAG swarm engines, deep learning libraries, and SaaS apps.";
-  let commitsCount = 313;
-  let prsCount = 48;
-  let issuesCount = 15;
+  let commitsCount = totalContributionsYear || 322;
+  let prsCount = 14;
+  let issuesCount = 4;
   let starsCount = 12;
-  
-  let days = [];
-  const today = new Date();
-  for (let i = 29; i >= 0; i--) {
-    const date = new Date(today.getTime() - i * 86400000);
-    const dateStr = date.toISOString().split("T")[0];
-    const rad = (i / 29) * Math.PI * 4;
-    let count = Math.round(Math.max(0, Math.sin(rad) * 6 + 5 + Math.random() * 4));
-    const dayOfWeek = date.getDay();
-    if (dayOfWeek === 0 || dayOfWeek === 6) count = Math.floor(count * 0.2);
-    days.push({ date: dateStr, contributionCount: count });
-  }
 
   let languages = [
     { name: "TypeScript", size: 42000, color: "#3178c6" },
@@ -803,8 +875,6 @@ async function main() {
     { name: "JavaScript", size: 5000, color: "#f1e05a" }
   ];
 
-  let streakData = { totalContributions: 313, currentStreak: 8, longestStreak: 12 };
-  
   let activeRepos = [
     { name: "Semantic-6G", description: "Software-based 6G semantic communication system using ResNet + GRU autoencoders.", latestCommit: "refactor: optimize PyTorch image encoders", primaryLanguage: { name: "Python", color: "#3572A5" }, pushedAgo: "18d ago", stars: 0 },
     { name: "Larder", description: "Production-grade multi-tenant restaurant SaaS inventory & OCR invoice parser.", latestCommit: "feat: integrate tesseract OCR parser", primaryLanguage: { name: "TypeScript", color: "#3178c6" }, pushedAgo: "in progress", stars: 0 },
@@ -814,10 +884,13 @@ async function main() {
   if (userData) {
     name = userData.name || USERNAME;
     bio = userData.bio || bio;
-    
+
+    // Overwrite commits & streaks if GraphQL calendar is valid and larger (e.g. contains private commits)
     const contributionCalendar = userData.contributionsCollection?.contributionCalendar;
-    if (contributionCalendar?.weeks) {
+    if (contributionCalendar?.weeks && contributionCalendar.totalContributions > totalContributionsYear) {
       const allDays = [];
+      totalContributionsYear = contributionCalendar.totalContributions;
+
       for (const week of contributionCalendar.weeks) {
         for (const day of week.contributionDays) {
           allDays.push({
@@ -829,6 +902,7 @@ async function main() {
       
       streakData = calculateStreaks(allDays);
       days = allDays.slice(-30);
+      console.log(`Using authenticated GraphQL contributions: Total=${totalContributionsYear}.`);
     }
 
     const repoNodes = userData.repositories?.nodes || [];
@@ -893,7 +967,14 @@ async function main() {
     }
   }
 
+  // Sync commit counts to show real totals in stats panel
+  if (totalContributionsYear > commitsCount) {
+    commitsCount = totalContributionsYear;
+  }
   const stats = { commits: commitsCount, prs: prsCount, issues: issuesCount, stars: starsCount };
+  
+  // Overwrite totals in streaks block
+  streakData.totalContributions = commitsCount;
 
   // Write static visual assets
   writeFileSync(join(ASSETS_DIR, "hero-banner.svg"), drawHeroBanner(name, bio), "utf8");
@@ -904,76 +985,24 @@ async function main() {
 
   console.log("Static space-themed SVG cards generated successfully.");
 
-  // Build HTML table cards for repos (clean borders, spacing, and fully clickable)
-  const repoCols = activeRepos.map(repo => {
-    const langColor = repo.primaryLanguage?.color || "#38BDF8";
-    const commitMsg = repo.latestCommit.length > 50 ? repo.latestCommit.slice(0, 47) + "..." : repo.latestCommit;
-    return `
-      <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
-        <h4 style="margin: 0 0 6px 0;">
-          <a href="https://github.com/${USERNAME}/${repo.name}" style="text-decoration: none; color: #58a6ff; font-weight: bold; font-size: 15px;">🌐 ${repo.name}</a>
-        </h4>
-        <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 54px;">${repo.description}</p>
-        <div style="font-size: 11px; color: #58a6ff; font-family: monospace; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-          <strong>Commit:</strong> ${commitMsg}
-        </div>
-        <div style="font-size: 11px; color: #8b949e; display: flex; justify-content: space-between; align-items: center;">
-          <span style="display: inline-flex; align-items: center;">
-            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${langColor}; margin-right: 4px;"></span>
-            ${repo.primaryLanguage?.name || "—"}
-          </span>
-          <span>⏱ ${repo.pushedAgo}</span>
-          <span style="color: #F59E0B;">★ ${repo.stars}</span>
-        </div>
-      </td>`;
-  }).join("\n");
+  // Build standard GFM Markdown Table for Currently Building (fully supported, has borders, 100% clickable)
+  let currentlyBuildingHTML = "";
+  if (activeRepos && activeRepos.length > 0) {
+    const headers = activeRepos.map(r => `🌐 [**${r.name}**](https://github.com/${USERNAME}/${r.name})`).join(" | ");
+    const underlines = activeRepos.map(() => "---").join(" | ");
+    const contents = activeRepos.map(repo => {
+      const commitMsg = repo.latestCommit.length > 60 ? repo.latestCommit.slice(0, 57) + "..." : repo.latestCommit;
+      const langColor = repo.primaryLanguage?.color || "#38BDF8";
+      const langName = repo.primaryLanguage?.name || "—";
+      return `${repo.description}<br/><br/>**Latest Commit:** \`${commitMsg}\`<br/><br/><span style="display: inline-flex; align-items: center;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${langColor}; margin-right: 4px;"></span>${langName}</span> · ⏱ ${repo.pushedAgo} · ★ ${repo.stars}`;
+    }).join(" | ");
+    currentlyBuildingHTML = `| ${headers} |\n| ${underlines} |\n| ${contents} |`;
+  }
 
-  const currentlyBuildingHTML = `
-<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
-  <tr>
-    ${repoCols}
-  </tr>
-</table>
-<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
-`;
-
-  // Flagship projects table cards (clean borders, spacing, and fully clickable)
-  const flagshipProjectsHTML = `
-<table width="100%" cellpadding="0" cellspacing="12" style="border-collapse: separate; border-spacing: 12px; border: none; margin: 10px 0;">
-  <tr>
-    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
-      <h4 style="margin: 0 0 6px 0;">
-        <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🧠 Pravaha</a>
-      </h4>
-      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
-      <div style="margin-top: 10px;">
-        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
-        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">AI Swarms</span>
-      </div>
-    </td>
-    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
-      <h4 style="margin: 0 0 6px 0;">
-        <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">🔬 miniGrad</a>
-      </h4>
-      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
-      <div style="margin-top: 10px;">
-        <span style="background: rgba(56, 189, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #38BDF8; font-size: 10px; font-weight: bold;">Python</span>
-        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Autodiff</span>
-      </div>
-    </td>
-    <td width="33.3%" valign="top" style="border: 1px solid #30363d; border-radius: 6px; padding: 16px; background-color: #0d1117;">
-      <h4 style="margin: 0 0 6px 0;">
-        <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #818CF8; font-weight: bold; font-size: 15px;">♟️ Axiorynth</a>
-      </h4>
-      <p style="margin: 0 0 12px 0; font-size: 13px; color: #8b949e; line-height: 1.4; min-height: 72px;">A chess engine written in Rust, built for speed and board representation correctness from the ground up.</p>
-      <div style="margin-top: 10px;">
-        <span style="background: rgba(238, 76, 44, 0.1); padding: 3px 8px; border-radius: 12px; color: #EE4C2C; font-size: 10px; font-weight: bold;">Rust</span>
-        <span style="background: rgba(129, 140, 248, 0.1); padding: 3px 8px; border-radius: 12px; color: #818CF8; font-size: 10px; font-weight: bold;">Systems</span>
-      </div>
-    </td>
-  </tr>
-</table>
-`;
+  // Flagship projects GFM Table
+  const flagshipProjectsHTML = `| 🧠 [**Pravaha**](https://github.com/Eternalcodertanishq3/Pravaha) | 🔬 [**miniGrad**](https://github.com/Eternalcodertanishq3/miniGrad) | ♟️ [**Axiorynth**](https://github.com/Eternalcodertanishq3/Axiorynth) |
+| --- | --- | --- |
+| LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.<br/><br/>\`Python\` · \`AI Swarms\` | Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.<br/><br/>\`Python\` · \`Autodiff\` | A chess engine written in Rust, built for speed and board representation correctness from the ground up.<br/><br/>\`Rust\` · \`Systems\` |`;
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">
@@ -1010,6 +1039,8 @@ async function main() {
 <!--START_SECTION:currently-building-->
 ${currentlyBuildingHTML}
 <!--END_SECTION:currently-building-->
+
+<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
 
 <br/>
 

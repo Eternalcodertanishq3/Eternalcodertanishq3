@@ -1,4 +1,4 @@
-import { calculateStreaks, timeAgo } from "../.github/scripts/sync-readme.mjs";
+import { calculateStreaks, timeAgo, fetchPublicContributions } from "../.github/scripts/sync-readme.mjs";
 
 const GRAPHQL_QUERY = `
 query($username: String!) {
@@ -65,25 +65,33 @@ query($username: String!) {
 export async function fetchGitHubData(username) {
   const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
   
-  // High quality mock data defaults
+  let days = [];
+  let streakData = { totalContributions: 0, currentStreak: 0, longestStreak: 0 };
+  let totalContributionsYear = 0;
+
+  // Fetch from public contributions scraper as primary/fallback source
+  try {
+    const scraped = await fetchPublicContributions(username);
+    days = scraped.days.slice(-30);
+    totalContributionsYear = scraped.totalContributions;
+    streakData = calculateStreaks(scraped.days);
+  } catch (e) {
+    console.error("Public scraper fetch failed:", e.message);
+    const today = new Date();
+    for (let i = 29; i >= 0; i--) {
+      const date = new Date(today.getTime() - i * 86400000);
+      const dateStr = date.toISOString().split("T")[0];
+      days.push({ date: dateStr, contributionCount: 0 });
+    }
+  }
+
+  // GraphQL query
   let name = "Tanishq Mangal";
   let bio = "Computer Science Engineer — building RAG swarm engines, deep learning libraries, and SaaS apps.";
-  let commitsCount = 313;
-  let prsCount = 48;
-  let issuesCount = 15;
+  let commitsCount = totalContributionsYear || 322;
+  let prsCount = 14;
+  let issuesCount = 4;
   let starsCount = 12;
-  
-  let days = [];
-  const today = new Date();
-  for (let i = 29; i >= 0; i--) {
-    const date = new Date(today.getTime() - i * 86400000);
-    const dateStr = date.toISOString().split("T")[0];
-    const rad = (i / 29) * Math.PI * 4;
-    let count = Math.round(Math.max(0, Math.sin(rad) * 6 + 5 + Math.random() * 4));
-    const dayOfWeek = date.getDay();
-    if (dayOfWeek === 0 || dayOfWeek === 6) count = Math.floor(count * 0.2);
-    days.push({ date: dateStr, contributionCount: count });
-  }
 
   let languages = [
     { name: "TypeScript", size: 42000, color: "#3178c6" },
@@ -92,21 +100,6 @@ export async function fetchGitHubData(username) {
     { name: "Go", size: 8000, color: "#00ADD8" },
     { name: "JavaScript", size: 5000, color: "#f1e05a" }
   ];
-
-  let streakData = { totalContributions: 313, currentStreak: 8, longestStreak: 12 };
-  
-  let mockCalendarWeeks = [];
-  let totalContributionsYear = 539;
-  for (let w = 0; w < 53; w++) {
-    const weekDays = [];
-    for (let d = 0; d < 7; d++) {
-      const date = new Date(today.getTime() - (52 - w) * 7 * 86400000 - (6 - d) * 86400000);
-      const dateStr = date.toISOString().split("T")[0];
-      const count = Math.random() > 0.65 ? Math.floor(Math.random() * 12) : 0;
-      weekDays.push({ date: dateStr, contributionCount: count });
-    }
-    mockCalendarWeeks.push({ contributionDays: weekDays });
-  }
 
   let activeRepos = [
     { name: "Semantic-6G", description: "Software-based 6G semantic communication system using ResNet + GRU autoencoders.", latestCommit: "refactor: optimize PyTorch image encoders", primaryLanguage: { name: "Python", color: "#3572A5" }, pushedAgo: "18d ago", stars: 0 },
@@ -137,9 +130,8 @@ export async function fetchGitHubData(username) {
           bio = userData.bio || bio;
           
           const contributionCalendar = userData.contributionsCollection?.contributionCalendar;
-          if (contributionCalendar?.weeks) {
+          if (contributionCalendar?.weeks && contributionCalendar.totalContributions > totalContributionsYear) {
             const allDays = [];
-            mockCalendarWeeks = contributionCalendar.weeks;
             totalContributionsYear = contributionCalendar.totalContributions;
 
             for (const week of contributionCalendar.weeks) {
@@ -218,24 +210,23 @@ export async function fetchGitHubData(username) {
         }
       }
     } catch (e) {
-      console.error("API error, falling back to mock data: ", e);
+      console.error("GraphQL API execution failed:", e.message);
     }
   }
+
+  if (totalContributionsYear > commitsCount) {
+    commitsCount = totalContributionsYear;
+  }
+  const stats = { commits: commitsCount, prs: prsCount, issues: issuesCount, stars: starsCount };
+  streakData.totalContributions = commitsCount;
 
   return {
     name,
     bio,
+    stats,
     days,
-    mockCalendarWeeks,
-    totalContributionsYear,
     languages,
     streakData,
-    activeRepos,
-    stats: {
-      commits: commitsCount,
-      prs: prsCount,
-      issues: issuesCount,
-      stars: starsCount
-    }
+    activeRepos
   };
 }
