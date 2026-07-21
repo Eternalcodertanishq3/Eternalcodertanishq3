@@ -766,7 +766,7 @@ export function drawGithubStats(stats) {
   const colGap = 16;
   const startX = 35;
   const panels = [
-    { name: "COMMITS", val: stats.commits, color: "#38BDF8", icon: "M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" },
+    { name: "COMMITS", val: stats.commits, color: "#38BDF8", icon: "M12 16a4 4 0 100-8 4 4 0 000 8zM2 12h6M16 12h6" },
     { name: "PULL REQUESTS", val: stats.prs, color: "#818CF8", icon: "M6 3v12M18 9V21M6 21a3 3 0 100-6 3 3 0 000 6zM18 9a3 3 0 100-6 3 3 0 000 6z" },
     { name: "ISSUES FIXED", val: stats.issues, color: "#C084FC", icon: "M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" },
     { name: "TOTAL STARS", val: stats.stars, color: "#F59E0B", icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" }
@@ -832,14 +832,23 @@ export function drawGithubStats(stats) {
 </svg>`;
 }
 
-// 6. Generate project card SVG (High-readability, dynamic height, escapes XML)
-export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo, cardHeight = 220) {
-  const width = 420;
+// 6. Generate project card SVG (Flexible Bento styling with custom width and height)
+export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo, cardWidth = 420, cardHeight = 220) {
+  const width = cardWidth;
   const height = cardHeight;
-  const starsBg = generateStars(22, width, height);
+  const starsBg = generateStars(Math.floor((width * height) / 4000), width, height);
 
-  const maxLines = height >= 260 ? 4 : 2;
-  const descLines = wrapText(description || "No description provided.", 48).slice(0, maxLines);
+  // Dynamic wrapping based on card width
+  const wrapWidthMap = {
+    850: 100,
+    560: 64,
+    420: 48,
+    280: 30
+  };
+  const maxChars = wrapWidthMap[width] || 48;
+  const maxLines = height >= 260 ? 4 : (height <= 150 ? 1 : 2);
+  const descLines = wrapText(description || "No description provided.", maxChars).slice(0, maxLines);
+  
   let descSvg = "";
   for (let i = 0; i < descLines.length; i++) {
     descSvg += `<text x="24" y="${82 + i * 22}" fill="#94A3B8" font-size="14.5" class="font-sans">${escapeXml(descLines[i])}</text>\n`;
@@ -848,7 +857,8 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   let commitSvg = "";
   if (!subinfo && commitMsg) {
     const cleanCommit = escapeXml(commitMsg);
-    const slicedCommit = cleanCommit.length > 36 ? cleanCommit.slice(0, 33) + "..." : cleanCommit;
+    const maxCommitLen = width >= 560 ? 56 : (width <= 280 ? 20 : 36);
+    const slicedCommit = cleanCommit.length > maxCommitLen ? cleanCommit.slice(0, maxCommitLen - 3) + "..." : cleanCommit;
     commitSvg = `
     <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
     <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">${slicedCommit}</text>
@@ -860,14 +870,14 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
     footerSvg = `
     <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
     <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
-    <text x="396" y="${height - 30}" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
+    <text x="${width - 24}" y="${height - 30}" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
     `;
   } else {
     footerSvg = `
     <circle cx="28" cy="${height - 34}" r="4.5" fill="${langColor}" />
     <text x="38" y="${height - 30}" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
-    <text x="210" y="${height - 30}" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
-    <text x="396" y="${height - 30}" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
+    <text x="${width / 2}" y="${height - 30}" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
+    <text x="${width - 24}" y="${height - 30}" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
     `;
   }
 
@@ -895,7 +905,7 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
 
   <!-- Header -->
   <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">${escapeXml(icon)} ${escapeXml(title)}</text>
-  <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="54" x2="${width - 24}" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Description -->
   ${descSvg}
@@ -904,7 +914,7 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   ${commitSvg}
 
   <!-- Footer Divider -->
-  <line x1="24" y1="${height - 50}" x2="396" y2="${height - 50}" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="${height - 50}" x2="${width - 24}" y2="${height - 50}" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Footer -->
   ${footerSvg}
@@ -1127,11 +1137,11 @@ async function main() {
     currentlyBuildingHTML = rows.join("\n");
   }
 
-  // 3. Generate Flagship Projects inside a beautiful 2-column asymmetric Pinterest-like layout
+  // 3. Generate Flagship Projects inside a beautiful asymmetric Bento Grid layout
   const flagshipProjects = [
-    { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", subinfo: "AI Swarms", icon: "🧠", url: "https://github.com/Eternalcodertanishq3/Pravaha", height: 280 },
-    { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", subinfo: "Autodiff", icon: "🔬", url: "https://github.com/Eternalcodertanishq3/miniGrad", height: 180 },
-    { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", subinfo: "Systems", icon: "♟️", url: "https://github.com/Eternalcodertanishq3/Axiorynth", height: 180 }
+    { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", subinfo: "AI Swarms", icon: "🧠", url: "https://github.com/Eternalcodertanishq3/Pravaha", width: 560, height: 220 },
+    { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", subinfo: "Autodiff", icon: "🔬", url: "https://github.com/Eternalcodertanishq3/miniGrad", width: 280, height: 220 },
+    { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", subinfo: "Systems", icon: "♟️", url: "https://github.com/Eternalcodertanishq3/Axiorynth", width: 850, height: 140 }
   ];
 
   for (let i = 0; i < flagshipProjects.length; i++) {
@@ -1147,24 +1157,15 @@ async function main() {
       0,
       p.icon,
       p.subinfo,
+      p.width,
       p.height
     );
     writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
   }
 
-  // Build the 2-column staggered layout (Left: Pravaha cover card, Right: miniGrad & Axiorynth stacked)
-  const flagshipProjectsHTML = `<table width="100%" border="0" cellspacing="12" cellpadding="0">
-  <tr>
-    <td width="50%" valign="top">
-      <a href="${flagshipProjects[0].url}" target="_blank"><img src="assets/project-flagship-1.svg" width="100%" alt="${flagshipProjects[0].name}" /></a>
-    </td>
-    <td width="50%" valign="top">
-      <a href="${flagshipProjects[1].url}" target="_blank"><img src="assets/project-flagship-2.svg" width="100%" alt="${flagshipProjects[1].name}" /></a>
-      <br/><br/>
-      <a href="${flagshipProjects[2].url}" target="_blank"><img src="assets/project-flagship-3.svg" width="100%" alt="${flagshipProjects[2].name}" /></a>
-    </td>
-  </tr>
-</table>`;
+  // Build the Bento Grid layout: Row 1 (Pravaha 2/3 and miniGrad 1/3) side-by-side, Row 2 (Axiorynth full width)
+  const flagshipProjectsHTML = `<p align="center"><a href="${flagshipProjects[0].url}" target="_blank"><img src="assets/project-flagship-1.svg" width="65.5%" alt="${flagshipProjects[0].name}" /></a><a href="${flagshipProjects[1].url}" target="_blank"><img src="assets/project-flagship-2.svg" width="33%" alt="${flagshipProjects[1].name}" /></a></p>
+<p align="center"><a href="${flagshipProjects[2].url}" target="_blank"><img src="assets/project-flagship-3.svg" width="99%" alt="${flagshipProjects[2].name}" /></a></p>`;
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">
@@ -1174,6 +1175,17 @@ async function main() {
 <p align="center">
   <img src="${VERCEL_URL}/api/banner" width="100%" alt="Space HUD Banner" />
 </p>
+
+<!-- Elevated Tech Arsenal section under the Hero Banner -->
+<div align="center" style="margin: 20px 0; padding: 25px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
+  <div style="margin-bottom: 16px;">
+    <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
+  </div>
+  <div>
+    <img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
+  </div>
+  <p style="margin: 15px 0 0 0; font-size: 13px; color: #64748B; font-style: italic; font-family: ui-monospace, monospace;">Orchestrating production-grade tools across the cosmic software stack</p>
+</div>
 
 <p align="center">
   <img src="${VERCEL_URL}/api/graph" width="100%" alt="Contribution Graph" />
@@ -1202,8 +1214,6 @@ async function main() {
 ${currentlyBuildingHTML}
 <!--END_SECTION:currently-building-->
 
-<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
-
 <br/>
 
 ---
@@ -1211,22 +1221,6 @@ ${currentlyBuildingHTML}
 ## ✦ Flagship Projects
 
 ${flagshipProjectsHTML}
-
-<br/>
-
----
-
-## 🦾 Tech Arsenal
-
-<div align="center" style="margin: 20px 0; padding: 25px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
-  <div style="margin-bottom: 16px;">
-    <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
-  </div>
-  <div>
-    <img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
-  </div>
-  <p style="margin: 15px 0 0 0; font-size: 13px; color: #64748B; font-style: italic; font-family: ui-monospace, monospace;">Orchestrating production-grade tools across the cosmic software stack</p>
-</div>
 
 <br/>
 

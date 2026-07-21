@@ -107,7 +107,69 @@ export async function fetchGitHubData(username) {
     { name: "ShipGate", description: "Self-serve production-readiness scorer for AI-agent-built apps.", latestCommit: "feat: parse repo dependencies on load", primaryLanguage: { name: "TypeScript", color: "#3178c6" }, pushedAgo: "building", stars: 0 }
   ];
 
-  if (token) {
+  if (!token) {
+    try {
+      console.log("No token found. Fetching public repositories via REST API...");
+      const reposRes = await fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=10`, {
+        headers: { "User-Agent": "Mozilla/5.0" }
+      });
+      if (reposRes.ok) {
+        const publicRepos = await reposRes.json();
+        const processed = [];
+        const filtered = publicRepos
+          .filter(r => r.name.toLowerCase() !== username.toLowerCase())
+          .slice(0, 3);
+          
+        for (const repo of filtered) {
+          let commitMsg = "Active development";
+          try {
+            const commitRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`, {
+              headers: { "User-Agent": "Mozilla/5.0" }
+            });
+            if (commitRes.ok) {
+              const commits = await commitRes.json();
+              if (commits && commits[0]) {
+                commitMsg = commits[0].commit.message.split("\n")[0];
+              }
+            }
+          } catch (e) {
+            console.error(`Failed to fetch commit for ${repo.name}:`, e.message);
+          }
+
+          const langColorMap = {
+            typescript: "#3178c6",
+            javascript: "#f1e05a",
+            python: "#3572A5",
+            rust: "#dea584",
+            go: "#00ADD8",
+            cpp: "#f34b7d",
+            c: "#555555",
+            html: "#e34c26",
+            css: "#563d7c",
+            shell: "#89e051",
+            java: "#b07219",
+            swift: "#f05138"
+          };
+          const langName = repo.language || "TypeScript";
+          const langColor = langColorMap[langName.toLowerCase()] || "#38BDF8";
+
+          processed.push({
+            name: repo.name,
+            description: repo.description || "No description provided.",
+            latestCommit: commitMsg,
+            primaryLanguage: { name: langName, color: langColor },
+            pushedAgo: timeAgo(repo.pushed_at),
+            stars: repo.stargazers_count || 0
+          });
+        }
+        if (processed.length > 0) {
+          activeRepos = processed;
+        }
+      }
+    } catch (e) {
+      console.error("Failed to fetch public repositories via REST API:", e.message);
+    }
+  } else {
     try {
       const response = await fetch("https://api.github.com/graphql", {
         method: "POST",

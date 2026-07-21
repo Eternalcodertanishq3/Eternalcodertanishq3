@@ -6,6 +6,17 @@
   <img src="https://eternalcodertanishq3.vercel.app/api/banner" width="100%" alt="Space HUD Banner" />
 </p>
 
+<!-- Elevated Tech Arsenal section under the Hero Banner -->
+<div align="center" style="margin: 20px 0; padding: 25px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
+  <div style="margin-bottom: 16px;">
+    <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
+  </div>
+  <div>
+    <img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
+  </div>
+  <p style="margin: 15px 0 0 0; font-size: 13px; color: #64748B; font-style: italic; font-family: ui-monospace, monospace;">Orchestrating production-grade tools across the cosmic software stack</p>
+</div>
+
 <p align="center">
   <img src="https://eternalcodertanishq3.vercel.app/api/graph" width="100%" alt="Contribution Graph" />
 </p>
@@ -34,42 +45,14 @@
 <p align="center"><a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="49.5%" alt="ShipGate" /></a></p>
 <!--END_SECTION:currently-building-->
 
-<sub style="display: block; text-align: center; margin-top: 5px; color: #64748B; font-family: ui-monospace, monospace;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
-
 <br/>
 
 ---
 
 ## ✦ Flagship Projects
 
-<table width="100%" border="0" cellspacing="12" cellpadding="0">
-  <tr>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="100%" alt="Pravaha" /></a>
-    </td>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="100%" alt="miniGrad" /></a>
-      <br/><br/>
-      <a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="100%" alt="Axiorynth" /></a>
-    </td>
-  </tr>
-</table>
-
-<br/>
-
----
-
-## 🦾 Tech Arsenal
-
-<div align="center" style="margin: 20px 0; padding: 25px; background-color: #070D1E; border: 1px solid #1E293B; border-radius: 12px;">
-  <div style="margin-bottom: 16px;">
-    <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&amp;perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
-  </div>
-  <div>
-    <img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&amp;perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
-  </div>
-  <p style="margin: 15px 0 0 0; font-size: 13px; color: #64748B; font-style: italic; font-family: ui-monospace, monospace;">Orchestrating production-grade tools across the cosmic software stack</p>
-</div>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="65.5%" alt="Pravaha" /></a><a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="33%" alt="miniGrad" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="99%" alt="Axiorynth" /></a></p>
 
 <br/>
 
