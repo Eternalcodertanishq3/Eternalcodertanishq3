@@ -581,15 +581,15 @@ export function drawStreakStats(stats) {
   <!-- Radial Gauge Dials -->
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${totCircum}" stroke-dashoffset="${totOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonCyan)" />
+          stroke-dasharray="${totCircum}" stroke-dashoffset="${totOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonCyan)" />
 
   <circle cx="${cx}" cy="${cy}" r="${longRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${longRadius}" stroke="#818CF8" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${longCircum}" stroke-dashoffset="${longOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonPurple)" />
+          stroke-dasharray="${longCircum}" stroke-dashoffset="${longOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonPurple)" />
 
   <circle cx="${cx}" cy="${cy}" r="${currRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${currRadius}" stroke="#C084FC" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${currCircum}" stroke-dashoffset="${currOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonPink)" />
+          stroke-dasharray="${currCircum}" stroke-dashoffset="${currOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonPink)" />
 
   <!-- Center planet in the gauge -->
   <circle cx="${cx}" cy="${cy}" r="18" fill="#1E1B4B" stroke="#818CF8" stroke-width="1"/>
