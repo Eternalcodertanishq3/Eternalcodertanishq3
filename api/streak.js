@@ -1,5 +1,5 @@
 import { fetchGitHubData } from "./_fetchData.js";
-import { drawStreakStats } from "../.github/scripts/sync-readme.mjs";
+import { drawStreakStats } from "./_helpers.js";
 
 export default async function handler(req, res) {
   const { username = "Eternalcodertanishq3" } = req.query;

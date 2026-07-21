@@ -1,4 +1,4 @@
-import { calculateStreaks, timeAgo, fetchPublicContributions } from "../.github/scripts/sync-readme.mjs";
+import { calculateStreaks, timeAgo, fetchPublicContributions } from "./_helpers.js";
 
 const GRAPHQL_QUERY = `
 query($username: String!) {

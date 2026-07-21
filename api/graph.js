@@ -1,5 +1,5 @@
 import { fetchGitHubData } from "./_fetchData.js";
-import { drawContributionGraph } from "../.github/scripts/sync-readme.mjs";
+import { drawContributionGraph } from "./_helpers.js";
 
 export default async function handler(req, res) {
   res.setHeader("Content-Type", "image/svg+xml");

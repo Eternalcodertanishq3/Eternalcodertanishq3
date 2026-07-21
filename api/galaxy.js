@@ -1,5 +1,5 @@
 import { fetchGitHubData } from "./_fetchData.js";
-import { drawLanguageGalaxy } from "../.github/scripts/sync-readme.mjs";
+import { drawLanguageGalaxy } from "./_helpers.js";
 
 export default async function handler(req, res) {
   const { username = "Eternalcodertanishq3" } = req.query;
