@@ -1125,14 +1125,14 @@ async function main() {
       );
       writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
 
-      imageLinks.push(`<a href="https://github.com/${USERNAME}/${r.name}" target="_blank"><img src="${VERCEL_URL}/api/building?index=${i}" width="49.5%" alt="${r.name}" /></a>`);
+      imageLinks.push(`<a href="https://github.com/${USERNAME}/${r.name}" target="_blank"><img src="${VERCEL_URL}/api/building?index=${i}" width="48.5%" alt="${r.name}" /></a>`);
     }
     
-    // Group into side-by-side lines with no newlines between images to force horizontal alignment in GitHub markdown
+    // Group into side-by-side lines with spaces to force horizontal alignment with a gap in GitHub markdown
     const rows = [];
     for (let i = 0; i < imageLinks.length; i += 2) {
       const rowChunk = imageLinks.slice(i, i + 2);
-      rows.push(`<p align="center">${rowChunk.join("")}</p>`);
+      rows.push(`<p align="center">${rowChunk.join("&nbsp;&nbsp;")}</p>`);
     }
     currentlyBuildingHTML = rows.join("\n");
   }
@@ -1164,8 +1164,8 @@ async function main() {
   }
 
   // Build the Bento Grid layout: Row 1 (Pravaha 2/3 and miniGrad 1/3) side-by-side, Row 2 (Axiorynth full width)
-  const flagshipProjectsHTML = `<p align="center"><a href="${flagshipProjects[0].url}" target="_blank"><img src="assets/project-flagship-1.svg" width="65.5%" alt="${flagshipProjects[0].name}" /></a><a href="${flagshipProjects[1].url}" target="_blank"><img src="assets/project-flagship-2.svg" width="33%" alt="${flagshipProjects[1].name}" /></a></p>
-<p align="center"><a href="${flagshipProjects[2].url}" target="_blank"><img src="assets/project-flagship-3.svg" width="99%" alt="${flagshipProjects[2].name}" /></a></p>`;
+  const flagshipProjectsHTML = `<p align="center"><a href="${flagshipProjects[0].url}" target="_blank"><img src="assets/project-flagship-1.svg" width="64%" alt="${flagshipProjects[0].name}" /></a>&nbsp;&nbsp;<a href="${flagshipProjects[1].url}" target="_blank"><img src="assets/project-flagship-2.svg" width="32%" alt="${flagshipProjects[1].name}" /></a></p>
+<p align="center"><a href="${flagshipProjects[2].url}" target="_blank"><img src="assets/project-flagship-3.svg" width="97%" alt="${flagshipProjects[2].name}" /></a></p>`;
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">

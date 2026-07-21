@@ -41,8 +41,8 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="49.5%" alt="Semantic-6G" /></a><a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="49.5%" alt="Larder" /></a></p>
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="49.5%" alt="ShipGate" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="Semantic-6G" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/Larder" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="Larder" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/ShipGate" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="ShipGate" /></a></p>
 <!--END_SECTION:currently-building-->
 
 <br/>
@@ -51,8 +51,8 @@
 
 ## ✦ Flagship Projects
 
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="65.5%" alt="Pravaha" /></a><a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="33%" alt="miniGrad" /></a></p>
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="99%" alt="Axiorynth" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Pravaha" target="_blank"><img src="assets/project-flagship-1.svg" width="64%" alt="Pravaha" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/miniGrad" target="_blank"><img src="assets/project-flagship-2.svg" width="32%" alt="miniGrad" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="assets/project-flagship-3.svg" width="97%" alt="Axiorynth" /></a></p>
 
 <br/>
 
