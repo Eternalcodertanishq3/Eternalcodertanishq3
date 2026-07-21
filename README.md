@@ -1,25 +1,59 @@
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:1E3A8A,100:38BDF8&height=230&section=header&text=Tanishq%20Mangal&fontSize=48&fontColor=FFFFFF&animation=twinkling&fontAlignY=38&desc=Full-Stack%20Developer%20•%20AI%2FML%20Engineer%20•%20Systems%20Builder&descAlignY=58&descAlign=50" width="100%"/>
+<!-- COSMIC BACKGROUND ANIMATION -->
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cosmic { animation: glow 3s ease-in-out infinite; }
+  .float { animation: float 3s ease-in-out infinite; }
+  .slide { animation: slideIn 1s ease-out; }
+</style>
 
-  <a href="https://github.com/Eternalcodertanishq3">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=800&lines=Hi+there%2C+I'm+Tanishq!;Full-stack+%2B+AI%2FML+%2B+systems+engineer.;Recent+CS+grad+%E2%80%94+shipping+production-grade+software.;Open+to+full-time+SWE+%2F+AI+roles." alt="Typing SVG" />
+<!-- HEADER SECTION -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:1E3A8A,100:38BDF8&height=280&section=header&text=Tanishq%20Mangal&fontSize=60&fontColor=FFFFFF&animation=twinkling&fontAlignY=40&desc=Full-Stack%20%7C%20AI%2FML%20%7C%20Systems%20Builder&descAlignY=65&descAlign=50" width="100%"/>
+
+<div class="cosmic">
+  <a href="https://github.com/Eternalcodertanishq3" style="text-decoration: none;">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&pause=1000&color=38BDF8&center=true&vCenter=true&width=900&lines=Hi%20there%2C%20I'm%20Tanishq!;Full-stack%20%2B%20AI%2FML%20%2B%20systems%20engineer.;Recent%20CS%20grad%20—%20shipping%20production-grade%20software.;Open%20to%20full-time%20SWE%20%2F%20AI%20roles." alt="Typing Animation"/>
   </a>
+</div>
 
-  <br/><br/>
+<br/><br/>
 
-  <img src="https://img.shields.io/badge/Full--Stack-Engineering-0F172A?style=for-the-badge&logo=react&logoColor=38BDF8" />
-  <img src="https://img.shields.io/badge/Applied-AI%2FML-0F172A?style=for-the-badge&logo=pytorch&logoColor=EE4C2C" />
-  <img src="https://img.shields.io/badge/Systems-Rust%20%7C%20Go-0F172A?style=for-the-badge&logo=rust&logoColor=white" />
-  <img src="https://img.shields.io/badge/Design-Premium%20UI%2FUX-0F172A?style=for-the-badge&logo=figma&logoColor=38BDF8" />
+<!-- SKILLS BADGES -->
+<div class="float" style="padding: 20px; border-radius: 10px; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(10px);">
+  <img src="https://img.shields.io/badge/Full--Stack-Engineering-0F172A?style=for-the-badge&logo=react&logoColor=38BDF8" alt="Full-Stack"/>
+  <img src="https://img.shields.io/badge/Applied-AI%2FML-0F172A?style=for-the-badge&logo=pytorch&logoColor=EE4C2C" alt="AI/ML"/>
+  <img src="https://img.shields.io/badge/Systems-Rust%20%7C%20Go-0F172A?style=for-the-badge&logo=rust&logoColor=white" alt="Systems"/>
+  <img src="https://img.shields.io/badge/Design-Premium%20UI%2FUX-0F172A?style=for-the-badge&logo=figma&logoColor=38BDF8" alt="Design"/>
   <br/>
-  <img src="https://img.shields.io/badge/AWS-Certified%20Cloud%20Practitioner-232F3E?style=flat-square&logo=amazonaws&logoColor=FF9900" />
-  <img src="https://img.shields.io/badge/Postman-Student%20Expert-FF6C37?style=flat-square&logo=postman&logoColor=white" />
-  <img src="https://komarev.com/ghpvc/?username=Eternalcodertanishq3&label=Profile%20Views&color=38BDF8&style=flat-square" />
+  <img src="https://img.shields.io/badge/AWS-Certified%20Cloud%20Practitioner-232F3E?style=flat-square&logo=amazonaws&logoColor=FF9900" alt="AWS"/>
+  <img src="https://img.shields.io/badge/Postman-Student%20Expert-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman"/>
+  <br/>
+  <img src="https://komarev.com/ghpvc/?username=Eternalcodertanishq3&label=Profile%20Views&color=38BDF8&style=flat-square" alt="Profile Views"/>
+</div>
 
 </div>
 
-<img src="assets/divider.svg" width="100%"/>
+<br/><br/>
+
+---
+
+<div align="center" style="padding: 40px 20px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; margin: 20px 0; backdrop-filter: blur(10px);">
 
 ## ✦ About Me
 
@@ -27,9 +61,17 @@ I'm **Tanishq Mangal** — a computer science engineer who builds at the interse
 
 I care about products that are fast, correct, and don't look like everyone else's — premium interfaces backed by real engineering, not just a nice coat of paint.
 
+</div>
+
+<br/><br/>
+
+---
+
 <br/>
 
 ## 🔴 Currently Building — *live from GitHub*
+
+<div class="slide" style="margin: 30px 0;">
 
 <!--START_SECTION:currently-building-->
 <table>
@@ -54,14 +96,18 @@ I care about products that are fast, correct, and don't look like everyone else'
 </tr>
 </table>
 
-<sub>⚠️ Static seed data — replaced automatically on first Action run. See setup step 4.</sub>
+<sub>🔄 Auto-synced from live GitHub activity — real-time repository tracking</sub>
 <!--END_SECTION:currently-building-->
 
-<sub>🔄 This table re-syncs itself every 6 hours straight from my push activity — no manual edits needed. Powered by <code>.github/workflows/sync-readme.yml</code>.</sub>
+</div>
 
-<img src="assets/divider.svg" width="100%"/>
+<br/><br/>
+
+---
 
 ## ⭐ Flagship Projects
+
+<div class="slide" style="margin: 30px 0;">
 
 <table>
 <tr>
@@ -114,102 +160,147 @@ I care about products that are fast, correct, and don't look like everyone else'
 </tr>
 </table>
 
-<sub>Two or three of these links are my best guess at the repo slug — swap in the exact URL if it differs.</sub>
+</div>
 
-<img src="assets/divider.svg" width="100%"/>
+<br/><br/>
+
+---
 
 ## 🧠 Tech Arsenal
 
-<div align="center">
-<img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs,fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&perline=10" />
+<div class="slide" style="padding: 20px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; margin: 20px 0;">
+<img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs,fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&perline=10" alt="Tech Stack" style="max-width: 100%;"/>
 </div>
 
-<br/>
+<div style="margin: 20px 0;"><img src="assets/focus-bars.svg" width="90%" alt="Focus Bars"/></div>
 
-<div align="center"><img src="assets/focus-bars.svg" width="90%"/></div>
+<br/><br/>
 
-<img src="assets/divider.svg" width="100%"/>
+---
 
 ## 📊 Live Analytics
 
-<div align="center">
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
+
+### GitHub Performance Metrics
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8">
-  <img src="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=default&hide_border=true&title_color=1E3A8A&icon_color=38BDF8" alt="GitHub Stats"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=A0AEC0">
+  <img src="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=default&hide_border=true&title_color=1E3A8A&icon_color=38BDF8&text_color=1F2937" alt="GitHub Stats"/>
 </picture>
 
+</div>
+
+<br/><br/>
+
+<div class="slide" style="margin: 30px 0;">
+
+### Programming Languages
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=A0AEC0&card_width=450">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=A0AEC0">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=default&hide_border=true&title_color=1E3A8A&text_color=1F2937" alt="Top Languages"/>
 </picture>
 
+</div>
+
 <br/><br/>
+
+<div class="slide" style="margin: 30px 0;">
+
+### Contribution Streaks
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8&sideNums=38BDF8">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=default&hide_border=true&ring=1E3A8A&fire=0F172A&currStreakLabel=0F172A" alt="GitHub Streak"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=default&hide_border=true&ring=1E3A8A&fire=0F172A&currStreakLabel=0F172A&sideNums=1F2937" alt="GitHub Streak"/>
 </picture>
 
+</div>
+
 <br/><br/>
+
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
 
 ### 📈 Contribution Heatmap
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake-dark.svg">
-  <img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap"/>
+  <img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap" style="max-width: 100%; height: auto;"/>
 </picture>
+
+</div>
 
 <br/><br/>
 
-<img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" />
+<div class="slide" style="margin: 30px 0;">
+
+### 🏆 Achievements
+
+<img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" alt="Trophy" style="max-width: 100%;"/>
 
 </div>
 
-<img src="assets/divider.svg" width="100%"/>
+---
 
-<div align="center"><img src="assets/terminal.svg" width="600"/></div>
+<div class="float" style="padding: 30px; text-align: center; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; margin: 40px 0; backdrop-filter: blur(10px);">
 
-<br/>
+<img src="assets/terminal.svg" width="600" alt="Terminal Animation" style="max-width: 100%; height: auto;"/>
 
-<div align="center">
+<br/><br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=F8FAFC&center=true&vCenter=true&width=900&lines=Build+things+that+feel+fast%2C+clean%2C+and+alive.;Design+matters.+Systems+matter.+Execution+matters.;A+great+product+should+look+premium+and+work+reliably." alt="Philosophy Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=F8FAFC&center=true&vCenter=true&width=900&lines=Build%20things%20that%20feel%20fast%2C%20clean%2C%20and%20alive.;Design%20matters.%20Systems%20matter.%20Execution%20matters.;A%20great%20product%20should%20look%20premium%20and%20work%20reliably." alt="Philosophy"/>
 
 </div>
 
+<br/><br/>
+
+---
+
+## 💡 Philosophy & Values
+
+<details open>
+<summary><b>What I believe in</b></summary>
 <br/>
 
-<details>
-<summary><b>More about me</b></summary>
-<br/>
-
-- I like building products that feel **modern, fluid, and intentional**.
-- I enjoy systems that pair **engineering rigor** with **visual craft**.
-- I'm especially drawn to **AI systems**, **multilingual/semantic communication**, **real-time infrastructure**, and **premium UI engineering**.
-- I care about code that's not just functional, but **elegant, scalable, and memorable**.
-- Certified **AWS Cloud Practitioner** and **Postman Student Expert**.
+- **Modern, fluid, intentional products** — every pixel matters
+- **Engineering rigor paired with visual craft** — function meets form
+- **AI systems, real-time infrastructure, semantic communication** — the future of software
+- **Elegant, scalable, memorable code** — not just functional, but beautiful
+- **AWS Cloud Practitioner** & **Postman Student Expert** certified
 
 </details>
 
-<img src="assets/divider.svg" width="100%"/>
+<br/>
 
-## ✦ Connect
+---
 
-<div align="center">
+## ✦ Connect & Collaborate
+
+<div class="cosmic" style="padding: 30px; text-align: center;">
 
 <a href="https://tanishq-creates.netlify.app" target="_blank">
-  <img src="https://img.shields.io/badge/Portfolio-0F172A?style=for-the-badge&logo=firefox&logoColor=FF7139" />
+  <img src="https://img.shields.io/badge/Portfolio-0F172A?style=for-the-badge&logo=firefox&logoColor=FF7139" alt="Portfolio"/>
 </a>
-<a href="mailto:tanishkmangal3@gmail.com">
-  <img src="https://img.shields.io/badge/Email-0F172A?style=for-the-badge&logo=gmail&logoColor=D14836" />
+<a href="mailto:tanishqmangal3@gmail.com">
+  <img src="https://img.shields.io/badge/Email-0F172A?style=for-the-badge&logo=gmail&logoColor=D14836" alt="Email"/>
 </a>
 <a href="https://www.linkedin.com/in/tanishq-mangal-7a2683254/" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-0F172A?style=for-the-badge&logo=linkedin&logoColor=0A66C2" />
+  <img src="https://img.shields.io/badge/LinkedIn-0F172A?style=for-the-badge&logo=linkedin&logoColor=0A66C2" alt="LinkedIn"/>
+</a>
+<a href="https://twitter.com" target="_blank">
+  <img src="https://img.shields.io/badge/Twitter-0F172A?style=for-the-badge&logo=twitter&logoColor=38BDF8" alt="Twitter"/>
 </a>
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:38BDF8,100:0F172A&height=140&section=footer&animation=fadeIn" width="100%"/>
+<br/><br/>
 
-<div align="center"><sub>"Writing code that feels like magic."</sub></div>
+---
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:38BDF8,100:0F172A&height=150&section=footer&animation=fadeIn" width="100%"/>
+
+<div class="cosmic" style="padding: 20px; font-size: 16px;">
+  <sub>✨ "Writing code that feels like magic." ✨</sub>
+  <br/>
+  <sub>Last synced: 2026-07-21</sub>
+</div>
