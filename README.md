@@ -71,35 +71,51 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## 🔴 Currently Building — *live from GitHub*
 
-<div class="slide" style="margin: 30px 0;">
+<div class="slide" style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
 
 <!--START_SECTION:currently-building-->
-<table>
-<tr><th>Repository</th><th>Language</th><th>Stars</th><th>Latest Commit</th></tr>
-<tr>
-<td width="230"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G"><b>Semantic-6G</b></a><br/><sub>Software-based 6G semantic communication system using Joint Source-Channel Coding — ResNet image + GRU text autoencoders.</sub></td>
-<td align="center"><sub><b>Python</b></sub></td>
-<td align="center"><sub>★ —</sub></td>
-<td><sub>Task-aware auxiliary loss + fading channel stress tests</sub><br/><sub>⏱ recent</sub></td>
-</tr>
-<tr>
-<td width="230"><b>Larder</b><br/><sub>Production-grade multi-tenant restaurant SaaS — inventory, suppliers, invoice OCR, staff scheduling, prime cost dashboard.</sub></td>
-<td align="center"><sub><b>TypeScript</b></sub></td>
-<td align="center"><sub>★ —</sub></td>
-<td><sub>Master prompt suite in progress</sub><br/><sub>⏱ recent</sub></td>
-</tr>
-<tr>
-<td width="230"><b>ShipGate</b><br/><sub>Self-serve production-readiness scorer for AI-agent-built apps — scans repos, generates agent-specific remediation prompts.</sub></td>
-<td align="center"><sub><b>TypeScript</b></sub></td>
-<td align="center"><sub>★ —</sub></td>
-<td><sub>Spec validated, build in progress</sub><br/><sub>⏱ recent</sub></td>
-</tr>
-</table>
 
-<sub>🔄 Auto-synced from live GitHub activity — real-time repository tracking</sub>
+<div style="padding: 20px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%); border-left: 3px solid #38BDF8; border-radius: 10px; backdrop-filter: blur(10px);">
+<h3 style="margin: 0 0 10px 0; color: #38BDF8;">
+  <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" style="text-decoration: none; color: #38BDF8;">🌐 Semantic-6G</a>
+</h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6;">Software-based 6G semantic communication system using Joint Source-Channel Coding — ResNet image + GRU text autoencoders.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">🐍 Python</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">⏱ 18d ago</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #38BDF8;">★ 0</span>
+</div>
+</div>
+
+<div style="padding: 20px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%); border-left: 3px solid #38BDF8; border-radius: 10px; backdrop-filter: blur(10px);">
+<h3 style="margin: 0 0 10px 0; color: #38BDF8;">
+  <a href="https://github.com/Eternalcodertanishq3/Larder" style="text-decoration: none; color: #38BDF8;">🍽️ Larder</a>
+</h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6;">Production-grade multi-tenant restaurant SaaS — inventory, suppliers, invoice OCR, staff scheduling, prime cost dashboard.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">📘 TypeScript</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">⏱ in progress</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #38BDF8;">★ 0</span>
+</div>
+</div>
+
+<div style="padding: 20px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%); border-left: 3px solid #38BDF8; border-radius: 10px; backdrop-filter: blur(10px);">
+<h3 style="margin: 0 0 10px 0; color: #38BDF8;">
+  <a href="https://github.com/Eternalcodertanishq3/ShipGate" style="text-decoration: none; color: #38BDF8;">🚀 ShipGate</a>
+</h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6;">Self-serve production-readiness scorer for AI-agent-built apps — scans repos, generates remediation prompts.</p>
+<div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">📘 TypeScript</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #A0AEC0;">⏱ building</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 20px; color: #38BDF8;">★ 0</span>
+</div>
+</div>
+
 <!--END_SECTION:currently-building-->
 
 </div>
+
+<sub style="display: block; text-align: center; margin-top: 15px;">🔄 Auto-synced from live GitHub activity — updates every 6 hours</sub>
 
 <br/><br/>
 
@@ -107,58 +123,67 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## ⭐ Flagship Projects
 
-<div class="slide" style="margin: 30px 0;">
+<div class="slide" style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; max-width: 1200px; margin-left: auto; margin-right: auto;">
 
-<table>
-<tr>
-<td width="50%" valign="top">
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">🧠 <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #38BDF8;">Pravaha</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">LLM inference engine with a 51-agent swarm architecture and a full RAG pipeline built from first principles.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(238, 76, 44, 0.2); padding: 4px 10px; border-radius: 15px; color: #EE4C2C;">🐍 Python</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">LLM Inference</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">RAG</span>
+</div>
+</div>
 
-**🧠 [Pravaha](https://github.com/Eternalcodertanishq3/Pravaha)**
-<br/>LLM inference engine with a 51-agent swarm architecture and a full RAG pipeline built from first principles.
-<br/><sub>Python · LLM Inference · RAG</sub>
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">🔬 <a href="https://github.com/Eternalcodertanishq3/miniGrad" style="text-decoration: none; color: #38BDF8;">miniGrad</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(238, 76, 44, 0.2); padding: 4px 10px; border-radius: 15px; color: #EE4C2C;">🐍 Python</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Autodiff</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">PyPI</span>
+</div>
+</div>
 
-</td>
-<td width="50%" valign="top">
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">🔐 <a href="https://github.com/Eternalcodertanishq3/Ghost-Protocol" style="text-decoration: none; color: #38BDF8;">Ghost Protocol</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">Federated learning system secured with homomorphic encryption — privacy-preserving distributed training.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(238, 76, 44, 0.2); padding: 4px 10px; border-radius: 15px; color: #EE4C2C;">🐍 Python</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Federated Learning</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Crypto</span>
+</div>
+</div>
 
-**🔬 [miniGrad](https://github.com/Eternalcodertanishq3/miniGrad)**
-<br/>Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.
-<br/><sub>Python · Autodiff · PyPI Package</sub>
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">♟️ <a href="https://github.com/Eternalcodertanishq3/Axiorynth" style="text-decoration: none; color: #38BDF8;">Axiorynth</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">A chess engine written in Rust, built for speed and correctness from the board representation up.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(206, 120, 96, 0.2); padding: 4px 10px; border-radius: 15px; color: #CE7860;">🦀 Rust</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Search</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Eval</span>
+</div>
+</div>
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">📡 <a href="https://github.com/Eternalcodertanishq3/Semantic-6G" style="text-decoration: none; color: #38BDF8;">Semantic-6G</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">Software-based 6G semantic communication system — Joint Source-Channel Coding with ResNet + GRU autoencoders.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(238, 76, 44, 0.2); padding: 4px 10px; border-radius: 15px; color: #EE4C2C;">🐍 Python</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">PyTorch</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Signal</span>
+</div>
+</div>
 
-**🔐 [Ghost Protocol](https://github.com/Eternalcodertanishq3/Ghost-Protocol)**
-<br/>Federated learning system secured with homomorphic encryption — privacy-preserving distributed training.
-<br/><sub>Python · Federated Learning · Cryptography</sub>
-
-</td>
-<td width="50%" valign="top">
-
-**♟️ [Axiorynth](https://github.com/Eternalcodertanishq3/Axiorynth)**
-<br/>A chess engine written in Rust, built for speed and correctness from the board representation up.
-<br/><sub>Rust · Search · Evaluation</sub>
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-**📡 [Semantic-6G](https://github.com/Eternalcodertanishq3/Semantic-6G)**
-<br/>Software-based 6G semantic communication system — Joint Source-Channel Coding with ResNet + GRU autoencoders.
-<br/><sub>Python · PyTorch · Signal Processing</sub>
-
-</td>
-<td width="50%" valign="top">
-
-**🏋️ [Advanced Gym Portal](https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal)**
-<br/>Multi-tenant SaaS platform for gym management — the architectural blueprint behind my later SaaS builds.
-<br/><sub>Full-Stack · Multi-Tenant · SaaS</sub>
-
-</td>
-</tr>
-</table>
+<div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+<h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">🏋️ <a href="https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal" style="text-decoration: none; color: #38BDF8;">Gym Portal</a></h3>
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.6; color: #A0AEC0;">Multi-tenant SaaS platform for gym management — the blueprint behind my modern SaaS builds.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Full-Stack</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">Multi-Tenant</span>
+  <span style="background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 15px; color: #38BDF8;">SaaS</span>
+</div>
+</div>
 
 </div>
 
@@ -168,11 +193,19 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## 🧠 Tech Arsenal
 
-<div class="slide" style="padding: 20px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; margin: 20px 0;">
-<img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs,fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&perline=10" alt="Tech Stack" style="max-width: 100%;"/>
+<div class="slide" style="margin: 30px auto; max-width: 900px;">
+<div style="text-align: center; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 58, 138, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
+<div style="margin-bottom: 25px;">
+<img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
+</div>
+<div style="margin-bottom: 25px;">
+<img src="https://skillicons.dev/icons?i=fastapi,firebase,postgres,mongodb,docker,redis,pytorch,git,linux,vscode&perline=10" alt="Tech Stack 2" style="max-width: 100%; height: auto;"/>
+</div>
+<p style="margin: 20px 0; font-size: 13px; color: #A0AEC0; font-style: italic;">Building with modern, production-grade tools across the full stack</p>
+</div>
 </div>
 
-<div style="margin: 20px 0;"><img src="assets/focus-bars.svg" width="90%" alt="Focus Bars"/></div>
+<div style="margin: 30px auto; max-width: 600px;"><img src="assets/focus-bars.svg" width="100%" alt="Focus Bars"/></div>
 
 <br/><br/>
 
@@ -180,63 +213,89 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## 📊 Live Analytics
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
+<div style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
 
-### GitHub Performance Metrics
+### 📈 Real-Time GitHub Activity
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; text-align: center;">
+<div style="padding: 15px; background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8; border-radius: 8px;">
+<p style="font-size: 24px; font-weight: bold; color: #38BDF8; margin: 0;">313</p>
+<p style="font-size: 12px; color: #A0AEC0; margin: 5px 0 0 0;">Total Contributions</p>
+</div>
+<div style="padding: 15px; background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8; border-radius: 8px;">
+<p style="font-size: 24px; font-weight: bold; color: #38BDF8; margin: 0;">8</p>
+<p style="font-size: 12px; color: #A0AEC0; margin: 5px 0 0 0;">Current Streak</p>
+</div>
+<div style="padding: 15px; background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8; border-radius: 8px;">
+<p style="font-size: 24px; font-weight: bold; color: #38BDF8; margin: 0;">8</p>
+<p style="font-size: 12px; color: #A0AEC0; margin: 5px 0 0 0;">Longest Streak</p>
+</div>
+</div>
+
+</div>
+
+<br/>
+
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
+
+### GitHub Stats
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=A0AEC0">
-  <img src="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=default&hide_border=true&title_color=1E3A8A&icon_color=38BDF8&text_color=1F2937" alt="GitHub Stats"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=A0AEC0&hide=issues">
+  <img src="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=default&hide_border=true&title_color=1E3A8A&icon_color=38BDF8&text_color=1F2937&hide=issues" alt="GitHub Stats" style="max-width: 100%;"/>
 </picture>
 
 </div>
 
-<br/><br/>
+<br/>
 
-<div class="slide" style="margin: 30px 0;">
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
-### Programming Languages
+### Language Distribution
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=A0AEC0">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=default&hide_border=true&title_color=1E3A8A&text_color=1F2937" alt="Top Languages"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=donut&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=A0AEC0">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=donut&theme=default&hide_border=true&title_color=1E3A8A&text_color=1F2937" alt="Top Languages" style="max-width: 100%;"/>
 </picture>
 
 </div>
 
-<br/><br/>
+<br/>
 
-<div class="slide" style="margin: 30px 0;">
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
 ### Contribution Streaks
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8&sideNums=38BDF8">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=default&hide_border=true&ring=1E3A8A&fire=0F172A&currStreakLabel=0F172A&sideNums=1F2937" alt="GitHub Streak"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=Eternalcodertanishq3&theme=tokyonight&hide_border=true&background=0D1117">
+  <img src="https://streak-stats.demolab.com?user=Eternalcodertanishq3&theme=default&hide_border=true" alt="GitHub Streak" style="max-width: 100%;"/>
 </picture>
 
 </div>
 
-<br/><br/>
+<br/>
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 58, 138, 0.2) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
+<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
-### 📈 Contribution Heatmap
+### 🔥 Live Contribution Heatmap
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake-dark.svg">
-  <img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap" style="max-width: 100%; height: auto;"/>
+  <img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap" style="max-width: 100%; height: auto; border-radius: 10px;"/>
 </picture>
 
 </div>
 
-<br/><br/>
+<br/>
 
-<div class="slide" style="margin: 30px 0;">
+<div class="slide" style="margin: 30px 0; text-align: center;">
 
-### 🏆 Achievements
+### 🏆 Achievements & Trophies
 
-<img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" alt="Trophy" style="max-width: 100%;"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C">
+  <img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=default&no-frame=true&no-bg=false&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" alt="Trophy" style="max-width: 100%;"/>
+</picture>
 
 </div>
 
