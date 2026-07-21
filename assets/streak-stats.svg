@@ -1,0 +1,131 @@
+<svg viewBox="0 0 410 280" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <filter id="neonCyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="neonPurple" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="neonPink" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+      .gauge-bg { stroke: #1E293B; stroke-opacity: 0.4; fill: none; }
+      .stat-val { fill: #F8FAFC; font-weight: 700; }
+      .stat-lbl { fill: #64748B; font-size: 11px; }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 0.8; }
+      }
+      @keyframes spin-cw {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .planet-rot {
+        transform-origin: 135px 145px;
+      }
+    </style>
+  </defs>
+
+  <!-- Card body -->
+  <rect width="410" height="280" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  
+  <!-- Stars -->
+  <circle cx="167" cy="5" r="1.0" fill="#F8FAFC" opacity="0.47" style="animation: pulse 3.6s ease-in-out infinite 1.9s" />
+<circle cx="357" cy="203" r="0.9" fill="#818CF8" opacity="0.50" style="animation: pulse 4.8s ease-in-out infinite 3.8s" />
+<circle cx="342" cy="255" r="1.1" fill="#F8FAFC" opacity="0.29" style="animation: pulse 3.4s ease-in-out infinite 2.5s" />
+<circle cx="267" cy="256" r="0.6" fill="#818CF8" opacity="0.80" style="animation: pulse 2.8s ease-in-out infinite 3.0s" />
+<circle cx="161" cy="115" r="0.9" fill="#F8FAFC" opacity="0.34" style="animation: pulse 3.8s ease-in-out infinite 4.8s" />
+<circle cx="298" cy="0" r="1.0" fill="#A5B4FC" opacity="0.42" style="animation: pulse 4.5s ease-in-out infinite 1.4s" />
+<circle cx="391" cy="53" r="0.7" fill="#A5B4FC" opacity="0.22" style="animation: pulse 4.9s ease-in-out infinite 3.8s" />
+<circle cx="210" cy="224" r="0.8" fill="#A5B4FC" opacity="0.31" style="animation: pulse 4.5s ease-in-out infinite 4.8s" />
+<circle cx="264" cy="257" r="0.8" fill="#818CF8" opacity="0.60" style="animation: pulse 2.5s ease-in-out infinite 2.0s" />
+<circle cx="82" cy="171" r="1.1" fill="#818CF8" opacity="0.64" style="animation: pulse 4.8s ease-in-out infinite 3.2s" />
+<circle cx="92" cy="236" r="1.1" fill="#A5B4FC" opacity="0.20" style="animation: pulse 2.4s ease-in-out infinite 3.2s" />
+<circle cx="329" cy="176" r="1.1" fill="#38BDF8" opacity="0.51" style="animation: pulse 4.2s ease-in-out infinite 0.0s" />
+<circle cx="94" cy="112" r="0.9" fill="#F8FAFC" opacity="0.74" style="animation: pulse 3.2s ease-in-out infinite 4.2s" />
+<circle cx="195" cy="42" r="1.0" fill="#A5B4FC" opacity="0.29" style="animation: pulse 4.7s ease-in-out infinite 3.3s" />
+<circle cx="367" cy="25" r="0.8" fill="#F8FAFC" opacity="0.54" style="animation: pulse 2.9s ease-in-out infinite 2.5s" />
+<circle cx="197" cy="222" r="0.6" fill="#A5B4FC" opacity="0.20" style="animation: pulse 3.2s ease-in-out infinite 0.5s" />
+<circle cx="44" cy="219" r="0.7" fill="#818CF8" opacity="0.83" style="animation: pulse 3.9s ease-in-out infinite 3.8s" />
+<circle cx="17" cy="136" r="0.6" fill="#F8FAFC" opacity="0.24" style="animation: pulse 3.1s ease-in-out infinite 3.4s" />
+<circle cx="316" cy="54" r="0.8" fill="#F8FAFC" opacity="0.71" style="animation: pulse 3.7s ease-in-out infinite 4.9s" />
+<circle cx="21" cy="106" r="1.0" fill="#A5B4FC" opacity="0.53" style="animation: pulse 3.3s ease-in-out infinite 5.0s" />
+<circle cx="205" cy="190" r="0.6" fill="#818CF8" opacity="0.68" style="animation: pulse 4.5s ease-in-out infinite 3.7s" />
+<circle cx="281" cy="272" r="1.1" fill="#818CF8" opacity="0.56" style="animation: pulse 3.5s ease-in-out infinite 2.8s" />
+<circle cx="331" cy="10" r="0.7" fill="#F8FAFC" opacity="0.72" style="animation: pulse 2.9s ease-in-out infinite 2.8s" />
+<circle cx="342" cy="257" r="0.7" fill="#818CF8" opacity="0.68" style="animation: pulse 2.1s ease-in-out infinite 2.5s" />
+<circle cx="146" cy="222" r="1.0" fill="#F8FAFC" opacity="0.67" style="animation: pulse 4.4s ease-in-out infinite 3.9s" />
+<circle cx="331" cy="251" r="0.6" fill="#38BDF8" opacity="0.22" style="animation: pulse 2.5s ease-in-out infinite 0.8s" />
+<circle cx="246" cy="67" r="1.0" fill="#A5B4FC" opacity="0.21" style="animation: pulse 3.8s ease-in-out infinite 2.8s" />
+<circle cx="0" cy="65" r="0.8" fill="#818CF8" opacity="0.30" style="animation: pulse 3.6s ease-in-out infinite 4.2s" />
+<circle cx="115" cy="195" r="1.1" fill="#A5B4FC" opacity="0.69" style="animation: pulse 2.4s ease-in-out infinite 2.1s" />
+<circle cx="13" cy="108" r="0.8" fill="#38BDF8" opacity="0.46" style="animation: pulse 3.9s ease-in-out infinite 1.7s" />
+
+
+  <!-- Title -->
+  <text x="24" y="34" class="font-sans title">✦ ORBITAL STREAK TELEMETRY</text>
+
+  <!-- Radial Gauge Dials (cockpit telemetry style) -->
+  <circle cx="135" cy="145" r="75" class="gauge-bg" stroke-width="5" />
+  <circle cx="135" cy="145" r="75" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" fill="none"
+          stroke-dasharray="471.23889803846896" stroke-dashoffset="70.68583470577035" transform="rotate(-90 135 145)" filter="url(#neonCyan)" />
+
+  <circle cx="135" cy="145" r="55" class="gauge-bg" stroke-width="5" />
+  <circle cx="135" cy="145" r="55" stroke="#818CF8" stroke-width="5" stroke-linecap="round" fill="none"
+          stroke-dasharray="345.57519189487726" stroke-dashoffset="207.34511513692635" transform="rotate(-90 135 145)" filter="url(#neonPurple)" />
+
+  <circle cx="135" cy="145" r="35" class="gauge-bg" stroke-width="5" />
+  <circle cx="135" cy="145" r="35" stroke="#C084FC" stroke-width="5" stroke-linecap="round" fill="none"
+          stroke-dasharray="219.9114857512855" stroke-dashoffset="161.26842288427605" transform="rotate(-90 135 145)" filter="url(#neonPink)" />
+
+  <!-- Center planet in the gauge -->
+  <circle cx="135" cy="145" r="18" fill="#1E1B4B" stroke="#818CF8" stroke-width="1"/>
+  <text x="135" y="150" text-anchor="middle" fill="#38BDF8" font-size="12" font-weight="900" class="font-mono">8d</text>
+
+  <!-- Small rotating planet on the outer orbit -->
+  <g class="planet-rot" style="animation: spin-cw 20s linear infinite;">
+    <circle cx="210" cy="145" r="4" fill="#38BDF8" filter="url(#neonCyan)" />
+  </g>
+
+  <!-- Stats Legend List -->
+  <g transform="translate(250, 75)" class="font-sans">
+    <!-- Stat 1: Total -->
+    <circle cx="0" cy="5" r="5" fill="#38BDF8" filter="url(#neonCyan)" />
+    <text x="16" y="8" class="font-mono stat-val" font-size="17">313</text>
+    <text x="16" y="24" class="stat-lbl">TOTAL COMMITS</text>
+
+    <!-- Stat 2: Longest -->
+    <g transform="translate(0, 52)">
+      <circle cx="0" cy="5" r="5" fill="#818CF8" filter="url(#neonPurple)" />
+      <text x="16" y="8" class="font-mono stat-val" font-size="17">12 DAYS</text>
+      <text x="16" y="24" class="stat-lbl">LONGEST STREAK</text>
+    </g>
+
+    <!-- Stat 3: Current -->
+    <g transform="translate(0, 104)">
+      <circle cx="0" cy="5" r="5" fill="#C084FC" filter="url(#neonPink)" />
+      <text x="16" y="8" class="font-mono stat-val" font-size="17">8 DAYS</text>
+      <text x="16" y="24" class="stat-lbl">CURRENT STREAK</text>
+    </g>
+  </g>
+</svg>

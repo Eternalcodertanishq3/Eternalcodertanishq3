@@ -35,8 +35,8 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: auto-sync currently-building section"
+          commit_message: "chore: update space dashboard stats & README"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
-          file_pattern: README.md
+          file_pattern: "README.md assets/*.svg"
           create_branch: false
