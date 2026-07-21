@@ -139,24 +139,30 @@ I care about products that are fast, correct, and don't look like everyone else'
   <img src="https://github-readme-stats.vercel.app/api?username=Eternalcodertanishq3&show_icons=true&theme=default&hide_border=true&title_color=1E3A8A&icon_color=38BDF8" alt="GitHub Stats"/>
 </picture>
 
-<br/><br/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=donut&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8" alt="Top Languages" />
-
-<br/><br/>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8" alt="GitHub Streak" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=38BDF8&text_color=A0AEC0&card_width=450">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Eternalcodertanishq3&layout=compact&theme=default&hide_border=true&title_color=1E3A8A&text_color=1F2937" alt="Top Languages"/>
+</picture>
 
 <br/><br/>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Eternalcodertanishq3&theme=tokyo-night&hide_border=true&area=true" alt="Activity Graph" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=tokyonight&hide_border=true&background=0D1117&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8&sideNums=38BDF8">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Eternalcodertanishq3&theme=default&hide_border=true&ring=1E3A8A&fire=0F172A&currStreakLabel=0F172A" alt="GitHub Streak"/>
+</picture>
 
 <br/><br/>
 
-<img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake-dark.svg#gh-dark-mode-only" alt="Snake animation"/>
-<img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg#gh-light-mode-only" alt="Snake animation"/>
+### 📈 Contribution Heatmap
 
-<img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake-dark.svg">
+  <img src="https://raw.githubusercontent.com/Eternalcodertanishq3/Eternalcodertanishq3/output/github-contribution-grid-snake.svg" alt="Contribution Heatmap"/>
+</picture>
+
+<br/><br/>
+
+<img src="https://github-profile-trophy.vercel.app/?username=Eternalcodertanishq3&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=7&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C" />
 
 </div>
 

@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: read
 
 jobs:
   sync:
@@ -16,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -32,4 +36,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-sync currently-building section"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
           file_pattern: README.md
+          create_branch: false
