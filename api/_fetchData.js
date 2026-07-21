@@ -10,6 +10,7 @@ query($username: String!) {
     repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
       nodes {
         name
+        isPrivate
         stargazerCount
         forkCount
         description
@@ -231,6 +232,7 @@ export async function fetchGitHubData(username) {
             }
             processedRepos.push({
               name: repo.name,
+              isPrivate: repo.isPrivate,
               description: repo.description || "No description yet.",
               latestCommit: commitMsg || "Commit hook active",
               primaryLanguage: repo.primaryLanguage || { name: "JavaScript", color: "#f1e05a" },
@@ -242,7 +244,7 @@ export async function fetchGitHubData(username) {
           starsCount = calculatedStars;
 
           const sorted = processedRepos
-            .filter((r) => r.name.toLowerCase() !== username.toLowerCase())
+            .filter((r) => r.name.toLowerCase() !== username.toLowerCase() && !r.isPrivate)
             .sort((a, b) => new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime())
             .slice(0, 3);
             
