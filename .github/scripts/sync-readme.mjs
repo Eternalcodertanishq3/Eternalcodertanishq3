@@ -159,6 +159,17 @@ export function timeAgo(dateStr) {
   return `${Math.floor(months / 12)}y ago`;
 }
 
+// Helper to escape special XML characters
+export function escapeXml(unsafe) {
+  if (!unsafe) return "";
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
 // Helper to wrap description text in SVGs
 export function wrapText(text, maxCharsPerLine) {
   const words = text.split(" ");
@@ -821,42 +832,42 @@ export function drawGithubStats(stats) {
 </svg>`;
 }
 
-// 6. Generate project card SVG
+// 6. Generate project card SVG (Updated for high readability and size)
 export function drawProjectCard(title, description, commitMsg, langName, langColor, pushedAgo, stars, icon, subinfo) {
-  const width = 380;
-  const height = 200;
+  const width = 420;
+  const height = 220;
   const starsBg = generateStars(22, width, height);
 
-  // Wrap description
-  const descLines = wrapText(description || "No description provided.", 44).slice(0, 3);
+  // Wrap description with wider margin (48 chars max)
+  const descLines = wrapText(description || "No description provided.", 48).slice(0, 3);
   let descSvg = "";
   for (let i = 0; i < descLines.length; i++) {
-    descSvg += `<text x="24" y="${82 + i * 19}" fill="#94A3B8" font-size="12.5" class="font-sans">${descLines[i]}</text>\n`;
+    descSvg += `<text x="24" y="${82 + i * 22}" fill="#94A3B8" font-size="14.5" class="font-sans">${escapeXml(descLines[i])}</text>\n`;
   }
 
   let commitSvg = "";
   if (!subinfo && commitMsg) {
-    const cleanCommit = commitMsg.replace(/"/g, "'");
+    const cleanCommit = escapeXml(commitMsg);
     const slicedCommit = cleanCommit.length > 36 ? cleanCommit.slice(0, 33) + "..." : cleanCommit;
     commitSvg = `
-    <text x="24" y="141" fill="#64748B" font-size="11.5" font-weight="700" class="font-mono">Commit:</text>
-    <text x="80" y="141" fill="#C084FC" font-size="11.5" class="font-mono">${slicedCommit}</text>
+    <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
+    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">${slicedCommit}</text>
     `;
   }
 
   let footerSvg = "";
   if (subinfo) {
     footerSvg = `
-    <circle cx="28" cy="170" r="4.5" fill="${langColor}" />
-    <text x="38" y="174" fill="#94A3B8" font-size="12.5" class="font-sans">${langName}</text>
-    <text x="356" y="174" fill="#C084FC" font-size="12.5" font-weight="700" class="font-mono" text-anchor="end">${subinfo}</text>
+    <circle cx="28" cy="186" r="4.5" fill="${langColor}" />
+    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="396" y="190" fill="#C084FC" font-size="13.5" font-weight="700" class="font-mono" text-anchor="end">${escapeXml(subinfo)}</text>
     `;
   } else {
     footerSvg = `
-    <circle cx="28" cy="170" r="4.5" fill="${langColor}" />
-    <text x="38" y="174" fill="#94A3B8" font-size="12.5" class="font-sans">${langName}</text>
-    <text x="190" y="174" fill="#64748B" font-size="11.5" class="font-mono" text-anchor="middle">⏱ ${pushedAgo}</text>
-    <text x="356" y="174" fill="#64748B" font-size="12.5" class="font-mono" text-anchor="end">★ ${stars}</text>
+    <circle cx="28" cy="186" r="4.5" fill="${langColor}" />
+    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">${escapeXml(langName)}</text>
+    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ ${escapeXml(pushedAgo)}</text>
+    <text x="396" y="190" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ ${stars}</text>
     `;
   }
 
@@ -883,8 +894,8 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   ${starsBg}
 
   <!-- Header -->
-  <text x="24" y="38" fill="#38BDF8" font-size="15" font-weight="700" class="font-sans">${icon} ${title}</text>
-  <line x1="24" y1="52" x2="356" y2="52" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">${escapeXml(icon)} ${escapeXml(title)}</text>
+  <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Description -->
   ${descSvg}
@@ -893,7 +904,7 @@ export function drawProjectCard(title, description, commitMsg, langName, langCol
   ${commitSvg}
 
   <!-- Footer Divider -->
-  <line x1="24" y1="154" x2="356" y2="154" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="170" x2="396" y2="170" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Footer -->
   ${footerSvg}
@@ -1082,61 +1093,47 @@ async function main() {
 
   console.log("Static space-themed SVG cards generated successfully.");
 
-  // Build space-themed HTML Project Grid for Currently Building (100% clickable, styled background, border radius)
-  let currentlyBuildingHTML = "";
-  if (activeRepos && activeRepos.length > 0) {
-    const widthPct = activeRepos.length === 1 ? "100%" : activeRepos.length === 2 ? "49%" : "32.5%";
-    const imageLinks = [];
-    
-    for (let i = 0; i < activeRepos.length; i++) {
-      const r = activeRepos[i];
-      const filename = `project-building-${i + 1}.svg`;
-      const svgCode = drawProjectCard(
-        r.name,
-        r.description,
-        r.latestCommit,
-        r.primaryLanguage?.name || "—",
-        r.primaryLanguage?.color || "#38BDF8",
-        r.pushedAgo,
-        r.stars,
-        "🌐"
-      );
-      writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
-      
-      imageLinks.push(`<a href="https://github.com/${USERNAME}/${r.name}" target="_blank"><img src="assets/${filename}" width="${widthPct}" alt="${r.name}" /></a>`);
+  // Helper to build 2-column center-aligned HTML grid for SVG cards
+  function buildHTMLGrid(items, typeName) {
+    const rows = [];
+    for (let i = 0; i < items.length; i += 2) {
+      const chunk = items.slice(i, i + 2);
+      const rowLinks = chunk.map((item, index) => {
+        const globalIdx = i + index;
+        const filename = `project-${typeName}-${globalIdx + 1}.svg`;
+        
+        // Compile the SVG
+        const svgCode = drawProjectCard(
+          item.name,
+          item.description || item.desc,
+          item.latestCommit || "",
+          item.primaryLanguage?.name || item.lang || "—",
+          item.primaryLanguage?.color || item.color || "#38BDF8",
+          item.pushedAgo || "",
+          item.stars || 0,
+          item.icon || "🌐",
+          item.subinfo || ""
+        );
+        writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
+        
+        const url = item.url || `https://github.com/${USERNAME}/${item.name}`;
+        return `<a href="${url}" target="_blank"><img src="assets/${filename}" width="49.5%" alt="${item.name}" /></a>`;
+      });
+      rows.push(`<p align="center">\n  ${rowLinks.join("\n  ")}\n</p>`);
     }
-    
-    // Assemble side-by-side images using a standard paragraph wrapper with NO 4-space code block indenting
-    currentlyBuildingHTML = `<p align="center">\n${imageLinks.join("\n")}\n</p>`;
+    return rows.join("\n");
   }
 
-  // Flagship projects styled space HTML Grid
+  // Generate Currently Building Grid (2-column layout)
+  const currentlyBuildingHTML = buildHTMLGrid(activeRepos, "building");
+
+  // Flagship projects 2-column layout
   const flagshipProjects = [
     { name: "Pravaha", desc: "LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.", lang: "Python", color: "#3572A5", subinfo: "AI Swarms", icon: "🧠", url: "https://github.com/Eternalcodertanishq3/Pravaha" },
     { name: "miniGrad", desc: "Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.", lang: "Python", color: "#3572A5", subinfo: "Autodiff", icon: "🔬", url: "https://github.com/Eternalcodertanishq3/miniGrad" },
     { name: "Axiorynth", desc: "A chess engine written in Rust, built for speed and board representation correctness from the ground up.", lang: "Rust", color: "#dea584", subinfo: "Systems", icon: "♟️", url: "https://github.com/Eternalcodertanishq3/Axiorynth" }
   ];
-
-  const flagshipLinks = [];
-  for (let i = 0; i < flagshipProjects.length; i++) {
-    const p = flagshipProjects[i];
-    const filename = `project-flagship-${i + 1}.svg`;
-    const svgCode = drawProjectCard(
-      p.name,
-      p.desc,
-      "",
-      p.lang,
-      p.color,
-      "",
-      0,
-      p.icon,
-      p.subinfo
-    );
-    writeFileSync(join(ASSETS_DIR, filename), svgCode, "utf8");
-    
-    flagshipLinks.push(`<a href="${p.url}" target="_blank"><img src="assets/${filename}" width="32.5%" alt="${p.name}" /></a>`);
-  }
-  const flagshipProjectsHTML = `<p align="center">\n${flagshipLinks.join("\n")}\n</p>`;
+  const flagshipProjectsHTML = buildHTMLGrid(flagshipProjects, "flagship");
 
   // Assemble the spacious markdown content
   const mdContent = `<div align="center">

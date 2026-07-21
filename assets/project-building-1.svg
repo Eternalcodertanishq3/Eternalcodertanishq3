@@ -1,4 +1,4 @@
-<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" width="100%">
   <defs>
     <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#070D1E"/>
@@ -15,56 +15,56 @@
   </defs>
 
   <!-- Card body -->
-  <rect width="380" height="200" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  <rect width="420" height="220" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
   
   <!-- Stars -->
-  <circle cx="95" cy="172" r="1.1" fill="#F8FAFC" opacity="0.53" style="animation: pulse 4.9s ease-in-out infinite 4.2s" />
-<circle cx="96" cy="0" r="1.0" fill="#38BDF8" opacity="0.37" style="animation: pulse 2.8s ease-in-out infinite 3.4s" />
-<circle cx="0" cy="94" r="0.8" fill="#A5B4FC" opacity="0.69" style="animation: pulse 2.2s ease-in-out infinite 4.8s" />
-<circle cx="260" cy="146" r="0.6" fill="#818CF8" opacity="0.57" style="animation: pulse 2.1s ease-in-out infinite 4.0s" />
-<circle cx="294" cy="165" r="0.9" fill="#A5B4FC" opacity="0.81" style="animation: pulse 2.1s ease-in-out infinite 3.5s" />
-<circle cx="244" cy="107" r="0.8" fill="#A5B4FC" opacity="0.69" style="animation: pulse 2.6s ease-in-out infinite 3.5s" />
-<circle cx="125" cy="62" r="1.1" fill="#A5B4FC" opacity="0.67" style="animation: pulse 2.8s ease-in-out infinite 3.8s" />
-<circle cx="62" cy="154" r="1.1" fill="#F8FAFC" opacity="0.33" style="animation: pulse 3.5s ease-in-out infinite 2.6s" />
-<circle cx="317" cy="150" r="1.0" fill="#A5B4FC" opacity="0.25" style="animation: pulse 4.0s ease-in-out infinite 1.7s" />
-<circle cx="288" cy="2" r="0.7" fill="#38BDF8" opacity="0.23" style="animation: pulse 2.8s ease-in-out infinite 2.0s" />
-<circle cx="228" cy="119" r="1.1" fill="#A5B4FC" opacity="0.59" style="animation: pulse 2.9s ease-in-out infinite 4.4s" />
-<circle cx="11" cy="56" r="0.8" fill="#38BDF8" opacity="0.66" style="animation: pulse 4.8s ease-in-out infinite 4.5s" />
-<circle cx="296" cy="92" r="0.5" fill="#F8FAFC" opacity="0.83" style="animation: pulse 2.6s ease-in-out infinite 1.6s" />
-<circle cx="113" cy="122" r="0.5" fill="#38BDF8" opacity="0.21" style="animation: pulse 2.6s ease-in-out infinite 3.6s" />
-<circle cx="200" cy="59" r="0.9" fill="#38BDF8" opacity="0.59" style="animation: pulse 2.2s ease-in-out infinite 1.9s" />
-<circle cx="150" cy="157" r="1.2" fill="#818CF8" opacity="0.66" style="animation: pulse 3.3s ease-in-out infinite 3.9s" />
-<circle cx="270" cy="157" r="0.4" fill="#A5B4FC" opacity="0.39" style="animation: pulse 4.5s ease-in-out infinite 1.0s" />
-<circle cx="344" cy="30" r="0.5" fill="#F8FAFC" opacity="0.71" style="animation: pulse 4.6s ease-in-out infinite 0.6s" />
-<circle cx="39" cy="43" r="1.0" fill="#38BDF8" opacity="0.32" style="animation: pulse 3.1s ease-in-out infinite 3.6s" />
-<circle cx="191" cy="159" r="0.5" fill="#F8FAFC" opacity="0.59" style="animation: pulse 3.7s ease-in-out infinite 4.3s" />
-<circle cx="359" cy="158" r="1.0" fill="#A5B4FC" opacity="0.28" style="animation: pulse 3.2s ease-in-out infinite 0.1s" />
-<circle cx="239" cy="12" r="0.7" fill="#38BDF8" opacity="0.74" style="animation: pulse 3.0s ease-in-out infinite 4.2s" />
+  <circle cx="354" cy="57" r="1.2" fill="#F8FAFC" opacity="0.71" style="animation: pulse 4.4s ease-in-out infinite 3.6s" />
+<circle cx="394" cy="85" r="1.2" fill="#818CF8" opacity="0.19" style="animation: pulse 4.2s ease-in-out infinite 3.3s" />
+<circle cx="292" cy="1" r="1.0" fill="#38BDF8" opacity="0.79" style="animation: pulse 2.4s ease-in-out infinite 0.2s" />
+<circle cx="260" cy="186" r="0.7" fill="#A5B4FC" opacity="0.69" style="animation: pulse 4.0s ease-in-out infinite 0.4s" />
+<circle cx="338" cy="145" r="0.6" fill="#818CF8" opacity="0.18" style="animation: pulse 4.9s ease-in-out infinite 1.2s" />
+<circle cx="114" cy="182" r="0.5" fill="#A5B4FC" opacity="0.28" style="animation: pulse 2.9s ease-in-out infinite 4.3s" />
+<circle cx="307" cy="214" r="0.4" fill="#F8FAFC" opacity="0.39" style="animation: pulse 3.2s ease-in-out infinite 0.1s" />
+<circle cx="406" cy="209" r="0.5" fill="#F8FAFC" opacity="0.25" style="animation: pulse 3.4s ease-in-out infinite 4.9s" />
+<circle cx="85" cy="16" r="0.7" fill="#F8FAFC" opacity="0.78" style="animation: pulse 4.4s ease-in-out infinite 0.7s" />
+<circle cx="17" cy="185" r="0.5" fill="#38BDF8" opacity="0.18" style="animation: pulse 3.0s ease-in-out infinite 1.6s" />
+<circle cx="277" cy="202" r="0.6" fill="#A5B4FC" opacity="0.76" style="animation: pulse 4.2s ease-in-out infinite 0.2s" />
+<circle cx="18" cy="144" r="0.4" fill="#818CF8" opacity="0.70" style="animation: pulse 4.8s ease-in-out infinite 4.6s" />
+<circle cx="170" cy="185" r="0.7" fill="#F8FAFC" opacity="0.16" style="animation: pulse 2.4s ease-in-out infinite 0.7s" />
+<circle cx="199" cy="97" r="1.2" fill="#818CF8" opacity="0.35" style="animation: pulse 3.6s ease-in-out infinite 3.3s" />
+<circle cx="107" cy="118" r="0.9" fill="#F8FAFC" opacity="0.22" style="animation: pulse 2.6s ease-in-out infinite 0.7s" />
+<circle cx="405" cy="182" r="0.5" fill="#A5B4FC" opacity="0.32" style="animation: pulse 2.8s ease-in-out infinite 0.1s" />
+<circle cx="391" cy="149" r="1.2" fill="#A5B4FC" opacity="0.40" style="animation: pulse 2.4s ease-in-out infinite 2.1s" />
+<circle cx="74" cy="20" r="0.6" fill="#818CF8" opacity="0.82" style="animation: pulse 5.0s ease-in-out infinite 0.0s" />
+<circle cx="155" cy="45" r="0.8" fill="#38BDF8" opacity="0.71" style="animation: pulse 5.0s ease-in-out infinite 1.5s" />
+<circle cx="25" cy="89" r="0.8" fill="#38BDF8" opacity="0.61" style="animation: pulse 3.1s ease-in-out infinite 1.2s" />
+<circle cx="267" cy="206" r="0.4" fill="#818CF8" opacity="0.32" style="animation: pulse 5.0s ease-in-out infinite 4.1s" />
+<circle cx="107" cy="55" r="0.8" fill="#38BDF8" opacity="0.24" style="animation: pulse 2.5s ease-in-out infinite 1.5s" />
 
 
   <!-- Header -->
-  <text x="24" y="38" fill="#38BDF8" font-size="15" font-weight="700" class="font-sans">🌐 Semantic-6G</text>
-  <line x1="24" y1="52" x2="356" y2="52" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">🌐 Semantic-6G</text>
+  <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Description -->
-  <text x="24" y="82" fill="#94A3B8" font-size="12.5" class="font-sans">Software-based 6G semantic communication</text>
-<text x="24" y="101" fill="#94A3B8" font-size="12.5" class="font-sans">system using ResNet + GRU autoencoders.</text>
+  <text x="24" y="82" fill="#94A3B8" font-size="14.5" class="font-sans">Software-based 6G semantic communication system</text>
+<text x="24" y="104" fill="#94A3B8" font-size="14.5" class="font-sans">using ResNet + GRU autoencoders.</text>
 
 
   <!-- Commit message -->
   
-    <text x="24" y="141" fill="#64748B" font-size="11.5" font-weight="700" class="font-mono">Commit:</text>
-    <text x="80" y="141" fill="#C084FC" font-size="11.5" class="font-mono">refactor: optimize PyTorch image ...</text>
+    <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
+    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">refactor: optimize PyTorch image ...</text>
     
 
   <!-- Footer Divider -->
-  <line x1="24" y1="154" x2="356" y2="154" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="170" x2="396" y2="170" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Footer -->
   
-    <circle cx="28" cy="170" r="4.5" fill="#3572A5" />
-    <text x="38" y="174" fill="#94A3B8" font-size="12.5" class="font-sans">Python</text>
-    <text x="190" y="174" fill="#64748B" font-size="11.5" class="font-mono" text-anchor="middle">⏱ 18d ago</text>
-    <text x="356" y="174" fill="#64748B" font-size="12.5" class="font-mono" text-anchor="end">★ 0</text>
+    <circle cx="28" cy="186" r="4.5" fill="#3572A5" />
+    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">Python</text>
+    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ 18d ago</text>
+    <text x="396" y="190" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ 0</text>
     
 </svg>

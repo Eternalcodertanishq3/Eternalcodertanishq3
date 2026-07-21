@@ -1,4 +1,4 @@
-<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" width="100%">
   <defs>
     <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#070D1E"/>
@@ -15,56 +15,56 @@
   </defs>
 
   <!-- Card body -->
-  <rect width="380" height="200" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  <rect width="420" height="220" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
   
   <!-- Stars -->
-  <circle cx="294" cy="99" r="0.6" fill="#A5B4FC" opacity="0.22" style="animation: pulse 2.6s ease-in-out infinite 2.2s" />
-<circle cx="86" cy="86" r="1.1" fill="#38BDF8" opacity="0.83" style="animation: pulse 4.3s ease-in-out infinite 0.1s" />
-<circle cx="77" cy="76" r="0.9" fill="#F8FAFC" opacity="0.45" style="animation: pulse 4.2s ease-in-out infinite 3.4s" />
-<circle cx="184" cy="43" r="0.6" fill="#38BDF8" opacity="0.19" style="animation: pulse 2.4s ease-in-out infinite 2.6s" />
-<circle cx="244" cy="93" r="1.0" fill="#A5B4FC" opacity="0.28" style="animation: pulse 3.8s ease-in-out infinite 2.5s" />
-<circle cx="166" cy="18" r="1.1" fill="#38BDF8" opacity="0.45" style="animation: pulse 3.9s ease-in-out infinite 4.8s" />
-<circle cx="224" cy="118" r="0.6" fill="#818CF8" opacity="0.18" style="animation: pulse 4.1s ease-in-out infinite 2.8s" />
-<circle cx="113" cy="82" r="1.1" fill="#A5B4FC" opacity="0.42" style="animation: pulse 3.8s ease-in-out infinite 0.2s" />
-<circle cx="220" cy="179" r="0.7" fill="#38BDF8" opacity="0.73" style="animation: pulse 3.6s ease-in-out infinite 4.8s" />
-<circle cx="274" cy="134" r="0.4" fill="#F8FAFC" opacity="0.72" style="animation: pulse 5.0s ease-in-out infinite 0.3s" />
-<circle cx="241" cy="82" r="0.8" fill="#A5B4FC" opacity="0.57" style="animation: pulse 3.2s ease-in-out infinite 4.2s" />
-<circle cx="4" cy="133" r="0.7" fill="#818CF8" opacity="0.71" style="animation: pulse 2.8s ease-in-out infinite 1.7s" />
-<circle cx="142" cy="197" r="0.8" fill="#818CF8" opacity="0.62" style="animation: pulse 4.5s ease-in-out infinite 3.5s" />
-<circle cx="169" cy="82" r="1.1" fill="#A5B4FC" opacity="0.27" style="animation: pulse 2.0s ease-in-out infinite 1.7s" />
-<circle cx="44" cy="89" r="0.8" fill="#38BDF8" opacity="0.50" style="animation: pulse 2.0s ease-in-out infinite 2.9s" />
-<circle cx="59" cy="61" r="0.6" fill="#38BDF8" opacity="0.21" style="animation: pulse 3.6s ease-in-out infinite 4.4s" />
-<circle cx="306" cy="190" r="0.6" fill="#38BDF8" opacity="0.48" style="animation: pulse 4.4s ease-in-out infinite 3.1s" />
-<circle cx="254" cy="83" r="1.1" fill="#38BDF8" opacity="0.15" style="animation: pulse 2.7s ease-in-out infinite 4.4s" />
-<circle cx="149" cy="77" r="0.4" fill="#818CF8" opacity="0.21" style="animation: pulse 3.3s ease-in-out infinite 2.8s" />
-<circle cx="21" cy="39" r="1.1" fill="#F8FAFC" opacity="0.56" style="animation: pulse 4.6s ease-in-out infinite 3.4s" />
-<circle cx="134" cy="126" r="1.1" fill="#38BDF8" opacity="0.48" style="animation: pulse 2.8s ease-in-out infinite 3.3s" />
-<circle cx="326" cy="73" r="0.6" fill="#38BDF8" opacity="0.38" style="animation: pulse 4.5s ease-in-out infinite 4.3s" />
+  <circle cx="359" cy="37" r="1.0" fill="#F8FAFC" opacity="0.79" style="animation: pulse 4.2s ease-in-out infinite 1.4s" />
+<circle cx="86" cy="31" r="0.8" fill="#38BDF8" opacity="0.53" style="animation: pulse 3.8s ease-in-out infinite 3.2s" />
+<circle cx="237" cy="33" r="0.8" fill="#F8FAFC" opacity="0.34" style="animation: pulse 3.9s ease-in-out infinite 1.9s" />
+<circle cx="101" cy="101" r="0.7" fill="#A5B4FC" opacity="0.64" style="animation: pulse 2.2s ease-in-out infinite 4.6s" />
+<circle cx="145" cy="35" r="0.8" fill="#818CF8" opacity="0.44" style="animation: pulse 3.1s ease-in-out infinite 3.0s" />
+<circle cx="108" cy="168" r="0.7" fill="#38BDF8" opacity="0.49" style="animation: pulse 2.6s ease-in-out infinite 5.0s" />
+<circle cx="249" cy="143" r="0.4" fill="#F8FAFC" opacity="0.44" style="animation: pulse 4.3s ease-in-out infinite 0.6s" />
+<circle cx="140" cy="59" r="0.4" fill="#818CF8" opacity="0.33" style="animation: pulse 4.2s ease-in-out infinite 0.3s" />
+<circle cx="260" cy="106" r="0.8" fill="#A5B4FC" opacity="0.18" style="animation: pulse 3.4s ease-in-out infinite 1.3s" />
+<circle cx="328" cy="4" r="1.1" fill="#F8FAFC" opacity="0.31" style="animation: pulse 3.2s ease-in-out infinite 3.4s" />
+<circle cx="190" cy="39" r="0.7" fill="#38BDF8" opacity="0.45" style="animation: pulse 2.6s ease-in-out infinite 2.2s" />
+<circle cx="74" cy="201" r="0.6" fill="#38BDF8" opacity="0.38" style="animation: pulse 2.8s ease-in-out infinite 3.3s" />
+<circle cx="241" cy="57" r="0.8" fill="#A5B4FC" opacity="0.52" style="animation: pulse 4.1s ease-in-out infinite 3.6s" />
+<circle cx="100" cy="126" r="1.1" fill="#F8FAFC" opacity="0.68" style="animation: pulse 2.7s ease-in-out infinite 2.0s" />
+<circle cx="301" cy="5" r="1.1" fill="#818CF8" opacity="0.28" style="animation: pulse 2.3s ease-in-out infinite 4.2s" />
+<circle cx="293" cy="60" r="1.2" fill="#38BDF8" opacity="0.47" style="animation: pulse 4.4s ease-in-out infinite 0.3s" />
+<circle cx="14" cy="179" r="0.6" fill="#F8FAFC" opacity="0.33" style="animation: pulse 3.3s ease-in-out infinite 0.1s" />
+<circle cx="238" cy="155" r="0.5" fill="#F8FAFC" opacity="0.31" style="animation: pulse 2.3s ease-in-out infinite 3.3s" />
+<circle cx="25" cy="86" r="0.9" fill="#818CF8" opacity="0.69" style="animation: pulse 2.6s ease-in-out infinite 1.0s" />
+<circle cx="168" cy="117" r="1.1" fill="#818CF8" opacity="0.16" style="animation: pulse 3.6s ease-in-out infinite 4.0s" />
+<circle cx="260" cy="137" r="0.5" fill="#38BDF8" opacity="0.72" style="animation: pulse 3.3s ease-in-out infinite 2.2s" />
+<circle cx="352" cy="184" r="0.5" fill="#818CF8" opacity="0.24" style="animation: pulse 3.4s ease-in-out infinite 2.9s" />
 
 
   <!-- Header -->
-  <text x="24" y="38" fill="#38BDF8" font-size="15" font-weight="700" class="font-sans">🌐 Larder</text>
-  <line x1="24" y1="52" x2="356" y2="52" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">🌐 Larder</text>
+  <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Description -->
-  <text x="24" y="82" fill="#94A3B8" font-size="12.5" class="font-sans">Production-grade multi-tenant restaurant</text>
-<text x="24" y="101" fill="#94A3B8" font-size="12.5" class="font-sans">SaaS inventory & OCR invoice parser.</text>
+  <text x="24" y="82" fill="#94A3B8" font-size="14.5" class="font-sans">Production-grade multi-tenant restaurant SaaS</text>
+<text x="24" y="104" fill="#94A3B8" font-size="14.5" class="font-sans">inventory &amp; OCR invoice parser.</text>
 
 
   <!-- Commit message -->
   
-    <text x="24" y="141" fill="#64748B" font-size="11.5" font-weight="700" class="font-mono">Commit:</text>
-    <text x="80" y="141" fill="#C084FC" font-size="11.5" class="font-mono">feat: integrate tesseract OCR parser</text>
+    <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
+    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">feat: integrate tesseract OCR parser</text>
     
 
   <!-- Footer Divider -->
-  <line x1="24" y1="154" x2="356" y2="154" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
+  <line x1="24" y1="170" x2="396" y2="170" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Footer -->
   
-    <circle cx="28" cy="170" r="4.5" fill="#3178c6" />
-    <text x="38" y="174" fill="#94A3B8" font-size="12.5" class="font-sans">TypeScript</text>
-    <text x="190" y="174" fill="#64748B" font-size="11.5" class="font-mono" text-anchor="middle">⏱ in progress</text>
-    <text x="356" y="174" fill="#64748B" font-size="12.5" class="font-mono" text-anchor="end">★ 0</text>
+    <circle cx="28" cy="186" r="4.5" fill="#3178c6" />
+    <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">TypeScript</text>
+    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ in progress</text>
+    <text x="396" y="190" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ 0</text>
     
 </svg>
