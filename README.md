@@ -3,20 +3,20 @@
 <!-- COCKPIT SPACE DASHBOARD - UNIFIED GRID (SPACIOUS LAYOUT) -->
 
 <p align="center">
-  <img src="assets/hero-banner.svg" width="100%" alt="Space HUD Banner" />
+  <img src="https://eternalcodertanishq3.vercel.app/api/banner" width="100%" alt="Space HUD Banner" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Eternalcodertanishq3&bg_color=070D1E&color=E2E8F0&title_color=38BDF8&line=818CF8&point=C084FC&area_color=38BDF8&area=true&hide_border=true&radius=12" width="100%" alt="Contribution Graph" />
+  <img src="https://eternalcodertanishq3.vercel.app/api/graph" width="100%" alt="Contribution Graph" />
 </p>
 
 <p align="center">
-  <img src="assets/streak-stats.svg" width="49.5%" alt="Contribution Streaks" />
-  <img src="assets/language-galaxy.svg" width="49.5%" alt="Language Distribution" />
+  <img src="https://eternalcodertanishq3.vercel.app/api/streak" width="49.5%" alt="Contribution Streaks" />
+  <img src="https://eternalcodertanishq3.vercel.app/api/galaxy" width="49.5%" alt="Language Distribution" />
 </p>
 
 <p align="center">
-  <img src="assets/github-stats.svg" width="100%" alt="GitHub Profile Statistics" />
+  <img src="https://eternalcodertanishq3.vercel.app/api/stats" width="100%" alt="GitHub Profile Statistics" />
 </p>
 
 </div>

@@ -11,6 +11,7 @@ const USERNAME = process.env.GH_USERNAME || "Eternalcodertanishq3";
 const TOKEN = process.env.GH_TOKEN;
 const README_PATH = "README.md";
 const ASSETS_DIR = "assets";
+const VERCEL_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `https://eternalcodertanishq3.vercel.app`;
 
 // Ensure assets directory exists
 if (!existsSync(ASSETS_DIR)) {
@@ -349,7 +350,161 @@ export function drawHeroBanner(name, bio) {
 </svg>`;
 }
 
-// 2. Generate assets/streak-stats.svg
+// 2. Generate assets/contribution-graph.svg
+export function drawContributionGraph(username, days) {
+  const width = 850;
+  const height = 300;
+  const graphWidth = 720;
+  const graphHeight = 140;
+  const startX = 65;
+  const startY = 60;
+  const endY = startY + graphHeight;
+
+  const counts = days.map((d) => d.contributionCount);
+  const maxVal = Math.max(...counts, 1); // Avoid division by zero
+
+  const points = [];
+  for (let i = 0; i < days.length; i++) {
+    const x = startX + i * (graphWidth / (days.length - 1));
+    const y = endY - (days[i].contributionCount / maxVal) * graphHeight;
+    points.push({ x, y, count: days[i].contributionCount, date: days[i].date });
+  }
+
+  let pathD = `M ${points[0].x} ${points[0].y}`;
+  let areaD = `M ${points[0].x} ${endY} L ${points[0].x} ${points[0].y}`;
+  for (let i = 1; i < points.length; i++) {
+    pathD += ` L ${points[i].x} ${points[i].y}`;
+    areaD += ` L ${points[i].x} ${points[i].y}`;
+  }
+  areaD += ` L ${points[points.length - 1].x} ${endY} Z`;
+
+  const gridLines = [];
+  const numGridLines = 4;
+  for (let i = 0; i <= numGridLines; i++) {
+    const val = Math.round((maxVal / numGridLines) * i);
+    const y = endY - (val / maxVal) * graphHeight;
+    gridLines.push({ y, val });
+  }
+
+  const stars = generateStars(50, width, height);
+
+  let dots = "";
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    let fill = "#1E293B";
+    let size = 2.5;
+    let glow = "";
+    
+    if (p.count > 0 && p.count < 3) {
+      fill = "#0ea5e9";
+      size = 3.5;
+    } else if (p.count >= 3 && p.count < 8) {
+      fill = "#818cf8";
+      size = 4.5;
+      glow = `filter="url(#dotGlow)"`;
+    } else if (p.count >= 8) {
+      fill = "#c084fc";
+      size = 6;
+      glow = `filter="url(#dotGlowLarge)"`;
+    }
+    
+    dots += `<circle cx="${p.x}" cy="${p.y}" r="${size}" fill="${fill}" ${glow} />\n`;
+    if (p.count >= 8) {
+      dots += `<circle cx="${p.x}" cy="${p.y}" r="${size + 4}" fill="none" stroke="#c084fc" stroke-opacity="0.3" stroke-width="1"><animate attributeName="r" values="${size};${size + 8};${size}" dur="3s" repeatCount="indefinite"/></circle>\n`;
+    }
+  }
+
+  let xAxisDotsAndLabels = "";
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const dateObj = new Date(p.date);
+    const dayNum = dateObj.getDate();
+    xAxisDotsAndLabels += `<circle cx="${p.x}" cy="${endY}" r="2" fill="#38BDF8" opacity="0.5" />\n`;
+    xAxisDotsAndLabels += `<text x="${p.x}" y="${endY + 16}" class="font-mono axis-label-daily" text-anchor="middle" font-size="8.5">${dayNum}</text>\n`;
+  }
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070D1E"/>
+      <stop offset="100%" stop-color="#040712"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+    <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#818CF8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#040712" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="dotGlowLarge" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .font-sans { font-family: system-ui, -apple-system, sans-serif; }
+      .font-mono { font-family: ui-monospace, monospace; }
+      .title { fill: #E2E8F0; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+      .grid-line-dotted { stroke: #1E293B; stroke-opacity: 0.6; stroke-dasharray: 1 3; }
+      .axis-label { fill: #64748B; font-size: 11px; }
+      .axis-label-daily { fill: #475569; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Card body -->
+  <rect width="${width}" height="${height}" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
+  
+  <!-- Stars -->
+  ${stars}
+
+  <!-- Header -->
+  <text x="24" y="34" class="font-sans title">✦ Contribution Graph (Last 30 Days)</text>
+  <text x="826" y="34" class="font-mono axis-label" text-anchor="end">MAX DAILY: ${maxVal} COMMITS</text>
+
+  <!-- Grid lines & Y Axis Labels -->
+  ${gridLines
+    .map(
+      (line) => `
+    <line x1="${startX}" y1="${line.y}" x2="${startX + graphWidth}" y2="${line.y}" class="grid-line-dotted" />
+    <text x="${startX - 12}" y="${line.y + 4}" class="font-mono axis-label" text-anchor="end">${line.val}</text>
+  `
+    )
+    .join("")}
+
+  <!-- Area under curve -->
+  <path d="${areaD}" fill="url(#areaGrad)" />
+
+  <line x1="${startX}" y1="${endY}" x2="${startX + graphWidth}" y2="${endY}" stroke="#1E293B" stroke-width="1.2" />
+  ${xAxisDotsAndLabels}
+
+  <!-- Smooth Neon Line -->
+  <path d="${pathD}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#lineGlow)" />
+
+  <!-- Constellation Dots -->
+  ${dots}
+</svg>`;
+}
+
+// 3. Generate assets/streak-stats.svg
 export function drawStreakStats(stats) {
   const width = 410;
   const height = 280;
@@ -426,15 +581,15 @@ export function drawStreakStats(stats) {
   <!-- Radial Gauge Dials -->
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${totRadius}" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${totCircum}" stroke-dashoffset="${totOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonCyan)" />
+          stroke-dasharray="${totCircum}" stroke-dashoffset="${totOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonCyan)" />
 
   <circle cx="${cx}" cy="${cy}" r="${longRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${longRadius}" stroke="#818CF8" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${longCircum}" stroke-dashoffset="${longOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonPurple)" />
+          stroke-dasharray="${longCircum}" stroke-dashoffset="${longOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonPurple)" />
 
   <circle cx="${cx}" cy="${cy}" r="${currRadius}" class="gauge-bg" stroke-width="5" />
   <circle cx="${cx}" cy="${cy}" r="${currRadius}" stroke="#C084FC" stroke-width="5" stroke-linecap="round" fill="none"
-          stroke-dasharray="${currCircum}" stroke-dashoffset="${currOffset}" transform="rotate(-90 ${cx} ${cy})" filter="url(#neonPink)" />
+          stroke-dasharray="${currCircum}" stroke-dashoffset="${currOffset}" transform="rotate(-90 ${cx} ${cy})" fill="none" filter="url(#neonPink)" />
 
   <!-- Center planet in the gauge -->
   <circle cx="${cx}" cy="${cy}" r="18" fill="#1E1B4B" stroke="#818CF8" stroke-width="1"/>
@@ -469,7 +624,7 @@ export function drawStreakStats(stats) {
 </svg>`;
 }
 
-// 3. Generate assets/language-galaxy.svg
+// 4. Generate assets/language-galaxy.svg
 export function drawLanguageGalaxy(langs) {
   const width = 410;
   const height = 280;
@@ -573,7 +728,7 @@ export function drawLanguageGalaxy(langs) {
 </svg>`;
 }
 
-// 4. Generate assets/github-stats.svg
+// 5. Generate assets/github-stats.svg
 export function drawGithubStats(stats) {
   const width = 850;
   const height = 180;
@@ -827,6 +982,7 @@ async function main() {
   writeFileSync(join(ASSETS_DIR, "streak-stats.svg"), drawStreakStats(streakData), "utf8");
   writeFileSync(join(ASSETS_DIR, "language-galaxy.svg"), drawLanguageGalaxy(languages), "utf8");
   writeFileSync(join(ASSETS_DIR, "github-stats.svg"), drawGithubStats(stats), "utf8");
+  writeFileSync(join(ASSETS_DIR, "contribution-graph.svg"), drawContributionGraph(USERNAME, days), "utf8");
 
   console.log("Static space-themed SVG cards generated successfully.");
 
@@ -849,26 +1005,26 @@ async function main() {
 | --- | --- | --- |
 | LLM inference engine featuring a 51-agent swarm architecture and a full RAG pipeline built from first principles.<br/><br/>\`Python\` · \`AI Swarms\` | Deep learning framework built from scratch in NumPy — gradients verified against PyTorch to 1e-6. Published to PyPI.<br/><br/>\`Python\` · \`Autodiff\` | A chess engine written in Rust, built for speed and board representation correctness from the ground up.<br/><br/>\`Rust\` · \`Systems\` |`;
 
-  // Assemble the spacious markdown content, embedding the customized live-updating third-party graph
+  // Assemble the spacious markdown content, embedding the customized live-updating Vercel URLs
   const mdContent = `<div align="center">
 
 <!-- COCKPIT SPACE DASHBOARD - UNIFIED GRID (SPACIOUS LAYOUT) -->
 
 <p align="center">
-  <img src="assets/hero-banner.svg" width="100%" alt="Space HUD Banner" />
+  <img src="${VERCEL_URL}/api/banner" width="100%" alt="Space HUD Banner" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${USERNAME}&bg_color=070D1E&color=E2E8F0&title_color=38BDF8&line=818CF8&point=C084FC&area_color=38BDF8&area=true&hide_border=true&radius=12" width="100%" alt="Contribution Graph" />
+  <img src="${VERCEL_URL}/api/graph" width="100%" alt="Contribution Graph" />
 </p>
 
 <p align="center">
-  <img src="assets/streak-stats.svg" width="49.5%" alt="Contribution Streaks" />
-  <img src="assets/language-galaxy.svg" width="49.5%" alt="Language Distribution" />
+  <img src="${VERCEL_URL}/api/streak" width="49.5%" alt="Contribution Streaks" />
+  <img src="${VERCEL_URL}/api/galaxy" width="49.5%" alt="Language Distribution" />
 </p>
 
 <p align="center">
-  <img src="assets/github-stats.svg" width="100%" alt="GitHub Profile Statistics" />
+  <img src="${VERCEL_URL}/api/stats" width="100%" alt="GitHub Profile Statistics" />
 </p>
 
 </div>
