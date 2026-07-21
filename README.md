@@ -1,32 +1,9 @@
 <div align="center">
 
-<!-- COSMIC BACKGROUND ANIMATION -->
-<style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-  @keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
-    50% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
-  }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .cosmic { animation: glow 3s ease-in-out infinite; }
-  .float { animation: float 3s ease-in-out infinite; }
-  .slide { animation: slideIn 1s ease-out; }
-</style>
-
 <!-- HEADER SECTION -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:1E3A8A,100:38BDF8&height=280&section=header&text=Tanishq%20Mangal&fontSize=60&fontColor=FFFFFF&animation=twinkling&fontAlignY=40&desc=Full-Stack%20%7C%20AI%2FML%20%7C%20Systems%20Builder&descAlignY=65&descAlign=50" width="100%"/>
 
-<div class="cosmic">
+<div>
   <a href="https://github.com/Eternalcodertanishq3" style="text-decoration: none;">
     <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&pause=1000&color=38BDF8&center=true&vCenter=true&width=900&lines=Hi%20there%2C%20I'm%20Tanishq!;Full-stack%20%2B%20AI%2FML%20%2B%20systems%20engineer.;Recent%20CS%20grad%20—%20shipping%20production-grade%20software.;Open%20to%20full-time%20SWE%20%2F%20AI%20roles." alt="Typing Animation"/>
   </a>
@@ -35,7 +12,7 @@
 <br/><br/>
 
 <!-- SKILLS BADGES -->
-<div class="float" style="padding: 20px; border-radius: 10px; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(10px);">
+<div style="padding: 20px; border-radius: 10px; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(10px);">
   <img src="https://img.shields.io/badge/Full--Stack-Engineering-0F172A?style=for-the-badge&logo=react&logoColor=38BDF8" alt="Full-Stack"/>
   <img src="https://img.shields.io/badge/Applied-AI%2FML-0F172A?style=for-the-badge&logo=pytorch&logoColor=EE4C2C" alt="AI/ML"/>
   <img src="https://img.shields.io/badge/Systems-Rust%20%7C%20Go-0F172A?style=for-the-badge&logo=rust&logoColor=white" alt="Systems"/>
@@ -71,7 +48,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## 🔴 Currently Building — *live from GitHub*
 
-<div class="slide" style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+<div style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
 
 <!--START_SECTION:currently-building-->
 
@@ -123,7 +100,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## ⭐ Flagship Projects
 
-<div class="slide" style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; max-width: 1200px; margin-left: auto; margin-right: auto;">
+<div style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; max-width: 1200px; margin-left: auto; margin-right: auto;">
 
 <div style="padding: 25px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(30, 58, 138, 0.1) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
 <h3 style="margin: 0 0 12px 0; color: #38BDF8; font-size: 18px;">🧠 <a href="https://github.com/Eternalcodertanishq3/Pravaha" style="text-decoration: none; color: #38BDF8;">Pravaha</a></h3>
@@ -193,7 +170,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## 🧠 Tech Arsenal
 
-<div class="slide" style="margin: 30px auto; max-width: 900px;">
+<div style="margin: 30px auto; max-width: 900px;">
 <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 58, 138, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px);">
 <div style="margin-bottom: 25px;">
 <img src="https://skillicons.dev/icons?i=py,js,ts,cpp,rust,go,react,nextjs,tailwind,nodejs&perline=10" alt="Tech Stack" style="max-width: 100%; height: auto;"/>
@@ -236,7 +213,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <br/>
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
+<div style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
 ### GitHub Stats
 
@@ -249,7 +226,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <br/>
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
+<div style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
 ### Language Distribution
 
@@ -262,7 +239,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <br/>
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
+<div style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
 ### Contribution Streaks
 
@@ -275,7 +252,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <br/>
 
-<div class="slide" style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
+<div style="margin: 30px 0; padding: 30px; background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.3) 100%); border-radius: 15px; backdrop-filter: blur(10px); text-align: center;">
 
 ### 🔥 Live Contribution Heatmap
 
@@ -288,7 +265,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <br/>
 
-<div class="slide" style="margin: 30px 0; text-align: center;">
+<div style="margin: 30px 0; text-align: center;">
 
 ### 🏆 Achievements & Trophies
 
@@ -335,7 +312,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 ## ✦ Connect & Collaborate
 
-<div class="cosmic" style="padding: 30px; text-align: center;">
+<div style="padding: 30px; text-align: center;">
 
 <a href="https://tanishq-creates.netlify.app" target="_blank">
   <img src="https://img.shields.io/badge/Portfolio-0F172A?style=for-the-badge&logo=firefox&logoColor=FF7139" alt="Portfolio"/>
@@ -358,7 +335,7 @@ I care about products that are fast, correct, and don't look like everyone else'
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:38BDF8,100:0F172A&height=150&section=footer&animation=fadeIn" width="100%"/>
 
-<div class="cosmic" style="padding: 20px; font-size: 16px;">
+<div style="padding: 20px; font-size: 16px; text-align: center; color: #38BDF8;">
   <sub>✨ "Writing code that feels like magic." ✨</sub>
   <br/>
   <sub>Last synced: 2026-07-21</sub>
