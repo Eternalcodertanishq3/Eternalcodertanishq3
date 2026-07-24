@@ -41,8 +41,8 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="Advanced-Gym-Portal" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="Semantic-6G" /></a></p>
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Project-AEGIS" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="Project-AEGIS" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/pravaha" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="pravaha" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="Advanced-Gym-Portal" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="Semantic-6G" /></a></p>
 <!--END_SECTION:currently-building-->
 
 <br/>
