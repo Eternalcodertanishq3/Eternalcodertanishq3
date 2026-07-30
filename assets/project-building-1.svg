@@ -18,44 +18,44 @@
   <rect width="420" height="220" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
   
   <!-- Stars -->
-  <circle cx="17" cy="36" r="0.7" fill="#F8FAFC" opacity="0.28" style="animation: pulse 4.5s ease-in-out infinite 2.5s" />
-<circle cx="326" cy="154" r="0.6" fill="#818CF8" opacity="0.41" style="animation: pulse 4.1s ease-in-out infinite 0.8s" />
-<circle cx="252" cy="119" r="0.6" fill="#A5B4FC" opacity="0.26" style="animation: pulse 4.6s ease-in-out infinite 1.6s" />
-<circle cx="56" cy="173" r="0.6" fill="#F8FAFC" opacity="0.62" style="animation: pulse 4.2s ease-in-out infinite 4.9s" />
-<circle cx="251" cy="14" r="0.9" fill="#38BDF8" opacity="0.43" style="animation: pulse 4.5s ease-in-out infinite 4.8s" />
-<circle cx="342" cy="73" r="0.7" fill="#818CF8" opacity="0.62" style="animation: pulse 5.0s ease-in-out infinite 0.9s" />
-<circle cx="18" cy="193" r="0.9" fill="#F8FAFC" opacity="0.43" style="animation: pulse 4.8s ease-in-out infinite 1.9s" />
-<circle cx="91" cy="42" r="1.0" fill="#818CF8" opacity="0.30" style="animation: pulse 4.4s ease-in-out infinite 3.0s" />
-<circle cx="370" cy="127" r="0.9" fill="#38BDF8" opacity="0.71" style="animation: pulse 2.1s ease-in-out infinite 3.6s" />
-<circle cx="371" cy="71" r="1.2" fill="#A5B4FC" opacity="0.83" style="animation: pulse 4.6s ease-in-out infinite 1.8s" />
-<circle cx="58" cy="90" r="0.6" fill="#818CF8" opacity="0.74" style="animation: pulse 4.4s ease-in-out infinite 1.6s" />
-<circle cx="23" cy="34" r="1.1" fill="#38BDF8" opacity="0.18" style="animation: pulse 3.5s ease-in-out infinite 3.5s" />
-<circle cx="70" cy="0" r="0.9" fill="#F8FAFC" opacity="0.53" style="animation: pulse 3.0s ease-in-out infinite 4.3s" />
-<circle cx="319" cy="207" r="0.8" fill="#38BDF8" opacity="0.32" style="animation: pulse 2.7s ease-in-out infinite 1.7s" />
-<circle cx="97" cy="98" r="0.5" fill="#A5B4FC" opacity="0.85" style="animation: pulse 3.5s ease-in-out infinite 0.3s" />
-<circle cx="414" cy="98" r="1.2" fill="#A5B4FC" opacity="0.15" style="animation: pulse 3.8s ease-in-out infinite 3.4s" />
-<circle cx="180" cy="27" r="0.6" fill="#38BDF8" opacity="0.71" style="animation: pulse 2.8s ease-in-out infinite 0.3s" />
-<circle cx="215" cy="147" r="1.0" fill="#F8FAFC" opacity="0.44" style="animation: pulse 3.1s ease-in-out infinite 2.9s" />
-<circle cx="406" cy="130" r="0.8" fill="#38BDF8" opacity="0.18" style="animation: pulse 2.8s ease-in-out infinite 4.4s" />
-<circle cx="355" cy="130" r="0.8" fill="#F8FAFC" opacity="0.27" style="animation: pulse 2.7s ease-in-out infinite 2.7s" />
-<circle cx="291" cy="147" r="0.8" fill="#F8FAFC" opacity="0.23" style="animation: pulse 3.0s ease-in-out infinite 4.1s" />
-<circle cx="78" cy="73" r="0.7" fill="#38BDF8" opacity="0.34" style="animation: pulse 4.0s ease-in-out infinite 4.6s" />
-<circle cx="119" cy="172" r="0.9" fill="#F8FAFC" opacity="0.29" style="animation: pulse 3.4s ease-in-out infinite 4.4s" />
+  <circle cx="404" cy="101" r="0.6" fill="#818CF8" opacity="0.43" style="animation: pulse 3.7s ease-in-out infinite 4.9s" />
+<circle cx="103" cy="123" r="0.7" fill="#818CF8" opacity="0.24" style="animation: pulse 4.4s ease-in-out infinite 0.3s" />
+<circle cx="222" cy="107" r="1.2" fill="#818CF8" opacity="0.49" style="animation: pulse 3.1s ease-in-out infinite 1.8s" />
+<circle cx="41" cy="23" r="0.6" fill="#F8FAFC" opacity="0.76" style="animation: pulse 2.0s ease-in-out infinite 1.4s" />
+<circle cx="345" cy="178" r="1.2" fill="#A5B4FC" opacity="0.40" style="animation: pulse 4.0s ease-in-out infinite 1.3s" />
+<circle cx="267" cy="91" r="1.1" fill="#818CF8" opacity="0.15" style="animation: pulse 3.8s ease-in-out infinite 0.1s" />
+<circle cx="92" cy="135" r="0.8" fill="#818CF8" opacity="0.65" style="animation: pulse 2.2s ease-in-out infinite 3.2s" />
+<circle cx="10" cy="58" r="0.7" fill="#38BDF8" opacity="0.74" style="animation: pulse 3.2s ease-in-out infinite 3.4s" />
+<circle cx="214" cy="193" r="0.4" fill="#F8FAFC" opacity="0.45" style="animation: pulse 2.9s ease-in-out infinite 4.3s" />
+<circle cx="220" cy="35" r="1.0" fill="#38BDF8" opacity="0.30" style="animation: pulse 2.0s ease-in-out infinite 0.5s" />
+<circle cx="19" cy="72" r="0.9" fill="#F8FAFC" opacity="0.20" style="animation: pulse 3.6s ease-in-out infinite 0.9s" />
+<circle cx="224" cy="31" r="0.4" fill="#38BDF8" opacity="0.56" style="animation: pulse 4.3s ease-in-out infinite 5.0s" />
+<circle cx="69" cy="136" r="0.6" fill="#A5B4FC" opacity="0.56" style="animation: pulse 4.8s ease-in-out infinite 3.5s" />
+<circle cx="25" cy="196" r="0.7" fill="#818CF8" opacity="0.28" style="animation: pulse 4.7s ease-in-out infinite 1.4s" />
+<circle cx="339" cy="136" r="1.2" fill="#F8FAFC" opacity="0.18" style="animation: pulse 4.1s ease-in-out infinite 0.6s" />
+<circle cx="210" cy="165" r="0.6" fill="#A5B4FC" opacity="0.35" style="animation: pulse 2.4s ease-in-out infinite 0.1s" />
+<circle cx="400" cy="81" r="0.6" fill="#F8FAFC" opacity="0.33" style="animation: pulse 2.5s ease-in-out infinite 1.5s" />
+<circle cx="386" cy="77" r="1.1" fill="#818CF8" opacity="0.69" style="animation: pulse 2.5s ease-in-out infinite 0.2s" />
+<circle cx="180" cy="214" r="0.8" fill="#A5B4FC" opacity="0.84" style="animation: pulse 2.2s ease-in-out infinite 0.2s" />
+<circle cx="409" cy="51" r="0.7" fill="#F8FAFC" opacity="0.45" style="animation: pulse 4.3s ease-in-out infinite 1.0s" />
+<circle cx="331" cy="6" r="1.0" fill="#F8FAFC" opacity="0.59" style="animation: pulse 3.6s ease-in-out infinite 0.5s" />
+<circle cx="210" cy="63" r="0.5" fill="#818CF8" opacity="0.34" style="animation: pulse 3.6s ease-in-out infinite 4.8s" />
+<circle cx="337" cy="32" r="0.8" fill="#F8FAFC" opacity="0.66" style="animation: pulse 2.8s ease-in-out infinite 3.6s" />
 
 
   <!-- Header -->
-  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">🌐 minigrad</text>
+  <text x="24" y="40" fill="#38BDF8" font-size="18" font-weight="700" class="font-sans">🌐 ZARA-Zenith-Autonomous-Reasoning-Assistant.</text>
   <line x1="24" y1="54" x2="396" y2="54" stroke="#1E293B" stroke-width="1" stroke-opacity="0.4" />
 
   <!-- Description -->
-  <text x="24" y="82" fill="#94A3B8" font-size="14.5" class="font-sans">A deep learning framework built from scratch in</text>
-<text x="24" y="104" fill="#94A3B8" font-size="14.5" class="font-sans">Python &amp; NumPy. Features a dynamic autograd</text>
+  <text x="24" y="82" fill="#94A3B8" font-size="14.5" class="font-sans">ZARA: Zenith Autonomous Reasoning Assistant. A</text>
+<text x="24" y="104" fill="#94A3B8" font-size="14.5" class="font-sans">sovereign digital consciousness powered by an</text>
 
 
   <!-- Commit message -->
   
     <text x="24" y="152" fill="#64748B" font-size="13" font-weight="700" class="font-mono">Commit:</text>
-    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">fix: extend __pow__ negative expo...</text>
+    <text x="85" y="152" fill="#C084FC" font-size="13" class="font-mono">fix: restore full main.py v4.0 ar...</text>
     
 
   <!-- Footer Divider -->
