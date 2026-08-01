@@ -41,8 +41,8 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/ZARA-Zenith-Autonomous-Reasoning-Assistant." target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="ZARA-Zenith-Autonomous-Reasoning-Assistant." /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/minigrad" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="minigrad" /></a></p>
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Semantic-6G" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="Semantic-6G" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/VaniFlow" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="VaniFlow" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/ZARA-Zenith-Autonomous-Reasoning-Assistant." target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="ZARA-Zenith-Autonomous-Reasoning-Assistant." /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/minigrad" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="minigrad" /></a></p>
 <!--END_SECTION:currently-building-->
 
 <br/>
