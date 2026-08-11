@@ -18,29 +18,29 @@
   <rect width="420" height="220" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
   
   <!-- Stars -->
-  <circle cx="413" cy="164" r="0.5" fill="#A5B4FC" opacity="0.40" style="animation: pulse 2.8s ease-in-out infinite 3.7s" />
-<circle cx="296" cy="1" r="1.0" fill="#818CF8" opacity="0.22" style="animation: pulse 2.3s ease-in-out infinite 3.6s" />
-<circle cx="124" cy="55" r="0.6" fill="#F8FAFC" opacity="0.74" style="animation: pulse 2.4s ease-in-out infinite 3.1s" />
-<circle cx="269" cy="114" r="1.1" fill="#818CF8" opacity="0.40" style="animation: pulse 2.4s ease-in-out infinite 2.7s" />
-<circle cx="417" cy="114" r="1.1" fill="#38BDF8" opacity="0.79" style="animation: pulse 2.4s ease-in-out infinite 4.9s" />
-<circle cx="406" cy="24" r="0.7" fill="#38BDF8" opacity="0.78" style="animation: pulse 4.7s ease-in-out infinite 3.6s" />
-<circle cx="97" cy="8" r="1.2" fill="#38BDF8" opacity="0.48" style="animation: pulse 3.3s ease-in-out infinite 0.8s" />
-<circle cx="220" cy="208" r="0.8" fill="#A5B4FC" opacity="0.30" style="animation: pulse 4.6s ease-in-out infinite 1.2s" />
-<circle cx="212" cy="176" r="0.7" fill="#F8FAFC" opacity="0.84" style="animation: pulse 2.8s ease-in-out infinite 1.8s" />
-<circle cx="216" cy="182" r="0.5" fill="#818CF8" opacity="0.59" style="animation: pulse 2.8s ease-in-out infinite 3.9s" />
-<circle cx="312" cy="17" r="0.6" fill="#818CF8" opacity="0.50" style="animation: pulse 3.3s ease-in-out infinite 4.4s" />
-<circle cx="119" cy="82" r="1.0" fill="#38BDF8" opacity="0.55" style="animation: pulse 4.3s ease-in-out infinite 0.0s" />
-<circle cx="292" cy="52" r="0.7" fill="#A5B4FC" opacity="0.47" style="animation: pulse 3.1s ease-in-out infinite 1.5s" />
-<circle cx="96" cy="89" r="0.5" fill="#38BDF8" opacity="0.52" style="animation: pulse 3.7s ease-in-out infinite 3.3s" />
-<circle cx="415" cy="139" r="1.0" fill="#38BDF8" opacity="0.73" style="animation: pulse 3.4s ease-in-out infinite 3.1s" />
-<circle cx="221" cy="109" r="0.7" fill="#38BDF8" opacity="0.65" style="animation: pulse 4.1s ease-in-out infinite 2.6s" />
-<circle cx="346" cy="159" r="0.5" fill="#F8FAFC" opacity="0.34" style="animation: pulse 2.7s ease-in-out infinite 1.8s" />
-<circle cx="173" cy="17" r="0.7" fill="#38BDF8" opacity="0.38" style="animation: pulse 3.3s ease-in-out infinite 3.1s" />
-<circle cx="151" cy="172" r="1.1" fill="#A5B4FC" opacity="0.35" style="animation: pulse 4.6s ease-in-out infinite 4.6s" />
-<circle cx="282" cy="140" r="1.1" fill="#F8FAFC" opacity="0.46" style="animation: pulse 3.8s ease-in-out infinite 3.1s" />
-<circle cx="65" cy="75" r="1.0" fill="#818CF8" opacity="0.58" style="animation: pulse 4.2s ease-in-out infinite 0.6s" />
-<circle cx="262" cy="211" r="0.6" fill="#A5B4FC" opacity="0.38" style="animation: pulse 3.2s ease-in-out infinite 1.9s" />
-<circle cx="351" cy="47" r="0.5" fill="#818CF8" opacity="0.78" style="animation: pulse 3.6s ease-in-out infinite 4.4s" />
+  <circle cx="19" cy="73" r="0.9" fill="#A5B4FC" opacity="0.73" style="animation: pulse 4.2s ease-in-out infinite 3.3s" />
+<circle cx="244" cy="3" r="1.0" fill="#818CF8" opacity="0.80" style="animation: pulse 2.1s ease-in-out infinite 4.5s" />
+<circle cx="236" cy="30" r="0.5" fill="#38BDF8" opacity="0.49" style="animation: pulse 2.3s ease-in-out infinite 4.0s" />
+<circle cx="390" cy="188" r="0.7" fill="#F8FAFC" opacity="0.85" style="animation: pulse 3.3s ease-in-out infinite 1.8s" />
+<circle cx="270" cy="157" r="1.2" fill="#F8FAFC" opacity="0.63" style="animation: pulse 4.6s ease-in-out infinite 1.7s" />
+<circle cx="17" cy="39" r="0.7" fill="#38BDF8" opacity="0.77" style="animation: pulse 4.7s ease-in-out infinite 3.2s" />
+<circle cx="226" cy="50" r="1.2" fill="#38BDF8" opacity="0.36" style="animation: pulse 3.0s ease-in-out infinite 2.6s" />
+<circle cx="192" cy="163" r="0.9" fill="#818CF8" opacity="0.37" style="animation: pulse 2.4s ease-in-out infinite 2.5s" />
+<circle cx="219" cy="188" r="1.1" fill="#38BDF8" opacity="0.79" style="animation: pulse 4.1s ease-in-out infinite 0.9s" />
+<circle cx="173" cy="67" r="1.1" fill="#A5B4FC" opacity="0.80" style="animation: pulse 4.1s ease-in-out infinite 2.8s" />
+<circle cx="204" cy="7" r="0.5" fill="#818CF8" opacity="0.31" style="animation: pulse 2.4s ease-in-out infinite 0.7s" />
+<circle cx="5" cy="179" r="0.5" fill="#38BDF8" opacity="0.29" style="animation: pulse 4.7s ease-in-out infinite 4.7s" />
+<circle cx="94" cy="171" r="1.0" fill="#818CF8" opacity="0.53" style="animation: pulse 2.7s ease-in-out infinite 1.0s" />
+<circle cx="337" cy="81" r="1.2" fill="#38BDF8" opacity="0.31" style="animation: pulse 4.7s ease-in-out infinite 3.0s" />
+<circle cx="24" cy="122" r="0.6" fill="#818CF8" opacity="0.32" style="animation: pulse 4.8s ease-in-out infinite 1.6s" />
+<circle cx="251" cy="128" r="1.0" fill="#38BDF8" opacity="0.37" style="animation: pulse 4.7s ease-in-out infinite 4.8s" />
+<circle cx="117" cy="181" r="0.9" fill="#818CF8" opacity="0.73" style="animation: pulse 4.8s ease-in-out infinite 3.3s" />
+<circle cx="187" cy="178" r="0.7" fill="#818CF8" opacity="0.23" style="animation: pulse 2.9s ease-in-out infinite 2.1s" />
+<circle cx="372" cy="199" r="0.5" fill="#F8FAFC" opacity="0.63" style="animation: pulse 2.7s ease-in-out infinite 3.4s" />
+<circle cx="128" cy="17" r="1.2" fill="#A5B4FC" opacity="0.73" style="animation: pulse 3.2s ease-in-out infinite 4.3s" />
+<circle cx="202" cy="101" r="1.1" fill="#38BDF8" opacity="0.46" style="animation: pulse 4.0s ease-in-out infinite 1.6s" />
+<circle cx="199" cy="214" r="0.7" fill="#38BDF8" opacity="0.19" style="animation: pulse 3.6s ease-in-out infinite 0.6s" />
+<circle cx="76" cy="98" r="0.7" fill="#A5B4FC" opacity="0.28" style="animation: pulse 4.2s ease-in-out infinite 1.3s" />
 
 
   <!-- Header -->
@@ -65,7 +65,7 @@
   
     <circle cx="28" cy="186" r="4.5" fill="#3572A5" />
     <text x="38" y="190" fill="#94A3B8" font-size="13.5" class="font-sans">Python</text>
-    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ 11d ago</text>
+    <text x="210" y="190" fill="#64748B" font-size="12" class="font-mono" text-anchor="middle">⏱ 12d ago</text>
     <text x="396" y="190" fill="#64748B" font-size="13.5" class="font-mono" text-anchor="end">★ 0</text>
     
 </svg>
