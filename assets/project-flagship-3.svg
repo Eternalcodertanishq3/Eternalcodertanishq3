@@ -18,35 +18,35 @@
   <rect width="850" height="140" rx="12" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.2" />
   
   <!-- Stars -->
-  <circle cx="579" cy="34" r="0.8" fill="#38BDF8" opacity="0.82" style="animation: pulse 2.4s ease-in-out infinite 0.8s" />
-<circle cx="230" cy="85" r="0.9" fill="#A5B4FC" opacity="0.18" style="animation: pulse 2.7s ease-in-out infinite 0.1s" />
-<circle cx="644" cy="19" r="0.5" fill="#F8FAFC" opacity="0.67" style="animation: pulse 2.7s ease-in-out infinite 1.7s" />
-<circle cx="745" cy="82" r="0.5" fill="#A5B4FC" opacity="0.67" style="animation: pulse 3.5s ease-in-out infinite 2.2s" />
-<circle cx="476" cy="19" r="1.1" fill="#F8FAFC" opacity="0.23" style="animation: pulse 3.6s ease-in-out infinite 2.5s" />
-<circle cx="191" cy="36" r="0.6" fill="#F8FAFC" opacity="0.20" style="animation: pulse 3.9s ease-in-out infinite 1.1s" />
-<circle cx="250" cy="39" r="0.5" fill="#818CF8" opacity="0.72" style="animation: pulse 2.8s ease-in-out infinite 3.7s" />
-<circle cx="833" cy="116" r="0.8" fill="#818CF8" opacity="0.22" style="animation: pulse 4.7s ease-in-out infinite 2.7s" />
-<circle cx="407" cy="15" r="0.8" fill="#F8FAFC" opacity="0.65" style="animation: pulse 4.6s ease-in-out infinite 1.6s" />
-<circle cx="528" cy="91" r="0.8" fill="#38BDF8" opacity="0.57" style="animation: pulse 4.1s ease-in-out infinite 1.9s" />
-<circle cx="358" cy="52" r="0.5" fill="#F8FAFC" opacity="0.50" style="animation: pulse 2.9s ease-in-out infinite 3.9s" />
-<circle cx="332" cy="131" r="0.8" fill="#F8FAFC" opacity="0.16" style="animation: pulse 2.9s ease-in-out infinite 1.3s" />
-<circle cx="259" cy="123" r="0.6" fill="#38BDF8" opacity="0.49" style="animation: pulse 4.5s ease-in-out infinite 1.1s" />
-<circle cx="317" cy="12" r="0.7" fill="#F8FAFC" opacity="0.31" style="animation: pulse 2.9s ease-in-out infinite 0.4s" />
-<circle cx="422" cy="69" r="0.9" fill="#38BDF8" opacity="0.48" style="animation: pulse 4.0s ease-in-out infinite 4.8s" />
-<circle cx="765" cy="131" r="0.9" fill="#818CF8" opacity="0.75" style="animation: pulse 4.8s ease-in-out infinite 1.0s" />
-<circle cx="91" cy="72" r="1.1" fill="#38BDF8" opacity="0.27" style="animation: pulse 3.2s ease-in-out infinite 0.9s" />
-<circle cx="123" cy="43" r="0.5" fill="#F8FAFC" opacity="0.71" style="animation: pulse 3.8s ease-in-out infinite 1.8s" />
-<circle cx="265" cy="127" r="0.9" fill="#F8FAFC" opacity="0.23" style="animation: pulse 3.1s ease-in-out infinite 1.1s" />
-<circle cx="546" cy="15" r="1.0" fill="#F8FAFC" opacity="0.50" style="animation: pulse 4.5s ease-in-out infinite 0.6s" />
-<circle cx="665" cy="90" r="1.1" fill="#F8FAFC" opacity="0.64" style="animation: pulse 3.1s ease-in-out infinite 2.8s" />
-<circle cx="228" cy="44" r="0.6" fill="#F8FAFC" opacity="0.69" style="animation: pulse 3.6s ease-in-out infinite 3.1s" />
-<circle cx="840" cy="105" r="0.8" fill="#818CF8" opacity="0.26" style="animation: pulse 3.8s ease-in-out infinite 1.5s" />
-<circle cx="466" cy="68" r="0.4" fill="#F8FAFC" opacity="0.51" style="animation: pulse 4.3s ease-in-out infinite 1.8s" />
-<circle cx="436" cy="80" r="1.1" fill="#F8FAFC" opacity="0.48" style="animation: pulse 2.7s ease-in-out infinite 4.6s" />
-<circle cx="113" cy="66" r="0.8" fill="#A5B4FC" opacity="0.71" style="animation: pulse 4.1s ease-in-out infinite 3.2s" />
-<circle cx="482" cy="41" r="0.5" fill="#38BDF8" opacity="0.69" style="animation: pulse 4.9s ease-in-out infinite 1.1s" />
-<circle cx="672" cy="80" r="0.5" fill="#38BDF8" opacity="0.34" style="animation: pulse 3.4s ease-in-out infinite 3.1s" />
-<circle cx="818" cy="54" r="0.9" fill="#A5B4FC" opacity="0.81" style="animation: pulse 4.8s ease-in-out infinite 0.5s" />
+  <circle cx="658" cy="135" r="1.1" fill="#F8FAFC" opacity="0.76" style="animation: pulse 2.9s ease-in-out infinite 4.5s" />
+<circle cx="702" cy="46" r="0.8" fill="#F8FAFC" opacity="0.37" style="animation: pulse 3.7s ease-in-out infinite 3.3s" />
+<circle cx="586" cy="78" r="0.4" fill="#818CF8" opacity="0.76" style="animation: pulse 3.8s ease-in-out infinite 4.4s" />
+<circle cx="722" cy="132" r="0.4" fill="#38BDF8" opacity="0.39" style="animation: pulse 3.7s ease-in-out infinite 3.3s" />
+<circle cx="486" cy="8" r="0.7" fill="#818CF8" opacity="0.29" style="animation: pulse 3.3s ease-in-out infinite 2.5s" />
+<circle cx="468" cy="14" r="1.0" fill="#A5B4FC" opacity="0.23" style="animation: pulse 4.3s ease-in-out infinite 3.0s" />
+<circle cx="129" cy="133" r="0.7" fill="#818CF8" opacity="0.74" style="animation: pulse 3.0s ease-in-out infinite 3.3s" />
+<circle cx="844" cy="135" r="1.1" fill="#38BDF8" opacity="0.32" style="animation: pulse 3.4s ease-in-out infinite 2.7s" />
+<circle cx="19" cy="131" r="1.1" fill="#F8FAFC" opacity="0.19" style="animation: pulse 4.1s ease-in-out infinite 3.0s" />
+<circle cx="114" cy="9" r="1.0" fill="#38BDF8" opacity="0.35" style="animation: pulse 3.4s ease-in-out infinite 0.1s" />
+<circle cx="489" cy="43" r="0.5" fill="#A5B4FC" opacity="0.63" style="animation: pulse 4.2s ease-in-out infinite 0.3s" />
+<circle cx="196" cy="54" r="1.2" fill="#818CF8" opacity="0.73" style="animation: pulse 4.0s ease-in-out infinite 1.2s" />
+<circle cx="84" cy="40" r="0.4" fill="#818CF8" opacity="0.60" style="animation: pulse 2.9s ease-in-out infinite 2.7s" />
+<circle cx="694" cy="74" r="0.5" fill="#A5B4FC" opacity="0.70" style="animation: pulse 4.4s ease-in-out infinite 2.1s" />
+<circle cx="308" cy="84" r="0.9" fill="#38BDF8" opacity="0.22" style="animation: pulse 3.9s ease-in-out infinite 1.4s" />
+<circle cx="469" cy="103" r="1.0" fill="#F8FAFC" opacity="0.22" style="animation: pulse 2.5s ease-in-out infinite 1.8s" />
+<circle cx="316" cy="135" r="0.5" fill="#F8FAFC" opacity="0.50" style="animation: pulse 4.2s ease-in-out infinite 2.2s" />
+<circle cx="426" cy="13" r="1.0" fill="#818CF8" opacity="0.57" style="animation: pulse 4.5s ease-in-out infinite 2.7s" />
+<circle cx="419" cy="74" r="0.4" fill="#F8FAFC" opacity="0.72" style="animation: pulse 2.9s ease-in-out infinite 1.5s" />
+<circle cx="561" cy="52" r="1.0" fill="#818CF8" opacity="0.58" style="animation: pulse 4.0s ease-in-out infinite 2.6s" />
+<circle cx="209" cy="113" r="0.9" fill="#A5B4FC" opacity="0.31" style="animation: pulse 4.4s ease-in-out infinite 0.5s" />
+<circle cx="85" cy="18" r="0.4" fill="#F8FAFC" opacity="0.52" style="animation: pulse 4.9s ease-in-out infinite 2.9s" />
+<circle cx="361" cy="51" r="0.7" fill="#38BDF8" opacity="0.58" style="animation: pulse 4.9s ease-in-out infinite 0.3s" />
+<circle cx="608" cy="131" r="0.5" fill="#38BDF8" opacity="0.79" style="animation: pulse 4.9s ease-in-out infinite 4.0s" />
+<circle cx="452" cy="115" r="0.7" fill="#F8FAFC" opacity="0.39" style="animation: pulse 2.2s ease-in-out infinite 3.0s" />
+<circle cx="165" cy="94" r="0.9" fill="#A5B4FC" opacity="0.45" style="animation: pulse 3.8s ease-in-out infinite 0.8s" />
+<circle cx="775" cy="94" r="0.8" fill="#A5B4FC" opacity="0.40" style="animation: pulse 3.5s ease-in-out infinite 3.7s" />
+<circle cx="583" cy="69" r="0.7" fill="#818CF8" opacity="0.16" style="animation: pulse 4.1s ease-in-out infinite 1.6s" />
+<circle cx="255" cy="73" r="0.7" fill="#818CF8" opacity="0.59" style="animation: pulse 4.1s ease-in-out infinite 0.3s" />
 
 
   <!-- Header -->
