@@ -41,8 +41,8 @@
 ## 🔴 Currently Building — *live from GitHub*
 
 <!--START_SECTION:currently-building-->
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="Axiorynth" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="Advanced-Gym-Portal" /></a></p>
-<p align="center"><a href="https://github.com/Eternalcodertanishq3/VaniFlow" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="VaniFlow" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/applygenie-mcp" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=0" width="48.5%" alt="applygenie-mcp" /></a>&nbsp;&nbsp;<a href="https://github.com/Eternalcodertanishq3/Axiorynth" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=1" width="48.5%" alt="Axiorynth" /></a></p>
+<p align="center"><a href="https://github.com/Eternalcodertanishq3/Advanced-Gym-Portal" target="_blank"><img src="https://eternalcodertanishq3.vercel.app/api/building?index=2" width="48.5%" alt="Advanced-Gym-Portal" /></a></p>
 <!--END_SECTION:currently-building-->
 
 <br/>
